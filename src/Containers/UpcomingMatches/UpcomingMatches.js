@@ -34,6 +34,7 @@ class UpcomingMatches extends Component {
         this.setState({
             selectedMatchId: id
         })
+        console.log("Selected match id " + this.state.selectedMatchId);
     }
 
     render() {

@@ -38,8 +38,8 @@ class MatchResultInput extends Component {
     }
 
     componentDidUpdate () {
-        console.log("loadedMatch" + this.state.loadedMatch);
-        console.log("Props Match id" + this.props.id);
+        console.log("MatchResultInput loadedMatch" + this.state.loadedMatch);
+        console.log("MatchResultInput Props Match id" + this.props.id);
         if (this.props.id) {
             if (!this.state.loadedMatch || (this.state.loadedMatch && this.state.selectedMatchId !== this.props.id)) {
                 axios.get('https://react-my-burger-tam.firebaseio.com/upcomingmatches/' + this.props.id + '.json')
