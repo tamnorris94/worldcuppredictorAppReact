@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import UpcomingMatch from "./UpcomingMatch/UpcomingMatch";
 import MatchResultInput from "../MatchResultInput/MatchResultInput";
 import axios from "../../axios-wcpredict";
+import Modal from "../../Components/UI/Modal/Modal";
+import Aux from "../../Hoc/Auxiliary/Auxiliary";
 
 class UpcomingMatches extends Component {
 
@@ -9,7 +11,8 @@ class UpcomingMatches extends Component {
         selectedMatchId: null,
         upcomingMatches: [],
         loading: true,
-        error: false
+        error: false,
+        inputtingMatch: false
     }
 
     componentDidMount(){
@@ -30,14 +33,17 @@ class UpcomingMatches extends Component {
     }
 
     matchSelectHandler = (id) => {
-        console.log("Does the select hander get called?");
+        console.log("Does the select handler get called?");
         this.setState({
-            selectedMatchId: id
+            selectedMatchId: id,
+            inputtingMatch: true
         })
         console.log("Selected match id " + this.state.selectedMatchId);
     }
 
     render() {
+
+        let matchResultInput = null;
 
         let upcomingmatches = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
         if(!this.state.error){
@@ -49,19 +55,32 @@ class UpcomingMatches extends Component {
                         matchKickoff={upcomingMatch.matchKickoff}
                         clicked={() => this.matchSelectHandler(upcomingMatch.id)}
                     />
-
             });
         }
 
+        if(!this.state.error && this.state.selectedMatchId){
+            matchResultInput = <MatchResultInput id={this.state.selectedMatchId}/>
+        }
+
+        // return (
+        //
+        //     <div>
+        //         <section>
+        //             {upcomingmatches}
+        //         </section>
+        //         <section>
+        //             <MatchResultInput id={this.state.selectedMatchId}/>
+        //         </section>
+        //     </div>
+        // );
+
         return (
-            <div>
-                <section>
-                    {upcomingmatches}
-                </section>
-                <section>
-                    <MatchResultInput id={this.state.selectedMatchId}/>
-                </section>
-            </div>
+            <Aux>
+                <Modal show={this.state.inputtingMatch} modalClosed={this.purchaseCancelHandler}>
+                    {matchResultInput}
+                </Modal>
+                {upcomingmatches}
+            </Aux>
         );
     }
 }

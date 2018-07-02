@@ -37,7 +37,8 @@ class MatchResultInput extends Component {
 
     }
 
-    componentDidUpdate () {
+    componentDidMount () {
+        console.log("Does componentDidUpdate get called?")
         console.log("MatchResultInput loadedMatch" + this.state.loadedMatch);
         console.log("MatchResultInput Props Match id" + this.props.id);
         if (this.props.id) {
@@ -54,12 +55,8 @@ class MatchResultInput extends Component {
                             matchId: this.props.id
                         });
                         console.log("get response " +response.data.teamA);
-
                     });
-
             }
-
-
         }
     }
 
@@ -151,7 +148,7 @@ class MatchResultInput extends Component {
                                                                   type="number"
                                                                   changed={this.teamBInputChangedHandler} />
 
-                    <Button btnType="Success">ADD MATCH</Button>
+                    <Button btnType="Success">ADD MATCH RESULT</Button>
                 </form>
             );
         }
