@@ -80,7 +80,8 @@ class MatchResultInput extends Component {
 
         axios.post('https://react-my-burger-tam.firebaseio.com/matchResults.json', resultData)
             .then( response => {
-                this.props.history.push('/');
+                console.log("Does this get run after the post?");
+                this.props.history.push({pathname: '/completedmatches'});
             })
             .catch( err => {
                 console.log("Error Occured");
@@ -135,7 +136,7 @@ class MatchResultInput extends Component {
             }
 
             matchResultInputForm = (
-                <form onSubmit={this.addMatchResult}>
+                <form>
                     <p>{this.state.loadedMatch.teamA} score: </p> <Input name="teamAResult"
                                                                   min="0"
                                                                   max="10"
@@ -148,7 +149,8 @@ class MatchResultInput extends Component {
                                                                   type="number"
                                                                   changed={this.teamBInputChangedHandler} />
 
-                    <Button btnType="Success">ADD MATCH RESULT</Button>
+                    <Button btnType="Success" clicked={this.addMatchResult}>ADD MATCH RESULT</Button>
+                    <Button btnType="Danger" clicked={this.props.resultInputCancelHandler}>CANCEL</Button>
                 </form>
             );
         }

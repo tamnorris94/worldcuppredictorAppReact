@@ -12,7 +12,7 @@ class UpcomingMatches extends Component {
         upcomingMatches: [],
         loading: true,
         error: false,
-        inputtingMatch: false
+        inputtingResult: false
     }
 
     componentDidMount(){
@@ -36,9 +36,17 @@ class UpcomingMatches extends Component {
         console.log("Does the select handler get called?");
         this.setState({
             selectedMatchId: id,
-            inputtingMatch: true
+            inputtingResult: true
         })
         console.log("Selected match id " + this.state.selectedMatchId);
+    }
+
+    cancelResultInputHandler = () => {
+        this.setState( {inputtingResult : false} )
+    }
+
+    addResultInputHandler = () => {
+
     }
 
     render() {
@@ -59,7 +67,9 @@ class UpcomingMatches extends Component {
         }
 
         if(!this.state.error && this.state.selectedMatchId){
-            matchResultInput = <MatchResultInput id={this.state.selectedMatchId}/>
+            matchResultInput = <MatchResultInput id={this.state.selectedMatchId}
+                                                 resultInputCancelHandler={this.cancelResultInputHandler}
+                                                 addMatchResult={this.addResultInputHandler}/>
         }
 
         // return (
@@ -76,7 +86,7 @@ class UpcomingMatches extends Component {
 
         return (
             <Aux>
-                <Modal show={this.state.inputtingMatch} modalClosed={this.purchaseCancelHandler}>
+                <Modal show={this.state.inputtingResult} modalClosed={this.purchaseCancelHandler}>
                     {matchResultInput}
                 </Modal>
                 {upcomingmatches}
