@@ -79,15 +79,15 @@ class MatchResultInput extends Component {
         console.log("What is match id? " +resultData.matchId);
 
         axios.post('https://react-my-burger-tam.firebaseio.com/matchResults.json', resultData)
+        axios.delete('https://react-my-burger-tam.firebaseio.com/upcomingmatches/' + this.props.id + '.json')
             .then( response => {
                 console.log("Does this get run after the post?");
-                this.props.history.push({pathname: '/completedmatches'});
+                this.props.history.push( {pathname: '/completedmatches' });
             })
             .catch( err => {
                 console.log("Error Occured");
             })
-
-        axios.delete('https://react-my-burger-tam.firebaseio.com/upcomingmatches/' + this.props.id + '.json');
+        this.props.history.push( {pathname: '/completedmatches' });
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -149,7 +149,7 @@ class MatchResultInput extends Component {
                                                                   type="number"
                                                                   changed={this.teamBInputChangedHandler} />
 
-                    <Button btnType="Success" clicked={this.addMatchResult}>ADD MATCH RESULT</Button>
+                    <Button btnType="Success" clicked={ this.addMatchResult}>ADD MATCH RESULT</Button>
                     <Button btnType="Danger" clicked={this.props.resultInputCancelHandler}>CANCEL</Button>
                 </form>
             );

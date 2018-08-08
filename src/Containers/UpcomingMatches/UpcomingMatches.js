@@ -9,6 +9,10 @@ class UpcomingMatches extends Component {
 
     state = {
         selectedMatchId: null,
+        selectedMatchTeamAName: "England",
+        selectedMatchTeamBName: "Colombia",
+        teamAScore: null,
+        teamBScore: null,
         upcomingMatches: [],
         loading: true,
         error: false,
@@ -32,21 +36,28 @@ class UpcomingMatches extends Component {
             });
     }
 
-    matchSelectHandler = (id) => {
-        console.log("Does the select handler get called?");
+    matchSelectHandler = (id, teamA, teamB) => {
+        console.log("Team A Match name is " + teamA);
         this.setState({
             selectedMatchId: id,
+            selectedMatchTeamA: teamA,
+            selectedMatchTeamB: teamB,
             inputtingResult: true
         })
-        console.log("Selected match id " + this.state.selectedMatchId);
+        console.log("Selected match id " + id);
     }
 
     cancelResultInputHandler = () => {
         this.setState( {inputtingResult : false} )
     }
 
-    addResultInputHandler = () => {
-
+    addResultInputHandler = (teamAScore, teamBScore) => {
+        console.log("So this gets called right?");
+        this.setState = {
+            teamAScore: teamAScore,
+            teamBScore: teamBScore
+        }
+        console.log("TeamB Score is " + this.state.teamBScore);
     }
 
     render() {
@@ -61,32 +72,22 @@ class UpcomingMatches extends Component {
                         teamA={upcomingMatch.teamA}
                         teamB={upcomingMatch.teamB}
                         matchKickoff={upcomingMatch.matchKickoff}
-                        clicked={() => this.matchSelectHandler(upcomingMatch.id)}
+                        clicked={() => this.matchSelectHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB)}
                     />
             });
         }
 
         if(!this.state.error && this.state.selectedMatchId){
             matchResultInput = <MatchResultInput id={this.state.selectedMatchId}
-                                                 resultInputCancelHandler={this.cancelResultInputHandler}
-                                                 addMatchResult={this.addResultInputHandler}/>
+                                                 teamA={this.state.selectedMatchTeamA}
+                                                 teamB={this.state.selectedMatchTeamB}
+                                                 resultInputCancel={this.cancelResultInputHandler}
+                                                 addResult={() => this.addResultInputHandler}/>
         }
-
-        // return (
-        //
-        //     <div>
-        //         <section>
-        //             {upcomingmatches}
-        //         </section>
-        //         <section>
-        //             <MatchResultInput id={this.state.selectedMatchId}/>
-        //         </section>
-        //     </div>
-        // );
 
         return (
             <Aux>
-                <Modal show={this.state.inputtingResult} modalClosed={this.purchaseCancelHandler}>
+                <Modal show={this.state.inputtingResult} modalClosed={this.cancelResultInputHandler}>
                     {matchResultInput}
                 </Modal>
                 {upcomingmatches}
