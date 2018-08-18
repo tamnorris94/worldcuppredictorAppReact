@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import UpcomingMatches from "./Containers/UpcomingMatches/UpcomingMatches";
 import CompletedMatches from "./Containers/CompletedMatches/CompletedMatches";
 import UpcomingMatchCreate from "./Containers/UpcomingMatchCreate/UpcomingMatchCreate";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Layout from './Hoc/Layout/Layout';
 import Home from './Containers/Home/Home';
 import AddResultsToCompletedMatches from "./Containers/AddResultsToCompletedMatches/AddResultsToCompletedMatches";
+import { connect } from 'react-redux';
+
 
 class App extends Component {
   render() {
@@ -26,3 +28,4 @@ class App extends Component {
 }
 
 export default App;
+//export default withRouter( connect( App ) );

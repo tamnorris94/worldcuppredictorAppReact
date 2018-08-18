@@ -1,50 +1,62 @@
 import React, { Component } from 'react';
 import UpcomingMatch from "./UpcomingMatch/UpcomingMatch";
-import MatchResultInput from "../MatchResultInput/MatchResultInput";
+import  MatchResultInput from "../MatchResultInput/MatchResultInput2";
 import axios from "../../axios-wcpredict";
 import Modal from "../../Components/UI/Modal/Modal";
 import Aux from "../../Hoc/Auxiliary/Auxiliary";
+import * as actions from '../../Store/actions/index';
+import { connect } from 'react-redux';
 
 class UpcomingMatches extends Component {
 
-    state = {
-        selectedMatchId: null,
-        selectedMatchTeamAName: "England",
-        selectedMatchTeamBName: "Colombia",
-        teamAScore: null,
-        teamBScore: null,
-        upcomingMatches: [],
-        loading: true,
-        error: false,
-        inputtingResult: false
-    }
+     state = {
+    //     selectedMatchId: null,
+    //     selectedMatchTeamAName: "England",
+    //     selectedMatchTeamBName: "Colombia",
+    //     teamAScore: null,
+    //     teamBScore: null,
+    //     upcomingMatches: [],
+    //     loading: true,
+    //     error: false,
+         inputtingResult: false
+     }
 
     componentDidMount(){
-        axios.get('https://react-my-burger-tam.firebaseio.com/upcomingmatches.json')
-            .then(resp => {
-                const fetchedUpcomingMmatches = [];
-                for (let key in resp.data) {
-                    fetchedUpcomingMmatches.push({
-                        ...resp.data[key],
-                        id: key
-                    });
-                }
-                this.setState({loading: false, upcomingMatches: fetchedUpcomingMmatches});
-            })
-            .catch(err => {
-                this.setState({loading: false});
-            });
+        // axios.get('https://react-my-burger-tam.firebaseio.com/upcomingmatches.json')
+        //     .then(resp => {
+        //         const fetchedUpcomingMmatches = [];
+        //         for (let key in resp.data) {
+        //             fetchedUpcomingMmatches.push({
+        //                 ...resp.data[key],
+        //                 id: key
+        //             });
+        //         }
+        //         this.setState({loading: false, upcomingMatches: fetchedUpcomingMmatches});
+        //     })
+        //     .catch(err => {
+        //         this.setState({loading: false});
+        //     });
+        console.log("Upcoming Matches component did mount");
+        this.props.onFetchUpcomingMatches();
     }
 
-    matchSelectHandler = (id, teamA, teamB) => {
-        console.log("Team A Match name is " + teamA);
+    // matchSelectHandler = (id, teamA, teamB) => {
+    //     console.log("Team A Match name is " + teamA);
+    //     this.setState({
+    //         selectedMatchId: id,
+    //         selectedMatchTeamA: teamA,
+    //         selectedMatchTeamB: teamB,
+    //         inputtingResult: true
+    //     })
+    //     console.log("Selected match id " + id);
+    // }
+
+    addMatchResultHandler = (id, teamAName, teamBName) => {
         this.setState({
-            selectedMatchId: id,
-            selectedMatchTeamA: teamA,
-            selectedMatchTeamB: teamB,
             inputtingResult: true
         })
-        console.log("Selected match id " + id);
+        console.log("What is the state of inputtingResult "+ this.state.inputtingResult);
+        this.props.onAddMatchResult( id, teamAName, teamAName);
     }
 
     cancelResultInputHandler = () => {
@@ -61,26 +73,28 @@ class UpcomingMatches extends Component {
     }
 
     render() {
-
         let matchResultInput = null;
 
-        let upcomingmatches = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
-        if(!this.state.error){
-            upcomingmatches = this.state.upcomingMatches.map(upcomingMatch => {
+        let upcomingmatches = <p style={{textAlign: 'center'}}>Loading...!</p>;
+        if(!this.props.loading && !this.props.error){
+            upcomingmatches = this.props.upcmgMatches.map(upcomingMatch => {
                     return <UpcomingMatch
                         key={upcomingMatch.id}
                         teamA={upcomingMatch.teamA}
                         teamB={upcomingMatch.teamB}
                         matchKickoff={upcomingMatch.matchKickoff}
-                        clicked={() => this.matchSelectHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB)}
+                        clicked={() => this.addMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB)}
                     />
             });
         }
+        else {
+            upcomingmatches = <p style={{textAlign: 'center'}}>Oops something went wrong, so pack a big bong!</p>;
+        }
 
-        if(!this.state.error && this.state.selectedMatchId){
-            matchResultInput = <MatchResultInput id={this.state.selectedMatchId}
-                                                 teamA={this.state.selectedMatchTeamA}
-                                                 teamB={this.state.selectedMatchTeamB}
+        if(this.state.inputtingResult){
+            matchResultInput = <MatchResultInput id={this.props.selectedMatchForUpd.matchID}
+                                                 teamA={this.props.selectedMatchForUpd.teamAName}
+                                                 teamB={this.props.selectedMatchForUpd.teamBName}
                                                  resultInputCancel={this.cancelResultInputHandler}
                                                  addResult={() => this.addResultInputHandler}/>
         }
@@ -96,4 +110,20 @@ class UpcomingMatches extends Component {
     }
 }
 
-export default UpcomingMatches;
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchUpcomingMatches: () => dispatch(actions.fetchUpcomingMatches()),
+        onAddMatchResult: (matchID, teamAName, teamBName ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        upcmgMatches: state.upcomingMatches.upcmgMatches,
+        loading: state.upcomingMatches.loading,
+        error: state.upcomingMatches.error,
+        selectedMatchForUpd: state.matchResultInput.selectedMatchForUpd
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)( UpcomingMatches );

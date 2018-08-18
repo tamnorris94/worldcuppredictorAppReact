@@ -4,30 +4,43 @@ import axios from "../../axios-wcpredict";
 import Button from "../../Components/UI/Button/Button";
 import Input from "../../Components/UI/Input/Input";
 import Spinner from "../../Components/UI/Spinner/Spinner";
+import * as actions from '../../Store/actions/index';
+import { connect } from 'react-redux';
+import { updateObject, checkValidity } from '../../shared/utility';
 
 class MatchResultInput extends Component {
 
     state = {
-        teamAScore: null,
-        teamBScore: null,
-        resultInputForm: {
+        controls: {
             teamAScore: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'number',
-                    placeholder: 'Team A Score'
+                    type: 'text',
+                    placeholder: ''
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 1
+                },
+                valid: false,
+                touched: false
             },
             teamBScore: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'number',
-                    placeholder: 'Team B Score '
+                    type: 'text',
+                    placeholder: ''
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 1
+                },
+                valid: false,
+                touched: false
             }
-        }
+        },
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -42,16 +55,42 @@ class MatchResultInput extends Component {
         this.setState({resultInputForm: updatedMatchResultForm});
     }
 
-    teamAInputChangedHandler = (event) => {
-        console.log("Does teamBInputChangeHandler execute?");
-        const teamAScoreUpdate = event.target.value;
-        this.setState({teamAScore : teamAScoreUpdate})
+    teamAInputChangedHandler = (event, teamAScore) => {
+        const updatedControls = updateObject( this.state.controls, {
+            [teamAScore]: updateObject( this.state.controls[teamAScore], {
+                value: event.target.value,
+                valid: checkValidity( event.target.value, this.state.controls[teamAScore].validation ),
+                touched: true
+            } )
+        } );
+        this.setState( { controls: updatedControls } );
     }
 
-    teamBInputChangedHandler = (event) => {
-        console.log("Does teamBInputChangeHandler execute?");
-        const teamBScoreUpdate = event.target.value;
-        this.setState({teamBScore : teamBScoreUpdate})
+    inputChangedHandler = ( event, controlName ) => {
+        const updatedControls = updateObject( this.state.controls, {
+            [controlName]: updateObject( this.state.controls[controlName], {
+                value: event.target.value,
+                valid: checkValidity( event.target.value, this.state.controls[controlName].validation ),
+                touched: true
+            } )
+        } );
+        this.setState( { controls: updatedControls } );
+    }
+
+    teamBInputChangedHandler = (event, teamBScore) => {
+        const updatedControls = updateObject( this.state.controls, {
+            [teamBScore]: updateObject( this.state.controls[teamBScore], {
+                value: event.target.value,
+                valid: checkValidity( event.target.value, this.state.controls[teamBScore].validation ),
+                touched: true
+            } )
+        } );
+        this.setState( { controls: updatedControls } );
+    }
+
+    addResultHandler = ( event ) => {
+        event.preventDefault();
+        this.props.onInputMatchResult( this.state.controls.teamAScore.value, this.state.controls.teamBScore.value );
     }
 
     render(){
@@ -84,8 +123,7 @@ class MatchResultInput extends Component {
                                                                          max="10"
                                                                          type="number"
                                                                          changed={this.teamBInputChangedHandler} />
-
-                    <Button btnType="Success" clicked={() => this.props.addResult}>ADD MATCH RESULT</Button>
+                    <Button btnType="Success" clicked={() => this.addResultHandler}>ADD MATCH RESULT</Button>
                     <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
                 </form>
             );
@@ -98,4 +136,17 @@ class MatchResultInput extends Component {
     }
 }
 
-export default MatchResultInput;
+const mapStateToProps = state => {
+    return {
+        teamA: state.matchResultInput.teamAName,
+        teamB: state.matchResultInput.teamBName
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onInputMatchResult: (teamAScore, teamBScore) => dispatch(actions.addMatchResult(teamAScore, teamBScore))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps(MatchResultInput));
