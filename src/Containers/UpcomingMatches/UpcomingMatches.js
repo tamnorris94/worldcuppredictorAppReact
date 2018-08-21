@@ -10,14 +10,6 @@ import { connect } from 'react-redux';
 class UpcomingMatches extends Component {
 
      state = {
-    //     selectedMatchId: null,
-    //     selectedMatchTeamAName: "England",
-    //     selectedMatchTeamBName: "Colombia",
-    //     teamAScore: null,
-    //     teamBScore: null,
-    //     upcomingMatches: [],
-    //     loading: true,
-    //     error: false,
          inputtingResult: false
      }
 
@@ -50,13 +42,27 @@ class UpcomingMatches extends Component {
     //     })
     //     console.log("Selected match id " + id);
     // }
-
-    addMatchResultHandler = (id, teamAName, teamBName) => {
+    //this function executes when one of the upcoming matches is clicked on. inputtingResult is set to true.
+    addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore) => {
         this.setState({
             inputtingResult: true
         })
-        console.log("What is the state of inputtingResult "+ this.state.inputtingResult);
-        this.props.onAddMatchResult( id, teamAName, teamAName);
+        //this.addMatchResultInput(id, teamAName, teamBName, teamAScore, teamBScore);
+        //console.log("What is the state of inputtingResult "+ this.state.inputtingResult);
+        this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore);
+    }
+
+    addMatchResultInput = () => {
+        this.setState({
+            inputtingResult: false
+        })
+        //this.props.onAddMatchResult( id, teamAName, teamBName, teamAScore, teamBScore);
+    }
+
+    resultSubmitHandler = () => {
+        this.setState({
+            inputtingResult: false
+        })
     }
 
     cancelResultInputHandler = () => {
@@ -83,7 +89,7 @@ class UpcomingMatches extends Component {
                         teamA={upcomingMatch.teamA}
                         teamB={upcomingMatch.teamB}
                         matchKickoff={upcomingMatch.matchKickoff}
-                        clicked={() => this.addMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB)}
+                        clicked={() => this.addInitInputMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB)}
                     />
             });
         }
@@ -91,12 +97,13 @@ class UpcomingMatches extends Component {
             upcomingmatches = <p style={{textAlign: 'center'}}>Oops something went wrong, so pack a big bong!</p>;
         }
 
-        if(this.state.inputtingResult){
+        if(this.props.selectedMatchForUpd){
             matchResultInput = <MatchResultInput id={this.props.selectedMatchForUpd.matchID}
                                                  teamA={this.props.selectedMatchForUpd.teamAName}
                                                  teamB={this.props.selectedMatchForUpd.teamBName}
                                                  resultInputCancel={this.cancelResultInputHandler}
-                                                 addResult={() => this.addResultInputHandler}/>
+                                                 resultSubmitted={this.addMatchResultInput}
+                                                 />
         }
 
         return (
@@ -113,7 +120,7 @@ class UpcomingMatches extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUpcomingMatches: () => dispatch(actions.fetchUpcomingMatches()),
-        onAddMatchResult: (matchID, teamAName, teamBName ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName))
+        onAddMatchResultInit: (matchID, teamAName, teamBName, teamAScore, teamBScore ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore))
     }
 }
 

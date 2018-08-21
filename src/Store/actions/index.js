@@ -4,7 +4,6 @@ export {
     fetchUpcomingMatchesSuccess,
     fetchUpcomingMatches,
 } from './upcomingMatches';
-
 export {
     initAddMatchResult,
     addMatchResult

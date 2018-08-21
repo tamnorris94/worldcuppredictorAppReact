@@ -15,9 +15,11 @@ const initialState = {
 const initAddMatchResult = ( state, action ) => {
     return updateObject( state, {
         selectedMatchForUpd: {
-            matchID: action.matchId,
+            matchID: action.matchID,
             teamAName: action.teamAName,
-            teamBName: action.teamBName
+            teamBName: action.teamBName,
+            teamAScore: action.teamAScore,
+            teamBScore: action.teamBScore
         }
     } );
 }
@@ -25,6 +27,9 @@ const initAddMatchResult = ( state, action ) => {
 const addMatchResult = ( state, action ) => {
     return updateObject( state, {
         selectedMatchForUpd: {
+            matchID: action.matchID,
+            teamAName: action.teamAName,
+            teamBName: action.teamBName,
             teamAScore: action.teamAScore,
             teamBScore: action.teamBScore
         }

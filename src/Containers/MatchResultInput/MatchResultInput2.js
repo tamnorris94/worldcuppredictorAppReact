@@ -90,7 +90,9 @@ class MatchResultInput extends Component {
 
     addResultHandler = ( event ) => {
         event.preventDefault();
-        this.props.onInputMatchResult( this.state.controls.teamAScore.value, this.state.controls.teamBScore.value );
+        console.log("Does addResultHandler get called? Yes")
+        this.props.onInputMatchResult( this.props.matchID, this.props.teamAName, this.props.teamBName, this.state.controls.teamAScore.value, this.state.controls.teamBScore.value );
+        //this.props.history.push('/upcomingmatches');
     }
 
     render(){
@@ -110,20 +112,24 @@ class MatchResultInput extends Component {
                 });
             }
 
+            const teamAScoreElementName = "teamAScore";
+            const teamBScoreElementName = "teamBScore";
+
             let matchResultInputForm = (
                 <form>
-                    <p>{this.props.teamA} score: </p> <Input name="teamAResult"
-                                                                         min="0"
-                                                                         max="10"
-                                                                         type="number"
-                                                                         changed={this.teamAInputChangedHandler}   />
-
-                    <p>{this.props.teamB} score: </p> <Input name="teamAResult"
-                                                                         min="0"
-                                                                         max="10"
-                                                                         type="number"
-                                                                         changed={this.teamBInputChangedHandler} />
-                    <Button btnType="Success" clicked={() => this.addResultHandler}>ADD MATCH RESULT</Button>
+                    <p>{this.props.teamA} score: </p>
+                        <Input name="teamAResult"
+                             min="0"
+                             max="10"
+                             type="number"
+                             changed={( event ) => this.inputChangedHandler( event, teamAScoreElementName )} />
+                    <p>{this.props.teamB} score: </p>
+                        <Input name="teamAResult"
+                             min="0"
+                             max="10"
+                             type="number"
+                             changed={( event ) => this.inputChangedHandler( event, teamBScoreElementName )} />
+                    <Button btnType="Success" clicked={this.addResultHandler}>ADD MATCH RESULT</Button>
                     <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
                 </form>
             );
@@ -138,15 +144,19 @@ class MatchResultInput extends Component {
 
 const mapStateToProps = state => {
     return {
-        teamA: state.matchResultInput.teamAName,
-        teamB: state.matchResultInput.teamBName
+        matchID: state.matchResultInput.selectedMatchForUpd.matchID,
+        teamAName: state.matchResultInput.selectedMatchForUpd.teamAName,
+        teamBName: state.matchResultInput.selectedMatchForUpd.teamBName,
+        teamAScore: state.matchResultInput.selectedMatchForUpd.teamAScore,
+        teamBScore: state.matchResultInput.selectedMatchForUpd.teamBScore,
+        redirectPath: state.upcomingMatches.redirectPath
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInputMatchResult: (teamAScore, teamBScore) => dispatch(actions.addMatchResult(teamAScore, teamBScore))
+        onInputMatchResult: (matchID, teamAName, teamBName, teamAScore, teamBScore) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps(MatchResultInput));
+export default connect(mapStateToProps, mapDispatchToProps)(MatchResultInput);

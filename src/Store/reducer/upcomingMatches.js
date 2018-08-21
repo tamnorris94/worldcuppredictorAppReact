@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 const initialState = {
     upcmgMatches: [],
-    loading: false
+    loading: false,
+    redirectPath: '/'
 }
 
 const fetchUpcomingMatchesStart = ( state, action ) => {
@@ -14,7 +15,7 @@ const fetchUpcomingMatchesStart = ( state, action ) => {
 const fetchUpcomingMatchesSuccess = ( state, action ) => {
     return updateObject(state, {
         upcmgMatches: action.upcmgMatches,
-        selectedMatchResult: null,
+        //selectedMatchResult: null,
         loading: false,
         error: false
     })
