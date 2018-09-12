@@ -23,7 +23,6 @@ const fetchUpcomingMatchesStart = ( state, action ) => {
 const fetchUpcomingMatchesSuccess = ( state, action ) => {
     return updateObject(state, {
         upcmgMatches: action.upcmgMatches,
-        //selectedMatchResult: null,
         loading: false,
         error: false
     })
@@ -59,18 +58,12 @@ const addMatchResult = ( state, action ) => {
     } );
 }
 
-// const addMatchResultSuccess= ( state, action ) => {
-//     return updateObject( state, {
-//         inputtingResult: false
-//     } );
-// }
-
 const addMatchResultSuccess= ( state, action ) => {
     console.log("addMatchResultSuccess executed");
     console.log("Match is (reducer)" +action.match);
     return updateObject( state, {
         ...state,
-        upcmgMatches: state.upcmgMatches.filter(upcmgMatch => upcmgMatch.matchID !== action.match),
+        upcmgMatches: state.upcmgMatches.filter(upcmgMatch => upcmgMatch.id !== action.match),
         inputtingResult: false
     } );
 }
