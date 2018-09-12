@@ -11,9 +11,10 @@ import { updateObject, checkValidity } from '../../shared/utility';
 class MatchResultInput extends Component {
 
     state = {
-        controls: {
+        resultInputForm: {
             teamAScore: {
                 elementType: 'input',
+                label: this.props.teamA,
                 elementConfig: {
                     type: 'text',
                     placeholder: ''
@@ -21,7 +22,9 @@ class MatchResultInput extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    minLength: 1
+                    minLength: 1,
+                    maxLength: 2,
+                    isNumeric: true
                 },
                 valid: false,
                 touched: false
@@ -35,7 +38,9 @@ class MatchResultInput extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    minLength: 1
+                    minLength: 1,
+                    maxLength: 2,
+                    isNumeric: true
                 },
                 valid: false,
                 touched: false
@@ -56,14 +61,14 @@ class MatchResultInput extends Component {
     }
 
     teamAInputChangedHandler = (event, teamAScore) => {
-        const updatedControls = updateObject( this.state.controls, {
-            [teamAScore]: updateObject( this.state.controls[teamAScore], {
+        const updatedresultInputForm = updateObject( this.state.resultInputForm, {
+            [teamAScore]: updateObject( this.state.resultInputForm[teamAScore], {
                 value: event.target.value,
-                valid: checkValidity( event.target.value, this.state.controls[teamAScore].validation ),
+                valid: checkValidity( event.target.value, this.state.resultInputForm[teamAScore].validation ),
                 touched: true
             } )
         } );
-        this.setState( { controls: updatedControls } );
+        this.setState( { resultInputForm: updatedresultInputForm } );
     }
 
     inputChangedHandler = ( event, controlName ) => {
@@ -78,21 +83,26 @@ class MatchResultInput extends Component {
     }
 
     teamBInputChangedHandler = (event, teamBScore) => {
-        const updatedControls = updateObject( this.state.controls, {
-            [teamBScore]: updateObject( this.state.controls[teamBScore], {
+        const updatedresultInputForm = updateObject( this.state.resultInputForm, {
+            [teamBScore]: updateObject( this.state.resultInputForm[teamBScore], {
                 value: event.target.value,
-                valid: checkValidity( event.target.value, this.state.controls[teamBScore].validation ),
+                valid: checkValidity( event.target.value, this.state.resultInputForm[teamBScore].validation ),
                 touched: true
             } )
         } );
-        this.setState( { controls: updatedControls } );
+        this.setState( { resultInputForm: updatedresultInputForm } );
     }
 
     addResultHandler = ( event ) => {
         event.preventDefault();
-        console.log("Does addResultHandler get called? Yes")
-        this.props.onInputMatchResult( this.props.matchID, this.props.teamAName, this.props.teamBName, this.state.controls.teamAScore.value, this.state.controls.teamBScore.value );
-        //this.props.history.push('/upcomingmatches');
+        const matchResultData = {
+            matchID : this.props.matchID,
+            teamAName: this.props.teamAName,
+            teamBName: this.props.teamBName,
+            teamAResult: this.state.resultInputForm.teamAScore.value,
+            teamBResult: this.state.resultInputForm.teamBScore.value
+        }
+        this.props.onInputMatchResult( matchResultData );
     }
 
     render(){
@@ -105,30 +115,29 @@ class MatchResultInput extends Component {
             });
         }
 
-        for(let key in this.state.resultResultInputForm) {
-                formElementsArray.push({
-                    id: key,
-                    config: this.state.resultResultInputForm[key]
-                });
-            }
+        console.log("Form elements array " +formElementsArray);
 
             const teamAScoreElementName = "teamAScore";
             const teamBScoreElementName = "teamBScore";
 
             let matchResultInputForm = (
                 <form>
-                    <p>{this.props.teamA} score: </p>
+                    <p>{this.props.teamAName} score: </p>
                         <Input name="teamAResult"
                              min="0"
                              max="10"
                              type="number"
-                             changed={( event ) => this.inputChangedHandler( event, teamAScoreElementName )} />
-                    <p>{this.props.teamB} score: </p>
+                             invalid={this.state.resultInputForm.teamAScore.valid}
+                             shouldValidate={this.state.resultInputForm.teamAScore.validation}
+                             changed={( event ) => this.teamAInputChangedHandler( event, teamAScoreElementName )} />
+                    <p>{this.props.teamBName} score: </p>
                         <Input name="teamAResult"
                              min="0"
                              max="10"
                              type="number"
-                             changed={( event ) => this.inputChangedHandler( event, teamBScoreElementName )} />
+                             invalid={this.state.resultInputForm.teamBScore.valid}
+                             shouldValidate={this.state.resultInputForm.teamBScore.validation}
+                             changed={( event ) => this.teamBInputChangedHandler( event, teamBScoreElementName )} />
                     <Button btnType="Success" clicked={this.addResultHandler}>ADD MATCH RESULT</Button>
                     <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
                 </form>

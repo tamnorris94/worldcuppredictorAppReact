@@ -3,8 +3,11 @@ export {
     fetchUpcomingMatchesStart,
     fetchUpcomingMatchesSuccess,
     fetchUpcomingMatches,
+    addMatchResultSuccess
 } from './upcomingMatches';
 export {
     initAddMatchResult,
-    addMatchResult
+    addMatchResult,
+    addMatchResultStart,
+    addMatchResultFail
 } from './matchResultInput';

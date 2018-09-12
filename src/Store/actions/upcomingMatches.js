@@ -34,9 +34,26 @@ export const fetchUpcomingMatchesFailed = () => {
     };
 };
 
+export const addMatchResultSuccess = () => {
+    return {
+        type: actionTypes.ADD_MATCH_RESULT_SUCCESS
+    };
+};
+
 export const fetchUpcomingMatchesStart = () => {
     return {
         type: actionTypes.FETCH_UPCOMING_MATCHES_START
     };
 };
+
+export const initAddMatchResult = ( matchID, teamAName, teamBName, teamAScore, teamBScore  ) => {
+    return {
+        type: actionTypes.INIT_MATCH_RESULT_INPUT,
+        matchID: matchID,
+        teamAName: teamAName,
+        teamBName: teamBName,
+        teamAScore: teamAScore,
+        teamBScore: teamBScore
+    };
+}
 

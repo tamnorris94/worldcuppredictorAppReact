@@ -14,41 +14,18 @@ class UpcomingMatches extends Component {
      }
 
     componentDidMount(){
-        // axios.get('https://react-my-burger-tam.firebaseio.com/upcomingmatches.json')
-        //     .then(resp => {
-        //         const fetchedUpcomingMmatches = [];
-        //         for (let key in resp.data) {
-        //             fetchedUpcomingMmatches.push({
-        //                 ...resp.data[key],
-        //                 id: key
-        //             });
-        //         }
-        //         this.setState({loading: false, upcomingMatches: fetchedUpcomingMmatches});
-        //     })
-        //     .catch(err => {
-        //         this.setState({loading: false});
-        //     });
-        console.log("Upcoming Matches component did mount");
         this.props.onFetchUpcomingMatches();
     }
 
-    // matchSelectHandler = (id, teamA, teamB) => {
-    //     console.log("Team A Match name is " + teamA);
-    //     this.setState({
-    //         selectedMatchId: id,
-    //         selectedMatchTeamA: teamA,
-    //         selectedMatchTeamB: teamB,
-    //         inputtingResult: true
-    //     })
-    //     console.log("Selected match id " + id);
+    // componentWillUpdate(){
+    //     console.log("Upcoming Matches component will update");
+    //     this.props.onFetchUpcomingMatches();
     // }
-    //this function executes when one of the upcoming matches is clicked on. inputtingResult is set to true.
-    addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore) => {
+
+   addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore) => {
         this.setState({
             inputtingResult: true
         })
-        //this.addMatchResultInput(id, teamAName, teamBName, teamAScore, teamBScore);
-        //console.log("What is the state of inputtingResult "+ this.state.inputtingResult);
         this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore);
     }
 
@@ -70,12 +47,10 @@ class UpcomingMatches extends Component {
     }
 
     addResultInputHandler = (teamAScore, teamBScore) => {
-        console.log("So this gets called right?");
         this.setState = {
             teamAScore: teamAScore,
             teamBScore: teamBScore
         }
-        console.log("TeamB Score is " + this.state.teamBScore);
     }
 
     render() {
@@ -99,8 +74,6 @@ class UpcomingMatches extends Component {
 
         if(this.props.selectedMatchForUpd){
             matchResultInput = <MatchResultInput id={this.props.selectedMatchForUpd.matchID}
-                                                 teamA={this.props.selectedMatchForUpd.teamAName}
-                                                 teamB={this.props.selectedMatchForUpd.teamBName}
                                                  resultInputCancel={this.cancelResultInputHandler}
                                                  resultSubmitted={this.addMatchResultInput}
                                                  />
@@ -108,7 +81,7 @@ class UpcomingMatches extends Component {
 
         return (
             <Aux>
-                <Modal show={this.state.inputtingResult} modalClosed={this.cancelResultInputHandler}>
+                <Modal show={this.props.inputtingResult} modalClosed={this.cancelResultInputHandler}>
                     {matchResultInput}
                 </Modal>
                 {upcomingmatches}
@@ -129,7 +102,8 @@ const mapStateToProps = state => {
         upcmgMatches: state.upcomingMatches.upcmgMatches,
         loading: state.upcomingMatches.loading,
         error: state.upcomingMatches.error,
-        selectedMatchForUpd: state.matchResultInput.selectedMatchForUpd
+        selectedMatchForUpd: state.matchResultInput.selectedMatchForUpd,
+        inputtingResult: state.matchResultInput.inputtingResult
     }
 }
 
