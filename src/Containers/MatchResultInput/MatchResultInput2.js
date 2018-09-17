@@ -99,8 +99,9 @@ class MatchResultInput extends Component {
             matchID : this.props.matchID,
             teamAName: this.props.teamAName,
             teamBName: this.props.teamBName,
-            teamAResult: this.state.resultInputForm.teamAScore.value,
-            teamBResult: this.state.resultInputForm.teamBScore.value
+            teamAScore: this.state.resultInputForm.teamAScore.value,
+            teamBScore: this.state.resultInputForm.teamBScore.value,
+            matchKickoff: this.props.matchKickoff
         }
         this.props.onInputMatchResult( matchResultData );
     }
@@ -158,13 +159,14 @@ const mapStateToProps = state => {
         teamBName: state.matchResultInput.selectedMatchForUpd.teamBName,
         teamAScore: state.matchResultInput.selectedMatchForUpd.teamAScore,
         teamBScore: state.matchResultInput.selectedMatchForUpd.teamBScore,
+        matchKickoff: state.matchResultInput.selectedMatchForUpd.matchKickoff,
         redirectPath: state.upcomingMatches.redirectPath
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInputMatchResult: (matchID, teamAName, teamBName, teamAScore, teamBScore) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore))
+        onInputMatchResult: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff))
     }
 }
 

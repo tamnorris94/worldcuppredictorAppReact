@@ -22,19 +22,19 @@ const config = {
 };
 const fb = firebase.initializeApp(config)
 
-export const addMatchResult = (matchResultData) => {
-    let match = "";
-    for(let key in matchResultData){
+export const addMatchPrediction = (matchPredictionData) => {
+    let prediction = "";
+    for(let key in matchPredictionData){
         if(key = "matchID"){
-            match = matchResultData[key]
+            prediction = matchPredictionData[key]
         }
-        console.log("Match is " +match)
+        console.log("Match is " +prediction)
     }
     return dispatch => {
-        dispatch( addMatchResultStart() );
+        dispatch( addMatchPredictionStart() );
         axios.post( 'https://react-my-burger-tam.firebaseio.com/matchResults.json', matchResultData)
             .then(matchResultData => {
-            dispatch(deleteMatchFromUpcomingMatches(match));
+                dispatch(deleteMatchFromUpcomingMatches(match));
             })
             .catch(error => {dispatch(addMatchResultFail(error))})
     };

@@ -13,6 +13,10 @@ export const fetchUpcomingMatches = () => {
                         id: key
                     } );
                 }
+                fetchedUpcomingMatches.sort(function(a, b){
+                    let dateA=new Date(a.matchKickoff), dateB=new Date(b.matchKickoff)
+                    return dateA-dateB //sort by date ascending
+                });
                 dispatch(fetchUpcomingMatchesSuccess(fetchedUpcomingMatches));
             })
             .catch(err => {
@@ -46,14 +50,15 @@ export const fetchUpcomingMatchesStart = () => {
     };
 };
 
-export const initAddMatchResult = ( matchID, teamAName, teamBName, teamAScore, teamBScore  ) => {
+export const initAddMatchResult = ( matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff  ) => {
     return {
         type: actionTypes.INIT_MATCH_RESULT_INPUT,
         matchID: matchID,
         teamAName: teamAName,
         teamBName: teamBName,
         teamAScore: teamAScore,
-        teamBScore: teamBScore
+        teamBScore: teamBScore,
+        matchKickoff: matchKickoff
     };
 }
 

@@ -17,16 +17,11 @@ class UpcomingMatches extends Component {
         this.props.onFetchUpcomingMatches();
     }
 
-    // componentWillUpdate(){
-    //     console.log("Upcoming Matches component will update");
-    //     this.props.onFetchUpcomingMatches();
-    // }
-
-   addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore) => {
+   addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff) => {
         this.setState({
             inputtingResult: true
         })
-        this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore);
+        this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff);
     }
 
     addMatchResultInput = () => {
@@ -64,7 +59,7 @@ class UpcomingMatches extends Component {
                         teamA={upcomingMatch.teamA}
                         teamB={upcomingMatch.teamB}
                         matchKickoff={upcomingMatch.matchKickoff}
-                        clicked={() => this.addInitInputMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB)}
+                        clicked={() => this.addInitInputMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB, upcomingMatch.matchKickoff)}
                     />
             });
         }
@@ -93,7 +88,7 @@ class UpcomingMatches extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUpcomingMatches: () => dispatch(actions.fetchUpcomingMatches()),
-        onAddMatchResultInit: (matchID, teamAName, teamBName, teamAScore, teamBScore ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore))
+        onAddMatchResultInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff))
     }
 }
 

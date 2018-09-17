@@ -7,7 +7,8 @@ const initialState = {
         teamAName: null,
         teamBName: null,
         teamAScore: null,
-        teamBScore: null
+        teamBScore: null,
+        matchKickoff: null
     },
     inputtingResult: false,
     error: true
@@ -20,7 +21,8 @@ const initAddMatchResult = ( state, action ) => {
             teamAName: action.teamAName,
             teamBName: action.teamBName,
             teamAScore: action.teamAScore,
-            teamBScore: action.teamBScore
+            teamBScore: action.teamBScore,
+            matchKickoff: action.matchKickoff
         },
         inputtingResult: true
     } );
@@ -33,7 +35,8 @@ const addMatchResult = ( state, action ) => {
             teamAName: action.teamAName,
             teamBName: action.teamBName,
             teamAScore: action.teamAScore,
-            teamBScore: action.teamBScore
+            teamBScore: action.teamBScore,
+            matchKickoff: action.matchKickoff
         },
         inputtingResult: false
     } );

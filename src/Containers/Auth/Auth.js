@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
-import Spinner from '../../components/UI/Spinner/Spinner';
+import Input from '../../Components/UI/Input/Input';
+import Button from '../../Components/UI/Button/Button';
+import Spinner from '../../Components/UI/Spinner/Spinner';
 import classes from './Auth.css';
-import * as actions from '../../store/actions/index';
+import * as actions from '../../Store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
 class Auth extends Component {
@@ -130,7 +130,6 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
-        buildingBurger: state.burgerBuilder.building,
         authRedirectPath: state.auth.authRedirectPath
     };
 };
