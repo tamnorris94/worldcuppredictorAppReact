@@ -20,8 +20,8 @@ class CompletedMatches extends Component {
                     teamA={completedMatch.teamAName}
                     teamB={completedMatch.teamBName}
                     matchKickoff={completedMatch.matchKickoff}
-                    teamAResult={completedMatch.teamAResult}
-                    teamBResult={completedMatch.teamBResult}
+                    teamAResult={completedMatch.teamAScore}
+                    teamBResult={completedMatch.teamBScore}
                 />
             });
         }

@@ -3,24 +3,25 @@ import axios from '../../axios-wcpredict';
 import firebase from 'firebase';
 import 'firebase/database';
 
-export const initAddMatchResult = ( matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff  ) => {
+export const initAddMatchPrediction = ( matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId  ) => {
     return {
-        type: actionTypes.INIT_MATCH_RESULT_INPUT,
+        type: actionTypes.INIT_MATCH_PREDICTION_INPUT,
         matchID: matchID,
         teamAName: teamAName,
         teamBName: teamBName,
         teamAScore: teamAScore,
         teamBScore: teamBScore,
-        matchKickoff: matchKickoff
+        matchKickoff: matchKickoff,
+        userId: userId
     };
 }
 
-const config = {
-    apiKey: "AIzaSyC3qNB23YlGeE9CNLvBGOBdOHoQGYUT7Gc",
-    authDomain: "react-my-burger-tam.firebaseapp.com",
-    databaseURL: "https://react-my-burger-tam.firebaseio.com/"
-};
-const fb = firebase.initializeApp(config)
+// const config1 = {
+//     apiKey: "AIzaSyC3qNB23YlGeE9CNLvBGOBdOHoQGYUT7Gc",
+//     authDomain: "react-my-burger-tam.firebaseapp.com",
+//     databaseURL: "https://react-my-burger-tam.firebaseio.com/"
+// };
+// const fb1 = firebase.initializeApp(config1)
 
 export const addMatchPrediction = (matchPredictionData) => {
     let prediction = "";
@@ -31,45 +32,32 @@ export const addMatchPrediction = (matchPredictionData) => {
         console.log("Match is " +prediction)
     }
     return dispatch => {
-        dispatch( addMatchPredictionStart() );
-        axios.post( 'https://react-my-burger-tam.firebaseio.com/matchResults.json', matchResultData)
-            .then(matchResultData => {
-                dispatch(deleteMatchFromUpcomingMatches(match));
+        dispatch( addMatchPredictionStart() )
+            .then(matchPredictionData => {
+                axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json', matchPredictionData)
             })
-            .catch(error => {dispatch(addMatchResultFail(error))})
+            .catch(error => {dispatch(addMatchPredictionFail(error))})
     };
 }
 
-export const deleteMatchFromUpcomingMatches = (match) => {
-    const upcomingMatchesRef = fb.database().ref().child('upcomingmatches')
-    const deleteRequest =  upcomingMatchesRef.child(match).remove()
-    return dispatch => {
-        deleteRequest.then(
-            response => dispatch(addMatchResultSuccess(match))
-        )
-            .catch(
-                err => dispatch(addMatchResultFail(err))
-            )
-    }
-}
 
-export const addMatchResultStart = () => {
+export const addMatchPredictionStart = () => {
     return {
-        type: actionTypes.ADD_MATCH_RESULT_START
+        type: actionTypes.ADD_MATCH_PREDICTION_START
     };
 };
 
-export const addMatchResultFail = (err) => {
+export const addMatchPredictionFail = (err) => {
     console.log("The error is " + err);
     return {
-        type: actionTypes.ADD_MATCH_RESULT_FAIL
+        type: actionTypes.ADD_MATCH_PREDICTION_FAIL
     };
 };
 
-export const addMatchResultSuccess = (match) => {
+export const addMatchPredictionSuccess = (match) => {
     console.log("The match is (actions) " + match);
     return {
-        type: actionTypes.ADD_MATCH_RESULT_SUCCESS,
+        type: actionTypes.ADD_MATCH_PREDICTION_SUCCESS,
         match: match
     };
 };

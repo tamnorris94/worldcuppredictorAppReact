@@ -2,8 +2,7 @@ export {
     fetchUpcomingMatchesFailed,
     fetchUpcomingMatchesStart,
     fetchUpcomingMatchesSuccess,
-    fetchUpcomingMatches,
-    addMatchResultSuccess
+    fetchUpcomingMatches
 } from './upcomingMatches';
 export {
     fetchCompletedMatchesFail,
@@ -15,7 +14,8 @@ export {
     initAddMatchResult,
     addMatchResult,
     addMatchResultStart,
-    addMatchResultFail
+    addMatchResultFail,
+    addMatchResultSuccess
 } from './matchResultInput';
 export {
     auth,
@@ -23,3 +23,9 @@ export {
     setAuthRedirectPath,
     authCheckState
 } from './auth';
+export {
+    initAddMatchPrediction,
+    addMatchPredictionStart,
+    addMatchPredictionFail,
+    addMatchPredictionSuccess
+} from './matchPredictionInput';

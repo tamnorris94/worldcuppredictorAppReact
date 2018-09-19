@@ -2,6 +2,7 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios-wcpredict';
 import firebase from 'firebase';
 import 'firebase/database';
+import { upcomingMatchesFBRef } from '../../Config/firebase';
 
 export const initAddMatchResult = ( matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff  ) => {
     return {
@@ -15,12 +16,12 @@ export const initAddMatchResult = ( matchID, teamAName, teamBName, teamAScore, t
     };
 }
 
-const config = {
-    apiKey: "AIzaSyC3qNB23YlGeE9CNLvBGOBdOHoQGYUT7Gc",
-    authDomain: "react-my-burger-tam.firebaseapp.com",
-    databaseURL: "https://react-my-burger-tam.firebaseio.com/"
-};
-const fb = firebase.initializeApp(config)
+// const config = {
+//     apiKey: "AIzaSyC3qNB23YlGeE9CNLvBGOBdOHoQGYUT7Gc",
+//     authDomain: "react-my-burger-tam.firebaseapp.com",
+//     databaseURL: "https://react-my-burger-tam.firebaseio.com/"
+// };
+// const fb = firebase.initializeApp(config)
 
 export const addMatchResult = (matchResultData) => {
     let match = "";
@@ -41,8 +42,8 @@ export const addMatchResult = (matchResultData) => {
 }
 
 export const deleteMatchFromUpcomingMatches = (match) => {
-    const upcomingMatchesRef = fb.database().ref().child('upcomingmatches')
-    const deleteRequest =  upcomingMatchesRef.child(match).remove()
+    //const upcomingMatchesRef = fb.database().ref().child('upcomingmatches')
+    const deleteRequest =  upcomingMatchesFBRef.child(match).remove()
     return dispatch => {
         deleteRequest.then(
             response => dispatch(addMatchResultSuccess(match))

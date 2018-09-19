@@ -9,6 +9,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import upcomingMatchesReducer from './Store/reducer/upcomingMatches';
 import matchResultInputReducer from './Store/reducer/matchResultInput';
 import completedMatchesReducer from './Store/reducer/completedMatches';
+import matchPredictionsInputReducer from './Store/reducer/matchPredictionsInput';
 import authReducer from './Store/reducer/auth';
 import thunk from 'redux-thunk';
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     upcomingMatches: upcomingMatchesReducer,
     completedMatches: completedMatchesReducer,
     matchResultInput: matchResultInputReducer,
+    matchPredictionsInput: matchPredictionsInputReducer,
     auth: authReducer
 });
 

@@ -17,18 +17,22 @@ class UpcomingMatches extends Component {
         this.props.onFetchUpcomingMatches();
     }
 
-   addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff) => {
+   addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId) => {
         this.setState({
             inputtingResult: true
         })
-        this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff);
+       console.log("What is the state of admin " +this.props.admin);
+       if(this.props.admin){
+           this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId);
+       }
+       else
+           this.props.onAddMatchPredictionInit(id, teamAName, teamBName, teamAScore, matchKickoff, userId);
     }
 
     addMatchResultInput = () => {
         this.setState({
             inputtingResult: false
         })
-        //this.props.onAddMatchResult( id, teamAName, teamBName, teamAScore, teamBScore);
     }
 
     resultSubmitHandler = () => {
@@ -88,7 +92,8 @@ class UpcomingMatches extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUpcomingMatches: () => dispatch(actions.fetchUpcomingMatches()),
-        onAddMatchResultInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff))
+        onAddMatchResultInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff)),
+        onAddMatchPredictionInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId ) => dispatch(actions.initAddMatchPrediction(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId)),
     }
 }
 
@@ -98,7 +103,11 @@ const mapStateToProps = state => {
         loading: state.upcomingMatches.loading,
         error: state.upcomingMatches.error,
         selectedMatchForUpd: state.matchResultInput.selectedMatchForUpd,
-        inputtingResult: state.matchResultInput.inputtingResult
+        selectedMatchForUpd: state.matchPredictionsInput.selectedMatchForUpd,
+        inputtingResult: state.matchResultInput.inputtingResult,
+        inputtingResult: state.matchPredictionsInput.inputtingResult,
+        admin: state.auth.admin,
+        userId: state.auth.userId
     }
 }
 
