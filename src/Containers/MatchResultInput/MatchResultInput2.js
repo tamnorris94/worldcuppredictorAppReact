@@ -95,15 +95,29 @@ class MatchResultInput extends Component {
 
     addResultHandler = ( event ) => {
         event.preventDefault();
-        const matchResultData = {
-            matchID : this.props.matchID,
-            teamAName: this.props.teamAName,
-            teamBName: this.props.teamBName,
-            teamAScore: this.state.resultInputForm.teamAScore.value,
-            teamBScore: this.state.resultInputForm.teamBScore.value,
-            matchKickoff: this.props.matchKickoff
+        if(this.state.admin){
+            const matchResultData = {
+                matchID : this.props.matchID,
+                teamAName: this.props.teamAName,
+                teamBName: this.props.teamBName,
+                teamAScore: this.state.resultInputForm.teamAScore.value,
+                teamBScore: this.state.resultInputForm.teamBScore.value,
+                matchKickoff: this.props.matchKickoff
+            }
+            this.props.onInputMatchResult( matchResultData, this.props.admin );
         }
-        this.props.onInputMatchResult( matchResultData );
+        else {
+            const matchResultData = {
+                matchID : this.props.matchID,
+                teamAName: this.props.teamAName,
+                teamBName: this.props.teamBName,
+                teamAScore: this.state.resultInputForm.teamAScore.value,
+                teamBScore: this.state.resultInputForm.teamBScore.value,
+                matchKickoff: this.props.matchKickoff,
+                userId: this.props.userId
+            }
+            this.props.onInputMatchResult( matchResultData, this.props.admin, this.props.token );
+        }
     }
 
     render(){
@@ -115,8 +129,6 @@ class MatchResultInput extends Component {
                 config: this.state.resultInputForm[key]
             });
         }
-
-        console.log("Form elements array " +formElementsArray);
 
             const teamAScoreElementName = "teamAScore";
             const teamBScoreElementName = "teamBScore";
@@ -160,13 +172,18 @@ const mapStateToProps = state => {
         teamAScore: state.matchResultInput.selectedMatchForUpd.teamAScore,
         teamBScore: state.matchResultInput.selectedMatchForUpd.teamBScore,
         matchKickoff: state.matchResultInput.selectedMatchForUpd.matchKickoff,
-        redirectPath: state.upcomingMatches.redirectPath
+        redirectPath: state.upcomingMatches.redirectPath,
+        userId: state.auth.userId,
+        token: state.auth.token,
+        admin: state.auth.admin
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInputMatchResult: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff))
+        //onInputMatchResult: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff)),
+        onInputMatchResult: (matchResultData, admin, token) => dispatch(actions.addMatchResult(matchResultData, admin, token)),
+        //onInputMatchPrediction: (matchPreData) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId))
     }
 }
 

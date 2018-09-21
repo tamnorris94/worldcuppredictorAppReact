@@ -19,6 +19,10 @@ const asyncCompletedMatches = asyncComponent(() => {
     return import('./Containers/CompletedMatches/CompletedMatches');
 });
 
+const asyncUserPredictions = asyncComponent(() => {
+    return import('./Containers/UserPredictions/UserPredictions');
+});
+
 const asyncAuth = asyncComponent(() => {
     return import('./Containers/Auth/Auth');
 });
@@ -43,12 +47,13 @@ class App extends Component {
        </Switch>
    );
 
-   if(this.props.isAuthenticated && (this.props.admin == false)) {
+   if(this.props.isAuthenticated && (this.props.admin === false)) {
        routes = (
            <Switch>
                <Route path="/" exact component={Home}/>
                <Route path="/upcomingmatches" component={asyncUpcomingMatches}/>
                <Route path="/completedmatches" component={asyncCompletedMatches}/>
+               <Route path="/yourpredictions" component={asyncUserPredictions}/>
                <Route path="/logout" component={Logout} />
                <Route path="/auth" component={asyncAuth}/>
                <Redirect to="/" />
@@ -56,7 +61,7 @@ class App extends Component {
        )
    }
 
-      if(this.props.isAuthenticated && (this.props.admin == true)) {
+      if(this.props.isAuthenticated && (this.props.admin === true)) {
           routes = (
               <Switch>
                   <Route path="/" exact component={Home}/>

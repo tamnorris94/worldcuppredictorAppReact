@@ -22,11 +22,8 @@ class UpcomingMatches extends Component {
             inputtingResult: true
         })
        console.log("What is the state of admin " +this.props.admin);
-       if(this.props.admin){
-           this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId);
-       }
-       else
-           this.props.onAddMatchPredictionInit(id, teamAName, teamBName, teamAScore, matchKickoff, userId);
+       this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId);
+
     }
 
     addMatchResultInput = () => {
@@ -93,7 +90,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchUpcomingMatches: () => dispatch(actions.fetchUpcomingMatches()),
         onAddMatchResultInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff)),
-        onAddMatchPredictionInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId ) => dispatch(actions.initAddMatchPrediction(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId)),
+        //onAddMatchPredictionInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId ) => dispatch(actions.initAddMatchPrediction(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId)),
     }
 }
 
@@ -103,9 +100,7 @@ const mapStateToProps = state => {
         loading: state.upcomingMatches.loading,
         error: state.upcomingMatches.error,
         selectedMatchForUpd: state.matchResultInput.selectedMatchForUpd,
-        selectedMatchForUpd: state.matchPredictionsInput.selectedMatchForUpd,
         inputtingResult: state.matchResultInput.inputtingResult,
-        inputtingResult: state.matchPredictionsInput.inputtingResult,
         admin: state.auth.admin,
         userId: state.auth.userId
     }

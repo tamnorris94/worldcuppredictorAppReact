@@ -23,21 +23,30 @@ export const initAddMatchResult = ( matchID, teamAName, teamBName, teamAScore, t
 // };
 // const fb = firebase.initializeApp(config)
 
-export const addMatchResult = (matchResultData) => {
+export const addMatchResult = (matchResultData, admin, token) => {
+    console.log("State of admin received by addMatchResult "+ admin);
     let match = "";
     for(let key in matchResultData){
         if(key = "matchID"){
             match = matchResultData[key]
         }
-        console.log("Match is " +match)
     }
     return dispatch => {
         dispatch( addMatchResultStart() );
-        axios.post( 'https://react-my-burger-tam.firebaseio.com/matchResults.json', matchResultData)
-            .then(matchResultData => {
-            dispatch(deleteMatchFromUpcomingMatches(match));
-            })
-            .catch(error => {dispatch(addMatchResultFail(error))})
+        if(admin===true){
+            axios.post( 'https://react-my-burger-tam.firebaseio.com/matchResults.json', matchResultData)
+                .then(matchResultData => {
+                    dispatch(deleteMatchFromUpcomingMatches(match));
+                })
+                .catch(error => {dispatch(addMatchResultFail(error))})
+        }
+        else{
+            axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
+                .then(matchResultData => {
+                    dispatch(addMatchResultSuccess(match));
+                })
+                .catch(error => {dispatch(addMatchResultFail(error))})
+        }
     };
 }
 

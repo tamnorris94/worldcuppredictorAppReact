@@ -24,8 +24,8 @@ export {
     authCheckState
 } from './auth';
 export {
-    initAddMatchPrediction,
-    addMatchPredictionStart,
-    addMatchPredictionFail,
-    addMatchPredictionSuccess
-} from './matchPredictionInput';
+    fetchUserPredictionsFail,
+    fetchUserPredictionsStart,
+    fetchUserPredictionsSuccess,
+    fetchUserPredictions
+} from './userPredictions';

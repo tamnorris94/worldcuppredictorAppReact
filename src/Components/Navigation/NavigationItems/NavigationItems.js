@@ -8,6 +8,7 @@ const navigationItems = (props) => (
         <NavigationItem link="/upcomingmatches">Upcoming matches</NavigationItem>
         <NavigationItem link="/completedmatches">Completed matches</NavigationItem>
         {(props.isAuthenticated && props.admin) ? <NavigationItem link="/addupcomingmatch">Add upcoming match</NavigationItem> : null }
+        {(props.isAuthenticated) ? <NavigationItem link="/yourpredictions">Your Predictions</NavigationItem> : null }
         {!props.isAuthenticated
             ? <NavigationItem link="/auth">Authenticate</NavigationItem>
             : <NavigationItem link="/logout">Logout</NavigationItem>}

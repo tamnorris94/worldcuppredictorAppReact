@@ -1,7 +1,6 @@
 //import axios from 'axios';
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-wcpredict';
-import firebase from 'firebase';
 import 'firebase/database';
 
 export const authStart = () => {
@@ -12,7 +11,7 @@ export const authStart = () => {
 
 export const authSuccess = (token, userId) => {
     let admin = false;
-    if(userId == "IbYdTYwXagXjBRlN8ookuV0kxW82"){
+    if(userId === "IbYdTYwXagXjBRlN8ookuV0kxW82"){
         admin = true;
     }
     return {

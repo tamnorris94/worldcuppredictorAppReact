@@ -47,7 +47,9 @@ const removeMatchFromUpcomingMatches = (state, action) => {
 }
 
 const addMatchResultStart= ( state, action ) => {
-    return true;
+    return updateObject( state, {
+        inputtingResult: true
+    } );
 }
 
 const addMatchResultSuccess= ( state, action ) => {
