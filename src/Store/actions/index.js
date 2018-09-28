@@ -2,7 +2,11 @@ export {
     fetchUpcomingMatchesFailed,
     fetchUpcomingMatchesStart,
     fetchUpcomingMatchesSuccess,
-    fetchUpcomingMatches
+    fetchUpcomingMatches,
+    fetchUpcomingAndPredictions,
+    fetchUpcomingAndPredictionsStart,
+    fetchUpcomingAndPredictionsSuccess,
+    fetchUpcomingAndPredictionsFail
 } from './upcomingMatches';
 export {
     fetchCompletedMatchesFail,

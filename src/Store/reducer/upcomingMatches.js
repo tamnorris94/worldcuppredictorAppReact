@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 
 const initialState = {
     upcmgMatches: [],
+    userPredictions: [],
+    matchesPredictionsArray: [],
     loading: false,
+    error: false,
     redirectPath: '/',
     selectedMatchForUpd: {
         matchID: null,
@@ -17,19 +20,24 @@ const initialState = {
     inputtingResult: false
 }
 
-const fetchUpcomingMatchesStart = ( state, action ) => {
-    return updateObject( state, { loading: true } );
+const fetchUpcomingAndPredictionsStart = ( state, action ) => {
+    return updateObject( state, {
+        loading: true,
+        upcmgMatches: [],
+        userPredictions: []
+    } );
 };
 
-const fetchUpcomingMatchesSuccess = ( state, action ) => {
+const fetchUpcomingAndPredictionsSuccess = ( state, action ) => {
     return updateObject(state, {
-        upcmgMatches: action.upcmgMatches,
         loading: false,
+        upcmgMatches: action.upcmgMatches,
+        userPredictions: action.userPredictions,
         error: false
     })
 };
 
-const fetchUpcomingMatchesFailed = ( state, action ) => {
+const fetchUpcomingAndPredictionsFailed = ( state, action ) => {
     return updateObject( state, { loading: false, error: true } );
 };
 
@@ -61,9 +69,7 @@ const addMatchResult = ( state, action ) => {
     } );
 }
 
-const addMatchResultSuccess= ( state, action ) => {
-    console.log("addMatchResultSuccess executed");
-    console.log("Match is (reducer)" +action.match);
+const addMatchResultSuccess = ( state, action ) => {
     return updateObject( state, {
         ...state,
         upcmgMatches: state.upcmgMatches.filter(upcmgMatch => upcmgMatch.id !== action.match),
@@ -71,11 +77,19 @@ const addMatchResultSuccess= ( state, action ) => {
     } );
 }
 
+const createMatchesPredictionsArray = (state, action) => {
+    return updateObject( state, {
+        ...state,
+        matchesPredictionsArray: state.matchesPredictionsArray
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type){
-        case actionTypes.FETCH_UPCOMING_MATCHES_START: return fetchUpcomingMatchesStart(state, action);
-        case actionTypes.FETCH_UPCOMING_MATCHES_SUCCESS: return fetchUpcomingMatchesSuccess(state, action);
-        case actionTypes.FETCH_UPCOMING_MATCHES_FAILED: return fetchUpcomingMatchesFailed(state, action);
+        case actionTypes.FETCH_UPCOMING_PREDICTIONS_START: return fetchUpcomingAndPredictionsStart(state, action);
+        //case actionTypes.FETCH_UPCOMING_MATCHES_SUCCESS: return fetchUpcomingAndPredictionsSuccess(state, action);
+        case actionTypes.FETCH_UPCOMING_PREDICTIONS_SUCCESS: return fetchUpcomingAndPredictionsSuccess(state, action);
+        case actionTypes.FETCH_UPCOMING_PREDICTIONS_FAIL: return fetchUpcomingAndPredictionsFailed(state, action);
         case actionTypes.INIT_MATCH_RESULT_INPUT: return initAddMatchResult(state, action);
         case actionTypes.ADD_MATCH_RESULT: return addMatchResult(state, action);
         case actionTypes.ADD_MATCH_RESULT_SUCCESS: return addMatchResultSuccess(state, action);

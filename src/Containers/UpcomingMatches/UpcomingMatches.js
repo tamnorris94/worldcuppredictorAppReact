@@ -9,20 +9,22 @@ import { connect } from 'react-redux';
 
 class UpcomingMatches extends Component {
 
-     state = {
-         inputtingResult: false
-     }
-
-    componentDidMount(){
-        this.props.onFetchUpcomingMatches();
+    state = {
+        inputtingResult: false,
+        matchesPredictionsArray: [],
+        matchPredsArrayCheck: false
     }
 
-   addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId) => {
+    componentDidMount(){
+        this.props.onFetchUpcomingAndPredictions(this.props.admin, this.props.token, this.props.userId);
+    }
+
+    addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId) => {
         this.setState({
             inputtingResult: true
         })
-       console.log("What is the state of admin " +this.props.admin);
-       this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId);
+        console.log("What is the state of admin " +this.props.admin);
+        this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId);
 
     }
 
@@ -51,20 +53,39 @@ class UpcomingMatches extends Component {
 
     render() {
         let matchResultInput = null;
-
         let upcomingmatches = <p style={{textAlign: 'center'}}>Loading...!</p>;
+
+        console.log("upcoming matches : " +JSON.stringify(this.props.upcmgMatches));
+        console.log("Predictions : " +JSON.stringify(this.props.userPredictions));
+
+        // if(!this.props.loading && !this.props.error){
+        //     upcomingmatches = this.props.upcmgMatches.forEach(upcomingMatch => checkIfMatchInPredictions(upcomingMatch, this.props.userPredictions));
+        // }
+        // if(this.state.matchPredsArrayCheck){
+        //     upcomingmatches = this.state.matchesPredictionsArray.map(upcomingMatch => {
+        //         return <UpcomingMatch
+        //             key={upcomingMatch.id}
+        //             teamA={upcomingMatch.teamA}
+        //             teamB={upcomingMatch.teamB}
+        //             matchKickoff={upcomingMatch.matchKickoff}
+        //             clicked={() => this.addInitInputMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB, upcomingMatch.matchKickoff)}
+        //             //clicked={() => this.addInitInputMatchResultHandler(upcomingMatch)}
+        //         />
+        //     });
+        // }
         if(!this.props.loading && !this.props.error){
             upcomingmatches = this.props.upcmgMatches.map(upcomingMatch => {
-                    return <UpcomingMatch
-                        key={upcomingMatch.id}
-                        teamA={upcomingMatch.teamA}
-                        teamB={upcomingMatch.teamB}
-                        matchKickoff={upcomingMatch.matchKickoff}
-                        clicked={() => this.addInitInputMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB, upcomingMatch.matchKickoff)}
-                    />
+                return <UpcomingMatch
+                    key={upcomingMatch.id}
+                    teamA={upcomingMatch.teamA}
+                    teamB={upcomingMatch.teamB}
+                    matchKickoff={upcomingMatch.matchKickoff}
+                    clicked={() => this.addInitInputMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB, upcomingMatch.matchKickoff)}
+                    //clicked={() => this.addInitInputMatchResultHandler(upcomingMatch)}
+                />
             });
         }
-        else {
+        else{
             upcomingmatches = <p style={{textAlign: 'center'}}>Oops something went wrong, so pack a big bong!</p>;
         }
 
@@ -72,7 +93,7 @@ class UpcomingMatches extends Component {
             matchResultInput = <MatchResultInput id={this.props.selectedMatchForUpd.matchID}
                                                  resultInputCancel={this.cancelResultInputHandler}
                                                  resultSubmitted={this.addMatchResultInput}
-                                                 />
+            />
         }
 
         return (
@@ -86,23 +107,55 @@ class UpcomingMatches extends Component {
     }
 }
 
+const checkIfMatchInPredictions = (match, preds) =>{
+    let exists = false;
+    let i;
+    let matchID = match.id;
+    let cyclesThroughForLoop = 0;
+    for(i=0;i<preds.length; i++){
+        let predsMatchID = preds[i].matchID;
+        cyclesThroughForLoop++;
+        if(matchID === predsMatchID){
+            exists = true;
+            break;
+        }
+    }
+    if(exists){
+
+        this.state.matchesPredictionsArray.push({
+            ...preds[i],
+            prediction: true
+        })
+    }
+    else {
+        this.state.matchesPredictionsArray.push({
+            ...match,
+            prediction: false
+        })
+    }
+    this.setState({
+        matchPredsArrayCheck: true
+    })
+};
+
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchUpcomingMatches: () => dispatch(actions.fetchUpcomingMatches()),
+        onFetchUpcomingAndPredictions: (admin, token, userId) => dispatch(actions.fetchUpcomingAndPredictions(admin, token, userId)),
         onAddMatchResultInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff)),
-        //onAddMatchPredictionInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId ) => dispatch(actions.initAddMatchPrediction(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId)),
     }
 }
 
 const mapStateToProps = state => {
     return {
         upcmgMatches: state.upcomingMatches.upcmgMatches,
+        userPredictions: state.upcomingMatches.userPredictions,
         loading: state.upcomingMatches.loading,
         error: state.upcomingMatches.error,
         selectedMatchForUpd: state.matchResultInput.selectedMatchForUpd,
         inputtingResult: state.matchResultInput.inputtingResult,
         admin: state.auth.admin,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        token: state.auth.token
     }
 }
 

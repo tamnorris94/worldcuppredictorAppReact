@@ -8,9 +8,9 @@ const initialState = {
     redirectPath: '/'
 }
 
-const fetchUserPredictionsStart = ( state, action ) => {
-    return updateObject( state, { loading: true } );
-};
+// const fetchUserPredictionsStart = ( state, action ) => {
+//     return updateObject( state, { loading: true } );
+// };
 
 const fetchUserPredictionsSuccess = ( state, action ) => {
     return updateObject(state, {
@@ -26,7 +26,7 @@ const fetchUserPredictionsFail = ( state, action ) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type){
-        case actionTypes.FETCH_USER_PREDICTIONS_START: return fetchUserPredictionsStart(state, action);
+        //case actionTypes.FETCH_USER_PREDICTIONS_START: return fetchUserPredictionsStart(state, action);
         case actionTypes.FETCH_USER_PREDICTIONS_SUCCESS: return fetchUserPredictionsSuccess(state, action);
         case actionTypes.FETCH_USER_PREDICTIONS_FAIL: return fetchUserPredictionsFail(state, action);
         default: return state;
