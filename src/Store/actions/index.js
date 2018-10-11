@@ -1,4 +1,5 @@
 export {
+    initAddMatchResultOrPrediction,
     fetchUpcomingMatchesFailed,
     fetchUpcomingMatchesStart,
     fetchUpcomingMatchesSuccess,
@@ -6,7 +7,11 @@ export {
     fetchUpcomingAndPredictions,
     fetchUpcomingAndPredictionsStart,
     fetchUpcomingAndPredictionsSuccess,
-    fetchUpcomingAndPredictionsFail
+    fetchUpcomingAndPredictionsFail,
+    addMatchResultOrPrediction,
+    addMatchResultOrPredictionStart,
+    addMatchResultOrPredictionFail,
+    addMatchResultOrPredictionSuccess,
 } from './upcomingMatches';
 export {
     fetchCompletedMatchesFail,
@@ -15,21 +20,19 @@ export {
     fetchCompletedMatches
 } from './completedMatches';
 export {
-    initAddMatchResult,
-    addMatchResult,
-    addMatchResultStart,
-    addMatchResultFail,
-    addMatchResultSuccess
-} from './matchResultInput';
+    //initAddMatchResultOrPrediction,
+    //addMatchResultOrPrediction,
+    // addMatchResultOrPredictionStart,
+    // addMatchResultOrPredictionFail,
+    // addMatchResultOrPredictionSuccess,
+    initUpdatePrediction,
+    updatePredictionStart,
+    updatePredictionSuccess,
+    updatePredictionFail
+} from './matchResultPredictiontInput';
 export {
     auth,
     logout,
     setAuthRedirectPath,
     authCheckState
 } from './auth';
-export {
-    fetchUserPredictionsFail,
-    fetchUserPredictionsStart,
-    fetchUserPredictionsSuccess,
-    fetchUserPredictions
-} from './userPredictions';

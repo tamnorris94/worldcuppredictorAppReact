@@ -8,7 +8,7 @@ class UpcomingMatchCreate extends Component {
 
     state = {
         matchForm: {
-            teamA: {
+            teamAName: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
@@ -16,7 +16,7 @@ class UpcomingMatchCreate extends Component {
                 },
                 value: ''
             },
-            teamB: {
+            teamBName: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
@@ -44,8 +44,8 @@ class UpcomingMatchCreate extends Component {
             matchData[teamElementIdentifier] = this.state.matchForm[teamElementIdentifier].value;
         }
         const match = {
-            teamA : matchData.teamA,
-            teamB : matchData.teamB,
+            teamAName : matchData.teamAName,
+            teamBName : matchData.teamBName,
             matchKickoff: matchData.matchKickoff
         }
         axios.post( 'https://react-my-burger-tam.firebaseio.com/upcomingmatches.json', match )

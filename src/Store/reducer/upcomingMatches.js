@@ -3,9 +3,7 @@ import { updateObject } from '../../shared/utility';
 import { connect } from 'react-redux';
 
 const initialState = {
-    upcmgMatches: [],
-    userPredictions: [],
-    matchesPredictionsArray: [],
+    matchesPredictions: [],
     loading: false,
     error: false,
     redirectPath: '/',
@@ -23,16 +21,14 @@ const initialState = {
 const fetchUpcomingAndPredictionsStart = ( state, action ) => {
     return updateObject( state, {
         loading: true,
-        upcmgMatches: [],
-        userPredictions: []
+        matchesPredictions: []
     } );
 };
 
 const fetchUpcomingAndPredictionsSuccess = ( state, action ) => {
     return updateObject(state, {
         loading: false,
-        upcmgMatches: action.upcmgMatches,
-        userPredictions: action.userPredictions,
+        matchesPredictions: action.matchesPredictions,
         error: false
     })
 };
@@ -41,35 +37,26 @@ const fetchUpcomingAndPredictionsFailed = ( state, action ) => {
     return updateObject( state, { loading: false, error: true } );
 };
 
-const initAddMatchResult = ( state, action ) => {
+const initAddMatchResultOrPrediction = ( state, action ) => {
+    console.log("State of predictionID in reducer initAddMatchResult " +action.matchesPredictions.predictionID);
+    console.log("State of matchId in reducer initAddMatchResultOrPrediction " +action.matchesPredictions.matchID);
     return updateObject( state, {
         selectedMatchForUpd: {
-            matchID: action.matchID,
-            teamAName: action.teamAName,
-            teamBName: action.teamBName,
-            teamAScore: action.teamAScore,
-            teamBScore: action.teamBScore,
-            matchKickoff: action.matchKickoff
+            matchID: action.matchesPredictions.matchID,
+            predictionID: action.matchesPredictions.predictionID,
+            teamAName: action.matchesPredictions.teamAName,
+            teamBName: action.matchesPredictions.teamBName,
+            teamAScore: action.matchesPredictions.teamAScore,
+            teamBScore: action.matchesPredictions.teamBScore,
+            matchKickoff: action.matchesPredictions.matchKickoff,
+            prediction: action.matchesPredictions.prediction
         },
         inputtingResult: true
     } );
 }
 
-const addMatchResult = ( state, action ) => {
-    return updateObject( state, {
-        selectedMatchForUpd: {
-            matchID: action.matchID,
-            teamAName: action.teamAName,
-            teamBName: action.teamBName,
-            teamAScore: action.teamAScore,
-            teamBScore: action.teamBScore,
-            matchKickoff: action.matchKickoff
-        },
-        inputtingResult: false
-    } );
-}
 
-const addMatchResultSuccess = ( state, action ) => {
+const addMatchResultOrPredictionSuccess = ( state, action ) => {
     return updateObject( state, {
         ...state,
         upcmgMatches: state.upcmgMatches.filter(upcmgMatch => upcmgMatch.id !== action.match),
@@ -77,22 +64,65 @@ const addMatchResultSuccess = ( state, action ) => {
     } );
 }
 
-const createMatchesPredictionsArray = (state, action) => {
+
+const addMatchResultOrPrediction = ( state, action ) => {
     return updateObject( state, {
-        ...state,
-        matchesPredictionsArray: state.matchesPredictionsArray
+        selectedMatchForUpd: {
+            matchID: action.matchID,
+            predictionID: action.predictionID,
+            teamAName: action.teamAName,
+            teamBName: action.teamBName,
+            teamAScore: action.teamAScore,
+            teamBScore: action.teamBScore,
+            matchKickoff: action.matchKickoff,
+            prediction: action.prediction
+        },
+        inputtingResult: false
+    } );
+}
+
+const removeMatchFromUpcomingMatches = (state, action) => {
+    return true;
+}
+
+const addMatchResultOrPredictionStart= ( state, action ) => {
+    return updateObject( state, {
+        inputtingResult: true
+    } );
+}
+
+
+const addMatchResultOrPredictionFail= ( state, action ) => {
+    return updateObject( state, {
+        error: true
+    } );
+}
+
+const updatePredictionSuccess = (state, action) => {
+    return updateObject(state, {
+        userPredictions: action.userPredictions,
+        loading: false,
+        error: false
     })
+}
+
+const UpdatePredictionStart= ( state, action ) => {
+    return updateObject( state, {
+        inputtingResult: true
+    } );
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type){
         case actionTypes.FETCH_UPCOMING_PREDICTIONS_START: return fetchUpcomingAndPredictionsStart(state, action);
-        //case actionTypes.FETCH_UPCOMING_MATCHES_SUCCESS: return fetchUpcomingAndPredictionsSuccess(state, action);
         case actionTypes.FETCH_UPCOMING_PREDICTIONS_SUCCESS: return fetchUpcomingAndPredictionsSuccess(state, action);
         case actionTypes.FETCH_UPCOMING_PREDICTIONS_FAIL: return fetchUpcomingAndPredictionsFailed(state, action);
-        case actionTypes.INIT_MATCH_RESULT_INPUT: return initAddMatchResult(state, action);
-        case actionTypes.ADD_MATCH_RESULT: return addMatchResult(state, action);
-        case actionTypes.ADD_MATCH_RESULT_SUCCESS: return addMatchResultSuccess(state, action);
+        case actionTypes.ADD_MATCH_RESULT_OR_PREDICTION: return addMatchResultOrPrediction(state, action);
+        case actionTypes.INIT_MATCH_RESULT_OR_PREDICTION_INPUT: return initAddMatchResultOrPrediction(state, action);
+        case actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_START: return addMatchResultOrPredictionStart(state, action);
+        case actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_SUCCESS: return addMatchResultOrPredictionSuccess(state, action);
+        case actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_FAIL: return addMatchResultOrPredictionFail(state, action);
+        case actionTypes.UPDATE_PREDICTION_SUCCESS: return updatePredictionSuccess(state, action);
         default: return state;
     }
 };

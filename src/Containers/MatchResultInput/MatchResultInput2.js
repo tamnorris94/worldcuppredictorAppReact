@@ -8,13 +8,13 @@ import * as actions from '../../Store/actions/index';
 import { connect } from 'react-redux';
 import { updateObject, checkValidity } from '../../shared/utility';
 
-class MatchResultInput extends Component {
+class MatchResultPredictionInput extends Component {
 
     state = {
         resultInputForm: {
             teamAScore: {
                 elementType: 'input',
-                label: this.props.teamA,
+                label: this.props.teamAName,
                 elementConfig: {
                     type: 'text',
                     placeholder: ''
@@ -31,6 +31,7 @@ class MatchResultInput extends Component {
             },
             teamBScore: {
                 elementType: 'input',
+                label: this.props.teamBName,
                 elementConfig: {
                     type: 'text',
                     placeholder: ''
@@ -93,7 +94,7 @@ class MatchResultInput extends Component {
         this.setState( { resultInputForm: updatedresultInputForm } );
     }
 
-    addResultHandler = ( event ) => {
+    addResultOrPredictionHandler = ( event ) => {
         event.preventDefault();
         if(this.state.admin){
             const matchResultData = {
@@ -104,19 +105,21 @@ class MatchResultInput extends Component {
                 teamBScore: this.state.resultInputForm.teamBScore.value,
                 matchKickoff: this.props.matchKickoff
             }
-            this.props.onInputMatchResult( matchResultData, this.props.admin );
+            this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.prediction );
         }
         else {
             const matchResultData = {
                 matchID : this.props.matchID,
+                predictionID: this.props.predictionID,
                 teamAName: this.props.teamAName,
                 teamBName: this.props.teamBName,
                 teamAScore: this.state.resultInputForm.teamAScore.value,
                 teamBScore: this.state.resultInputForm.teamBScore.value,
                 matchKickoff: this.props.matchKickoff,
-                userId: this.props.userId
+                userId: this.props.userId,
+                prediction: this.props.prediction
             }
-            this.props.onInputMatchResult( matchResultData, this.props.admin, this.props.token );
+            this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.token );
         }
     }
 
@@ -151,7 +154,7 @@ class MatchResultInput extends Component {
                              invalid={this.state.resultInputForm.teamBScore.valid}
                              shouldValidate={this.state.resultInputForm.teamBScore.validation}
                              changed={( event ) => this.teamBInputChangedHandler( event, teamBScoreElementName )} />
-                    <Button btnType="Success" clicked={this.addResultHandler}>ADD MATCH RESULT</Button>
+                    <Button btnType="Success" clicked={this.addResultOrPredictionHandler}>ADD MATCH RESULT</Button>
                     <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
                 </form>
             );
@@ -166,25 +169,27 @@ class MatchResultInput extends Component {
 
 const mapStateToProps = state => {
     return {
-        matchID: state.matchResultInput.selectedMatchForUpd.matchID,
-        teamAName: state.matchResultInput.selectedMatchForUpd.teamAName,
-        teamBName: state.matchResultInput.selectedMatchForUpd.teamBName,
-        teamAScore: state.matchResultInput.selectedMatchForUpd.teamAScore,
-        teamBScore: state.matchResultInput.selectedMatchForUpd.teamBScore,
-        matchKickoff: state.matchResultInput.selectedMatchForUpd.matchKickoff,
+        matchID: state.upcomingMatches.selectedMatchForUpd.matchID,
+        predictionID: state.upcomingMatches.selectedMatchForUpd.predictionID,
+        teamAName: state.upcomingMatches.selectedMatchForUpd.teamAName,
+        teamBName: state.upcomingMatches.selectedMatchForUpd.teamBName,
+        teamAScore: state.upcomingMatches.selectedMatchForUpd.teamAScore,
+        teamBScore: state.upcomingMatches.selectedMatchForUpd.teamBScore,
+        matchKickoff: state.upcomingMatches.selectedMatchForUpd.matchKickoff,
         redirectPath: state.upcomingMatches.redirectPath,
         userId: state.auth.userId,
         token: state.auth.token,
-        admin: state.auth.admin
+        admin: state.auth.admin,
+        prediction: state.upcomingMatches.selectedMatchForUpd.prediction
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         //onInputMatchResult: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff)),
-        onInputMatchResult: (matchResultData, admin, token) => dispatch(actions.addMatchResult(matchResultData, admin, token)),
+        onInputMatchResultOrPrediction: (matchResultData, admin, token, prediction) => dispatch(actions.addMatchResultOrPrediction(matchResultData, admin, token, prediction)),
         //onInputMatchPrediction: (matchPreData) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MatchResultInput);
+export default connect(mapStateToProps, mapDispatchToProps)(MatchResultPredictionInput);

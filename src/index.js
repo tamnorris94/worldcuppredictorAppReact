@@ -7,9 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import upcomingMatchesReducer from './Store/reducer/upcomingMatches';
-import matchResultInputReducer from './Store/reducer/matchResultInput';
+import matchResultPredictionInputReducer from './Store/reducer/matchResultPredictionInput';
 import completedMatchesReducer from './Store/reducer/completedMatches';
-import userPredictionsReducer from './Store/reducer/userPredictions';
 import authReducer from './Store/reducer/auth';
 import thunk from 'redux-thunk';
 
@@ -18,8 +17,7 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 const rootReducer = combineReducers({
     upcomingMatches: upcomingMatchesReducer,
     completedMatches: completedMatchesReducer,
-    matchResultInput: matchResultInputReducer,
-    userPredictions: userPredictionsReducer,
+    matchResultPredictionInput: matchResultPredictionInputReducer,
     auth: authReducer
 });
 

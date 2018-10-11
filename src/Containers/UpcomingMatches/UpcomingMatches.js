@@ -19,14 +19,23 @@ class UpcomingMatches extends Component {
         this.props.onFetchUpcomingAndPredictions(this.props.admin, this.props.token, this.props.userId);
     }
 
-    addInitInputMatchResultHandler = (id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId) => {
+    addInitMatchPredictionHandler = (matchPred) => {
+        console.log("State of matchPred at addInitMatchPredictionHandler" + JSON.stringify(matchPred));
         this.setState({
             inputtingResult: true
         })
-        console.log("What is the state of admin " +this.props.admin);
-        this.props.onAddMatchResultInit( id, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId);
+        this.props.onAddMatchPredictionInit( matchPred);
+    }
+
+    initUpdateMatchPredictionHandler = (matchPred) => {
+        console.log("State of matchPred at initUpdateMatchPredictionHandler" + JSON.stringify(matchPred));
+        this.setState({
+            inputtingResult: true
+        })
+        this.props.onUpdateMatchPredictionInit( matchPred);
 
     }
+
 
     addMatchResultInput = () => {
         this.setState({
@@ -53,40 +62,26 @@ class UpcomingMatches extends Component {
 
     render() {
         let matchResultInput = null;
-        let upcomingmatches = <p style={{textAlign: 'center'}}>Loading...!</p>;
+        let matchesPredictions = <p style={{textAlign: 'center'}}>Loading...!</p>;
 
-        console.log("upcoming matches : " +JSON.stringify(this.props.upcmgMatches));
-        console.log("Predictions : " +JSON.stringify(this.props.userPredictions));
-
-        // if(!this.props.loading && !this.props.error){
-        //     upcomingmatches = this.props.upcmgMatches.forEach(upcomingMatch => checkIfMatchInPredictions(upcomingMatch, this.props.userPredictions));
-        // }
-        // if(this.state.matchPredsArrayCheck){
-        //     upcomingmatches = this.state.matchesPredictionsArray.map(upcomingMatch => {
-        //         return <UpcomingMatch
-        //             key={upcomingMatch.id}
-        //             teamA={upcomingMatch.teamA}
-        //             teamB={upcomingMatch.teamB}
-        //             matchKickoff={upcomingMatch.matchKickoff}
-        //             clicked={() => this.addInitInputMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB, upcomingMatch.matchKickoff)}
-        //             //clicked={() => this.addInitInputMatchResultHandler(upcomingMatch)}
-        //         />
-        //     });
-        // }
         if(!this.props.loading && !this.props.error){
-            upcomingmatches = this.props.upcmgMatches.map(upcomingMatch => {
+            matchesPredictions = this.props.matchesPredictions.map(matchPred => {
                 return <UpcomingMatch
-                    key={upcomingMatch.id}
-                    teamA={upcomingMatch.teamA}
-                    teamB={upcomingMatch.teamB}
-                    matchKickoff={upcomingMatch.matchKickoff}
-                    clicked={() => this.addInitInputMatchResultHandler(upcomingMatch.id, upcomingMatch.teamA, upcomingMatch.teamB, upcomingMatch.matchKickoff)}
-                    //clicked={() => this.addInitInputMatchResultHandler(upcomingMatch)}
+                    key={matchPred.id}
+                    teamAName={matchPred.teamAName}
+                    teamBName={matchPred.teamBName}
+                    matchKickoff={matchPred.matchKickoff}
+                    teamAScore={matchPred.teamAScore}
+                    teamBScore={matchPred.teamBScore}
+                    prediction={matchPred.prediction}
+                    predictionID={matchPred.predictionID}
+                    addMatchPrediction={() => this.addInitMatchPredictionHandler(matchPred)}
+                    updateMatchPrediction={() => this.initUpdateMatchPredictionHandler(matchPred)}
                 />
             });
         }
         else{
-            upcomingmatches = <p style={{textAlign: 'center'}}>Oops something went wrong, so pack a big bong!</p>;
+            matchesPredictions = <p style={{textAlign: 'center'}}>Oops something went wrong, so pack a big bong!</p>;
         }
 
         if(this.props.selectedMatchForUpd){
@@ -101,7 +96,7 @@ class UpcomingMatches extends Component {
                 <Modal show={this.props.inputtingResult} modalClosed={this.cancelResultInputHandler}>
                     {matchResultInput}
                 </Modal>
-                {upcomingmatches}
+                {matchesPredictions}
             </Aux>
         );
     }
@@ -141,18 +136,18 @@ const checkIfMatchInPredictions = (match, preds) =>{
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUpcomingAndPredictions: (admin, token, userId) => dispatch(actions.fetchUpcomingAndPredictions(admin, token, userId)),
-        onAddMatchResultInit: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId ) => dispatch(actions.initAddMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff)),
+        onAddMatchPredictionInit: (matchPred ) => dispatch(actions.initAddMatchResultOrPrediction(matchPred)),
+        onUpdateMatchPredictionInit: (matchPred ) => dispatch(actions.initUpdatePrediction(matchPred))
     }
 }
 
 const mapStateToProps = state => {
     return {
-        upcmgMatches: state.upcomingMatches.upcmgMatches,
-        userPredictions: state.upcomingMatches.userPredictions,
+        matchesPredictions: state.upcomingMatches.matchesPredictions,
         loading: state.upcomingMatches.loading,
         error: state.upcomingMatches.error,
-        selectedMatchForUpd: state.matchResultInput.selectedMatchForUpd,
-        inputtingResult: state.matchResultInput.inputtingResult,
+        selectedMatchForUpd: state.upcomingMatches.selectedMatchForUpd,
+        inputtingResult: state.upcomingMatches.inputtingResult,
         admin: state.auth.admin,
         userId: state.auth.userId,
         token: state.auth.token

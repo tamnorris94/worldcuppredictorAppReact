@@ -17,11 +17,11 @@ class CompletedMatches extends Component {
             completedmatches = this.props.completedMatches.map(completedMatch => {
                 return <CompletedMatch
                     key={completedMatch.id}
-                    teamA={completedMatch.teamAName}
-                    teamB={completedMatch.teamBName}
+                    teamAName={completedMatch.teamAName}
+                    teamBName={completedMatch.teamBName}
                     matchKickoff={completedMatch.matchKickoff}
-                    teamAResult={completedMatch.teamAScore}
-                    teamBResult={completedMatch.teamBScore}
+                    teamAScore={completedMatch.teamAScore}
+                    teamBScore={completedMatch.teamBScore}
                 />
             });
         }
