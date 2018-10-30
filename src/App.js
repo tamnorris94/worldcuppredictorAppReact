@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import UpcomingMatches from "./Containers/UpcomingMatches/UpcomingMatches";
-import CompletedMatches from "./Containers/CompletedMatches/CompletedMatches";
 import UpcomingMatchCreate from "./Containers/UpcomingMatchCreate/UpcomingMatchCreate";
-import Auth from "./Containers/Auth/Auth";
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Layout from './Hoc/Layout/Layout';
 import Home from './Containers/Home/Home';
@@ -23,6 +20,10 @@ const asyncAuth = asyncComponent(() => {
     return import('./Containers/Auth/Auth');
 });
 
+const asyncAggregatePredictionResults = asyncComponent(() => {
+    return import('./Containers/AggregatePredictionResults/AggregatePredictionResults');
+});
+
 
 class App extends Component {
     componentDidMount () {
@@ -38,6 +39,7 @@ class App extends Component {
            <Route path="/upcomingmatches" component={asyncUpcomingMatches} />
            <Route path="/completedmatches" component={asyncCompletedMatches} />
            <Route path="/addupcomingmatch" component={UpcomingMatchCreate}/>
+           <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>
            <Route path="/auth" component={asyncAuth}/>
            <Redirect to="/" />
        </Switch>
@@ -49,6 +51,7 @@ class App extends Component {
                <Route path="/" exact component={Home}/>
                <Route path="/upcomingmatches" component={asyncUpcomingMatches}/>
                <Route path="/completedmatches" component={asyncCompletedMatches}/>
+               <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>
                <Route path="/logout" component={Logout} />
                <Route path="/auth" component={asyncAuth}/>
                <Redirect to="/" />
@@ -63,6 +66,7 @@ class App extends Component {
                   <Route path="/upcomingmatches" component={asyncUpcomingMatches}/>
                   <Route path="/completedmatches" component={asyncCompletedMatches}/>
                   <Route path="/addupcomingmatch" component={UpcomingMatchCreate}/>
+                  <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>
                   <Route path="/logout" component={Logout} />
                   <Route path="/auth" component={asyncAuth}/>
                   <Redirect to="/" />

@@ -94,9 +94,10 @@ class MatchResultPredictionInput extends Component {
         this.setState( { resultInputForm: updatedresultInputForm } );
     }
 
+    //Maybe here should only be passing the scores, because at this point the id, names etc are already known.
     addResultOrPredictionHandler = ( event ) => {
         event.preventDefault();
-        if(this.state.admin){
+        if(this.props.admin){
             const matchResultData = {
                 matchID : this.props.matchID,
                 teamAName: this.props.teamAName,

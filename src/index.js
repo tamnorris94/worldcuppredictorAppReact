@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import upcomingMatchesReducer from './Store/reducer/upcomingMatches';
+import predictionResultsReducer from './Store/reducer/predictionResults';
 import matchResultPredictionInputReducer from './Store/reducer/matchResultPredictionInput';
 import completedMatchesReducer from './Store/reducer/completedMatches';
 import authReducer from './Store/reducer/auth';
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     upcomingMatches: upcomingMatchesReducer,
     completedMatches: completedMatchesReducer,
     matchResultPredictionInput: matchResultPredictionInputReducer,
-    auth: authReducer
+    auth: authReducer,
+    predictionResults: predictionResultsReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

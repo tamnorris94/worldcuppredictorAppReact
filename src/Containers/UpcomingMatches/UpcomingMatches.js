@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import UpcomingMatch from "./UpcomingMatch/UpcomingMatch";
 import  MatchResultInput from "../MatchResultInput/MatchResultInput2";
-import axios from "../../axios-wcpredict";
 import Modal from "../../Components/UI/Modal/Modal";
 import Aux from "../../Hoc/Auxiliary/Auxiliary";
 import * as actions from '../../Store/actions/index';
@@ -20,15 +19,18 @@ class UpcomingMatches extends Component {
     }
 
     addInitMatchPredictionHandler = (matchPred) => {
-        console.log("State of matchPred at addInitMatchPredictionHandler" + JSON.stringify(matchPred));
         this.setState({
             inputtingResult: true
         })
-        this.props.onAddMatchPredictionInit( matchPred);
+        if(this.props.admin){
+            this.props.onAddMatchResult( matchPred);
+        }
+        else{
+            this.props.onAddMatchPrediction(matchPred);
+        }
     }
 
     initUpdateMatchPredictionHandler = (matchPred) => {
-        console.log("State of matchPred at initUpdateMatchPredictionHandler" + JSON.stringify(matchPred));
         this.setState({
             inputtingResult: true
         })
@@ -76,7 +78,7 @@ class UpcomingMatches extends Component {
                     prediction={matchPred.prediction}
                     predictionID={matchPred.predictionID}
                     addMatchPrediction={() => this.addInitMatchPredictionHandler(matchPred)}
-                    updateMatchPrediction={() => this.initUpdateMatchPredictionHandler(matchPred)}
+                    //updateMatchPrediction={() => this.initUpdateMatchPredictionHandler(matchPred)}
                 />
             });
         }
@@ -136,7 +138,9 @@ const checkIfMatchInPredictions = (match, preds) =>{
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUpcomingAndPredictions: (admin, token, userId) => dispatch(actions.fetchUpcomingAndPredictions(admin, token, userId)),
-        onAddMatchPredictionInit: (matchPred ) => dispatch(actions.initAddMatchResultOrPrediction(matchPred)),
+        //onAddMatchPredictionInit: (matchPred ) => dispatch(actions.initAddMatchResultOrPrediction(matchPred)),
+        onAddMatchResult: (matchPred ) => dispatch(actions.initAddMatchResult(matchPred)),
+        onAddMatchPrediction: (matchPred) => dispatch(actions.initAddMatchPrediction(matchPred)),
         onUpdateMatchPredictionInit: (matchPred ) => dispatch(actions.initUpdatePrediction(matchPred))
     }
 }

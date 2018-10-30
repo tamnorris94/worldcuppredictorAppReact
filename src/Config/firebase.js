@@ -7,3 +7,4 @@ firebase.initializeApp(FirebaseConfig);
 const databaseRef = firebase.database().ref();
 export const upcomingMatchesFBRef = databaseRef.child("upcomingmatches");
 export const matchPredictionsFBRef = databaseRef.child("matchPredictions");
+export const matchPredictionResultsFBRef = databaseRef.child("matchPredictionResults");

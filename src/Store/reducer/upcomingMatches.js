@@ -38,8 +38,43 @@ const fetchUpcomingAndPredictionsFailed = ( state, action ) => {
 };
 
 const initAddMatchResultOrPrediction = ( state, action ) => {
-    console.log("State of predictionID in reducer initAddMatchResult " +action.matchesPredictions.predictionID);
-    console.log("State of matchId in reducer initAddMatchResultOrPrediction " +action.matchesPredictions.matchID);
+    //console.log("State of predictionID in reducer initAddMatchResult " +action.matchesPredictions.predictionID);
+    //console.log("State of matchId in reducer initAddMatchResultOrPrediction " +action.matchesPredictions.matchID);
+    console.log("State of matchesPrediction in initAddMatchResultOrPrediction reducer is " + JSON.stringify(action.matchesPredictions));
+    return updateObject( state, {
+        selectedMatchForUpd: {
+            matchID: action.matchesPredictions.matchID,
+            predictionID: action.matchesPredictions.predictionID,
+            teamAName: action.matchesPredictions.teamAName,
+            teamBName: action.matchesPredictions.teamBName,
+            teamAScore: action.matchesPredictions.teamAScore,
+            teamBScore: action.matchesPredictions.teamBScore,
+            matchKickoff: action.matchesPredictions.matchKickoff,
+            prediction: action.matchesPredictions.prediction
+        },
+        inputtingResult: true
+    } );
+}
+
+const initMatchResultInput = ( state, action ) => {
+    console.log("In initMatchResultInput Input action is " +JSON.stringify(action));
+    return updateObject( state, {
+        selectedMatchForUpd: {
+            matchID: action.matchesPredictions.id,
+            predictionID: action.predictionID,
+            teamAName: action.matchesPredictions.teamAName,
+            teamBName: action.matchesPredictions.teamBName,
+            teamAScore: action.matchesPredictions.teamAScore,
+            teamBScore: action.matchesPredictions.teamBScore,
+            matchKickoff: action.matchesPredictions.matchKickoff,
+            prediction: action.matchesPredictions.prediction
+        },
+        inputtingResult: true
+    } );
+}
+
+const initPredictionInput = ( state, action ) => {
+    console.log("In initPrediction Input action is " +JSON.stringify(action));
     return updateObject( state, {
         selectedMatchForUpd: {
             matchID: action.matchesPredictions.matchID,
@@ -59,7 +94,7 @@ const initAddMatchResultOrPrediction = ( state, action ) => {
 const addMatchResultOrPredictionSuccess = ( state, action ) => {
     return updateObject( state, {
         ...state,
-        upcmgMatches: state.upcmgMatches.filter(upcmgMatch => upcmgMatch.id !== action.match),
+        //upcmgMatches: state.upcmgMatches.filter(upcmgMatch => upcmgMatch.id !== action.match),
         inputtingResult: false
     } );
 }
@@ -98,6 +133,12 @@ const addMatchResultOrPredictionFail= ( state, action ) => {
     } );
 }
 
+const addMatchPredictionResultsFail= ( state, action ) => {
+    return updateObject( state, {
+        error: true
+    } );
+}
+
 const updatePredictionSuccess = (state, action) => {
     return updateObject(state, {
         userPredictions: action.userPredictions,
@@ -112,17 +153,33 @@ const UpdatePredictionStart= ( state, action ) => {
     } );
 }
 
+const deleteCompletedPredictionFail = (state, action) => {
+    return updateObject( state, {
+        error: true
+    } );
+}
+
+const deleteCompletedPredictionSuccess = (state, action) => {
+    return updateObject( state, {
+        error: false
+    } );
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type){
         case actionTypes.FETCH_UPCOMING_PREDICTIONS_START: return fetchUpcomingAndPredictionsStart(state, action);
         case actionTypes.FETCH_UPCOMING_PREDICTIONS_SUCCESS: return fetchUpcomingAndPredictionsSuccess(state, action);
         case actionTypes.FETCH_UPCOMING_PREDICTIONS_FAIL: return fetchUpcomingAndPredictionsFailed(state, action);
-        case actionTypes.ADD_MATCH_RESULT_OR_PREDICTION: return addMatchResultOrPrediction(state, action);
+        case actionTypes.ADD_MATCH_PREDICTION_RESULTS_FAIL: return addMatchPredictionResultsFail(state, action);
         case actionTypes.INIT_MATCH_RESULT_OR_PREDICTION_INPUT: return initAddMatchResultOrPrediction(state, action);
+        case actionTypes.INIT_MATCH_RESULT_INPUT: return initMatchResultInput(state, action);
+        case actionTypes.INIT_MATCH_PREDICTION_INPUT: return initPredictionInput(state, action);
         case actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_START: return addMatchResultOrPredictionStart(state, action);
         case actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_SUCCESS: return addMatchResultOrPredictionSuccess(state, action);
         case actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_FAIL: return addMatchResultOrPredictionFail(state, action);
         case actionTypes.UPDATE_PREDICTION_SUCCESS: return updatePredictionSuccess(state, action);
+        case actionTypes.DELETE_COMPLETED_PREDICTION_FAIL: return deleteCompletedPredictionFail(state, action);
+        case actionTypes.DELETE_COMPLETED_PREDICTION_SUCCESS: return deleteCompletedPredictionSuccess(state, action);
         default: return state;
     }
 };
