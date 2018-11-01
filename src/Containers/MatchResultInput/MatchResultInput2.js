@@ -118,6 +118,7 @@ class MatchResultPredictionInput extends Component {
                 teamBScore: this.state.resultInputForm.teamBScore.value,
                 matchKickoff: this.props.matchKickoff,
                 userId: this.props.userId,
+                userName: this.props.userName,
                 prediction: this.props.prediction
             }
             this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.token );
@@ -179,6 +180,7 @@ const mapStateToProps = state => {
         matchKickoff: state.upcomingMatches.selectedMatchForUpd.matchKickoff,
         redirectPath: state.upcomingMatches.redirectPath,
         userId: state.auth.userId,
+        userName: state.auth.userName,
         token: state.auth.token,
         admin: state.auth.admin,
         prediction: state.upcomingMatches.selectedMatchForUpd.prediction

@@ -9,7 +9,6 @@ const UpcomingMatch = (props) => {
                 <div>
                     <p>{props.matchKickoff}: {props.teamAName} vs {props.teamBName}</p>
                     <p>Predicted Score {props.teamAScore} vs {props.teamBScore}</p>
-                    {/*<p>TeamAScore: {props.teamAScore} : teamBScore {props.teamBScore}</p>*/}
                 </div>
             </article>
         );
@@ -18,7 +17,6 @@ const UpcomingMatch = (props) => {
          return (<article className={classes.UpcomingMatch} onClick={props.addMatchPrediction}>
             <div>
                 <p>{props.matchKickoff}: {props.teamAName} vs {props.teamBName}</p>
-                {/*<p>TeamAScore: {props.teamAScore} : teamBScore {props.teamBScore}</p>*/}
             </div>
         </article>);
     }

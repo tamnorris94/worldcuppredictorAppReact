@@ -291,6 +291,7 @@ export const calculatePointsForCompletedMatch = (completedMatchResult, userPredi
                 actualTeamBScore: completedMatchResult.teamBScore,
                 predictionId: pred.key,
                 userId: pred.userId,
+                userName: pred.userName,
                 points: 5})
         }
         else if((Math.sign(completedMatchResult.teamAScore-completedMatchResult.teamBScore)) === (Math.sign(pred.teamAScore-pred.teamBScore))){
@@ -303,6 +304,7 @@ export const calculatePointsForCompletedMatch = (completedMatchResult, userPredi
                 actualTeamBScore: completedMatchResult.teamBScore,
                 predictionId: pred.key,
                 userId: pred.userId,
+                userName: pred.userName,
                 points: 2})
         }
         else{
@@ -315,6 +317,7 @@ export const calculatePointsForCompletedMatch = (completedMatchResult, userPredi
                 actualTeamBScore: completedMatchResult.teamBScore,
                 predictionId: pred.key,
                 userId: pred.userId,
+                userName: pred.userName,
                 points: 0})
         }
 

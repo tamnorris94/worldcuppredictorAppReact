@@ -13,6 +13,7 @@ export const fetchPredictionResults = () => {
         }
         );
     return dispatch => {
+        console.log("fetchedPredictionResults after fetching " + JSON.stringify(fetchedPredictionResults))
         retrievePredResults.then(
             response => dispatch(aggregatePredictionResults(fetchedPredictionResults))
         )
@@ -37,10 +38,12 @@ export const fetchPredictionResultsSuccess = (predictionResults) => {
     };
 };
 
-export const aggregatePredictionResults = (fetchedPredictionResults) => {
 
+
+export const aggregatePredictionResults = (fetchedPredictionResults) => {
+    console.log("fetchedPredictionResults at aggregatePredictionResults " + JSON.stringify(fetchedPredictionResults))
     let predictionResults = [...fetchedPredictionResults.reduce((c, v) => {
-        if (!c.has(v.userId)) c.set(v.userId, {"userId": v.userId,"points": 0});
+        if (!c.has(v.userId)) c.set(v.userId, {"userId": v.userId,"points": 0, "userName": v.userName});
         c.get(v.userId).points += +v.points;
         return c;
     }, new Map()).values()];
@@ -48,4 +51,40 @@ export const aggregatePredictionResults = (fetchedPredictionResults) => {
     return dispatch => {
         dispatch(fetchPredictionResultsSuccess(predictionResults));
     }
+}
+
+export const fetchUserPredictionResults = (userId) => {
+    const fetchedUserPredResults = [];
+    const retrieveUserPredResults =  matchPredictionResultsFBRef.orderByChild("userId").equalTo(userId).once("value",
+        function(snapshot){
+            snapshot.forEach(function(snapshotChild){
+                const item = snapshotChild.val();
+                item.key = snapshotChild.key;
+                fetchedUserPredResults.push(item);
+            })
+        }
+    );
+    return dispatch => {
+        retrieveUserPredResults.then(
+            response => dispatch(fetchedUserPredResultsSuccess(fetchedUserPredResults))
+        )
+            .catch(
+                err => dispatch(fetchedUserPredResultsFail(err))
+            )
+    }
+}
+
+export const fetchedUserPredResultsSuccess = (fetchedUserPredResults) => {
+    console.log("fetchedUserPredResults at fetchUserPredResultsSuccess action are " + JSON.stringify(fetchedUserPredResults))
+    return  {
+        type: actionTypes.FETCH_USER_PRED_RESULTS_SUCCESS,
+        fetchedUserPredResults: fetchedUserPredResults
+    };
+}
+
+export const fetchedUserPredResultsFail = (err) => {
+    return  {
+        type: actionTypes.FETCH_USER_PRED_RESULTS_FAIL,
+        error: err
+    };
 }

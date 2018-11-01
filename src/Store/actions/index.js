@@ -42,5 +42,8 @@ export {
 } from './auth';
 export {
     fetchPredictionResults,
-    fetchPredictionResultsFail
+    fetchPredictionResultsFail,
+    fetchedUserPredResultsSuccess,
+    fetchedUserPredResultsFail,
+    fetchUserPredictionResults
 } from './predictionResults';

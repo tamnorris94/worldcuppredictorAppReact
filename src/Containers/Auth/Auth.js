@@ -12,6 +12,21 @@ import { updateObject, checkValidity } from '../../shared/utility';
 class Auth extends Component {
     state = {
         controls: {
+            userName: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'input',
+                    placeholder: 'User Name'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                enabled: true,
+                touched: false
+            },
             email: {
                 elementType: 'input',
                 elementConfig: {
@@ -61,12 +76,13 @@ class Auth extends Component {
 
     submitHandler = ( event ) => {
         event.preventDefault();
-        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
+        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.userName.value, this.state.isSignup );
     }
 
     switchAuthModeHandler = () => {
+        let userNameEnabledProperty = {...this.state.controls.userName.enabled}
         this.setState( prevState => {
-            return { isSignup: !prevState.isSignup };
+            return { isSignup: !prevState.isSignup, userNameEnabledProperty: !prevState.userNameEnabledProperty  };
         } );
     }
 
@@ -81,11 +97,13 @@ class Auth extends Component {
         }
 
         let form = formElementsArray.map( formElement => (
+            //console.log("What does form element look like " + formElement)
             <Input
                 key={formElement.id}
                 elementType={formElement.config.elementType}
                 elementConfig={formElement.config.elementConfig}
                 value={formElement.config.value}
+                disabled="disabled"
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
@@ -136,7 +154,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: ( email, password, isSignup ) => dispatch( actions.auth( email, password, isSignup ) ),
+        onAuth: ( email, password, userName, isSignup ) => dispatch( actions.auth( email, password, userName, isSignup ) ),
         onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
     };
 };

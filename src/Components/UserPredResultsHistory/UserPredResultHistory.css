@@ -1,0 +1,14 @@
+.ExactScoreMatch {
+    background-color: greenyellow;
+    border: double;
+}
+
+.CorrectWinnerOrDraw {
+    background-color: yellow;
+    border: double;
+}
+
+.IncorrectWinner {
+    background-color : orangered;
+    border: double;
+}

@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import upcomingMatchesReducer from './Store/reducer/upcomingMatches';
 import predictionResultsReducer from './Store/reducer/predictionResults';
-import matchResultPredictionInputReducer from './Store/reducer/matchResultPredictionInput';
 import completedMatchesReducer from './Store/reducer/completedMatches';
 import authReducer from './Store/reducer/auth';
 import thunk from 'redux-thunk';
@@ -18,7 +17,6 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 const rootReducer = combineReducers({
     upcomingMatches: upcomingMatchesReducer,
     completedMatches: completedMatchesReducer,
-    matchResultPredictionInput: matchResultPredictionInputReducer,
     auth: authReducer,
     predictionResults: predictionResultsReducer
 });
