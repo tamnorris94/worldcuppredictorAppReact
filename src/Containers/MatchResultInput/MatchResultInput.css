@@ -1,4 +1,4 @@
-.AddResultForCompletedMatch{
+.MatchResultInput{
     width : 60%;
     margin : 16px auto;
     border : 1px solid #eee;
@@ -8,7 +8,7 @@
 }
 
 @media (min-width : 500px){
-    .AddResultForCompletedMatch {
+    .MatchResultInput {
         width : 450px;
     }
 }

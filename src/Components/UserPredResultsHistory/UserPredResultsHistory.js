@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './UserPredResultHistory.css';
 
 const userPredResultsHistory = (props) => {
-    console.log("userPredResults on userPredResultsHistoryPage "+ JSON.stringify(props.userPredResults));
 
     return (
         props.userPredResults.map((upr,index) => {
@@ -14,10 +13,10 @@ const userPredResultsHistory = (props) => {
             //     case ('5'): predictionResultStyle = classes.ExactScoreMatch;
             //     default : predictionResultStyle = classes.CorrectWinnerOrDraw;
             // }
-            if(upr.points == 2){
+            if(upr.points === 2){
                 predictionResultStyle = classes.CorrectWinnerOrDraw;
             }
-            else if(upr.points == 5){
+            else if(upr.points === 5){
                 predictionResultStyle = classes.ExactScoreMatch;
             }
             else {

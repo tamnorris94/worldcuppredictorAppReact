@@ -4,101 +4,187 @@ import { upcomingMatchesFBRef } from '../../Config/firebase';
 import { matchPredictionsFBRef } from '../../Config/firebase';
 import { matchPredictionResultsFBRef } from '../../Config/firebase';
 
+// export const fetchUpcomingAndPredictions = (admin, token, userId) => {
+//     return dispatch => {
+//         dispatch(fetchUpcomingAndPredictionsStart());
+//         const fetchedUpcomingMatches = [];
+//         axios.get('https://react-my-burger-tam.firebaseio.com/upcomingmatches.json')
+//             .then(res => {
+//                 console.log("Res here is " + JSON.stringify(res.data));
+//                 for ( let key in res.data ) {
+//                     fetchedUpcomingMatches.push( {
+//                         ...res.data[key],
+//                         id: key
+//                     } );
+//                 }
+//                 fetchedUpcomingMatches.sort(function(a, b){
+//                     let dateA=new Date(a.matchKickoff), dateB=new Date(b.matchKickoff)
+//                     return dateA-dateB //sort by date ascending
+//                 });
+//                 if(userId && admin === false){
+//                     dispatch(fetchUserPredictions(fetchedUpcomingMatches, token, userId));
+//                 }
+//                 else{
+//                     dispatch(fetchUpcomingAndPredictionsSuccess(fetchedUpcomingMatches));
+//                 }
+//             })
+//             .catch(err => {
+//                 console.log("The error is "+ err);
+//                 dispatch(fetchUpcomingAndPredictionsFail());
+//             });
+//     }
+// }
+
 export const fetchUpcomingAndPredictions = (admin, token, userId) => {
-    return dispatch => {
-        dispatch(fetchUpcomingAndPredictionsStart());
-        const fetchedUpcomingMatches = [];
-        axios.get('https://react-my-burger-tam.firebaseio.com/upcomingmatches.json')
-            .then(res => {
-                console.log("Res here is " + JSON.stringify(res.data));
-                for ( let key in res.data ) {
-                    fetchedUpcomingMatches.push( {
-                        ...res.data[key],
-                        id: key
-                    } );
-                }
-                fetchedUpcomingMatches.sort(function(a, b){
-                    let dateA=new Date(a.matchKickoff), dateB=new Date(b.matchKickoff)
-                    return dateA-dateB //sort by date ascending
-                });
-                if(userId && admin === false){
-                    dispatch(fetchUserPredictions(fetchedUpcomingMatches, token, userId));
-                }
-                else{
-                    dispatch(fetchUpcomingAndPredictionsSuccess(fetchedUpcomingMatches));
-                }
+    const fetchedUpcomingMatches = [];
+    const retrieveUpcomingMatches = upcomingMatchesFBRef.once("value",
+        function(snapshot){
+            snapshot.forEach(function(snapShotChild){
+                const item = snapShotChild.val();
+                item.id = snapShotChild.key;
+                fetchedUpcomingMatches.push(item);
             })
-            .catch(err => {
-                console.log("The error is "+ err);
-                dispatch(fetchUpcomingAndPredictionsFail());
+            fetchedUpcomingMatches.sort(function(a, b){
+                let dateA=new Date(a.matchKickoff), dateB=new Date(b.matchKickoff)
+                return dateA-dateB //sort by date ascending
             });
+        })
+    return dispatch => {
+        let queryParams = null;
+        if(userId && admin === false){
+            retrieveUpcomingMatches.then(
+                response => dispatch(fetchUserPredictions(fetchedUpcomingMatches, token, userId))
+            )
+                .catch(
+                    err => dispatch(fetchUpcomingAndPredictionsFail())
+                )
+        }
+        else{
+            retrieveUpcomingMatches.then(
+                response => dispatch(fetchUpcomingAndPredictionsSuccess(fetchedUpcomingMatches))
+            )
+                .catch(
+                    err => dispatch(fetchUpcomingAndPredictionsFail())
+                )
+        }
     }
 }
 
+// export const fetchUserPredictions = (fetchedUpcomingMatches, token, userId) => {
+//     return dispatch => {
+//         const fetchedUserPredictions = [];
+//         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+//         axios.get('https://react-my-burger-tam.firebaseio.com/matchPredictions.json' +queryParams)
+//             .then(res => {
+//
+//                 for ( let key in res.data ) {
+//                     fetchedUserPredictions.push( {
+//                         ...res.data[key],
+//                         id: key
+//                     } );
+//                 }
+//                 //From here try to combine matches and prematcdictions
+//                 console.log("At this point fetchedUpcomingMatches is " +JSON.stringify(fetchedUpcomingMatches));
+//                 console.log("At this point fetchedUserPredictions is " +JSON.stringify(fetchedUserPredictions));
+//                 let matchesPredictions = ['apples'];
+//                 let combinedMatchesPredictions = [];
+//                 fetchedUpcomingMatches.forEach(match => combineMatchesPredictions(match, fetchedUserPredictions));
+//                 //console.log("combinedMatchesPredictions is stringy " + JSON.stringify(combinedMatchesPredictions));
+//
+//                 function combineMatchesPredictions(match, fetchedUserPredictions) {
+//                     console.log("We get into combineMatchesPredictions?");
+//                     let exists = false;
+//                     let i;
+//                     let matchID = match.id;
+//                     let predsMatchID;
+//                     for(i=0; i<fetchedUserPredictions.length; i++) {
+//                         predsMatchID = fetchedUserPredictions[i].matchID;
+//                         //console.log("predsMatchID : " + predsMatchID);
+//                         //console.log("match id : " + matchID);
+//                         if (matchID === predsMatchID) {
+//                             exists = true;
+//                             break;
+//                         }
+//                     }
+//                     if(exists){
+//                         combinedMatchesPredictions.push({
+//                             ...fetchedUserPredictions[i],
+//                             matchKickoff: match.matchKickoff,
+//                             predictionID: fetchedUserPredictions[i].id,
+//                             prediction: true
+//                         })
+//                     }
+//                     else {
+//                         console.log("Match looks like.." +JSON.stringify(match));
+//                         combinedMatchesPredictions.push({
+//                             ...match,
+//                             matchID: match.id,
+//                             prediction: false
+//                         })
+//                     }
+//                 }
+//                 dispatch(fetchUpcomingAndPredictionsSuccess(combinedMatchesPredictions));
+//             })
+//             .catch(err => {
+//                 console.log("The error is "+ err);
+//                 dispatch(fetchUpcomingAndPredictionsFail());
+//             });
+//     }
+// }
+
 export const fetchUserPredictions = (fetchedUpcomingMatches, token, userId) => {
-    return dispatch => {
-        const fetchedUserPredictions = [];
-        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
-        axios.get('https://react-my-burger-tam.firebaseio.com/matchPredictions.json' +queryParams)
-            .then(res => {
-
-                for ( let key in res.data ) {
-                    fetchedUserPredictions.push( {
-                        ...res.data[key],
-                        id: key
-                    } );
-                }
-                //From here try to combine matches and prematcdictions
-                console.log("At this point fetchedUpcomingMatches is " +JSON.stringify(fetchedUpcomingMatches));
-                console.log("At this point fetchedUserPredictions is " +JSON.stringify(fetchedUserPredictions));
-                let matchesPredictions = ['apples'];
-                let combinedMatchesPredictions = [];
-                fetchedUpcomingMatches.forEach(match => combineMatchesPredictions(match, fetchedUserPredictions));
-                //console.log("combinedMatchesPredictions is stringy " + JSON.stringify(combinedMatchesPredictions));
-
-                function combineMatchesPredictions(match, fetchedUserPredictions) {
-                    console.log("We get into combineMatchesPredictions?");
-                    let exists = false;
-                    let i;
-                    let matchID = match.id;
-                    let predsMatchID;
-                    for(i=0; i<fetchedUserPredictions.length; i++) {
-                        predsMatchID = fetchedUserPredictions[i].matchID;
-                        //console.log("predsMatchID : " + predsMatchID);
-                        //console.log("match id : " + matchID);
-                        if (matchID === predsMatchID) {
-                            exists = true;
-                            break;
-                        }
-                    }
-                    if(exists){
-                        combinedMatchesPredictions.push({
-                            ...fetchedUserPredictions[i],
-                            matchKickoff: match.matchKickoff,
-                            predictionID: fetchedUserPredictions[i].id,
-                            prediction: true
-                        })
-                    }
-                    else {
-                        console.log("Match looks like.." +JSON.stringify(match));
-                        combinedMatchesPredictions.push({
-                            ...match,
-                            matchID: match.id,
-                            prediction: false
-                        })
-                    }
-                }
-                dispatch(fetchUpcomingAndPredictionsSuccess(combinedMatchesPredictions));
+    const fetchedUserPreds = [];
+    let combinedMatchesPredictions = [];
+    const retrieveMatchPreds =  matchPredictionsFBRef.orderByChild("userId").equalTo(userId).once("value",
+        function(snapshot){
+            snapshot.forEach(function(snapshotChild){
+                const item = snapshotChild.val();
+                item.id = snapshotChild.key;
+                fetchedUserPreds.push(item);
             })
-            .catch(err => {
-                console.log("The error is "+ err);
-                dispatch(fetchUpcomingAndPredictionsFail());
-            });
+            fetchedUpcomingMatches.forEach(match => combineMatchesPredictions(match, fetchedUserPreds));
+        }
+    );
+
+    function combineMatchesPredictions(match, fetchedUserPreds) {
+        let exists = false;
+        let i;
+        let matchID = match.id;
+        let predsMatchID;
+        for(i=0; i<fetchedUserPreds.length; i++) {
+            predsMatchID = fetchedUserPreds[i].matchID;
+            if (matchID === predsMatchID) {
+                exists = true;
+                break;
+            }
+        }
+        if(exists){
+            combinedMatchesPredictions.push({
+                ...fetchedUserPreds[i],
+                matchKickoff: match.matchKickoff,
+                predictionID: fetchedUserPreds[i].id,
+                prediction: true
+            })
+        }
+        else {
+            combinedMatchesPredictions.push({
+                ...match,
+                matchID: match.id,
+                prediction: false
+            })
+        }
+    }
+    return dispatch => {
+        retrieveMatchPreds.then(
+            response => dispatch(fetchUpcomingAndPredictionsSuccess(combinedMatchesPredictions))
+        )
+            .catch(
+                err => dispatch(fetchUpcomingAndPredictionsFail())
+            )
     }
 }
 
 export const fetchUpcomingAndPredictionsSuccess = (matchesPredictions ) => {
-    console.log("Matches in matchesPredictions in fetchUpcomingAndPredictionsSuccess actions looks like " + JSON.stringify(matchesPredictions));
     return {
         type: actionTypes.FETCH_UPCOMING_PREDICTIONS_SUCCESS,
         matchesPredictions: matchesPredictions
@@ -171,17 +257,17 @@ export const addMatchResultOrPrediction = (matchResultData, admin, token, predic
             if(matchResultData.prediction===true){
                 delete matchResultData["prediction"];
                 console.log("jsonPayload looks like " + JSON.stringify(matchResultData));
-                axios.put('https://react-my-burger-tam.firebaseio.com/matchPredictions/' + matchResultData.predictionID + '.json',
+                axios.put('https://react-my-burger-tam.firebaseio.com/matchPredictions/' + matchResultData.predictionID + '.json?auth=' + token,
                     matchResultData
                 )
-                .then(response => {
-                    console.log("response is " + JSON.stringify(response));
-                    dispatch(addMatchResultOrPredictionSuccess(response));
-                })
-                .catch(error => {
-                    console.log("Is this error that is getting thrown?" +error);
-                    dispatch(addMatchResultOrPredictionFail(error));
-                })
+                    .then(response => {
+                        console.log("response is " + JSON.stringify(response));
+                        dispatch(addMatchResultOrPredictionSuccess(response));
+                    })
+                    .catch(error => {
+                        console.log("Is this error that is getting thrown?" +error);
+                        dispatch(addMatchResultOrPredictionFail(error));
+                    })
             }
             else{
                 delete matchResultData["prediction"];
@@ -228,7 +314,7 @@ export const addMatchResultOrPredictionFail = (error) => {
 export const addMatchPredictionResultsFail = (response) => {
     return {
         type: actionTypes.ADD_MATCH_PREDICTION_RESULTS_FAIL
-       // match: match
+        // match: match
     };
 };
 
@@ -262,9 +348,9 @@ export const fetchPredictionsForCompletedMatch = (matchResultData, token) => {
             //response => dispatch(addMatchResultOrPredictionSuccess(match))
             //response => dispatch(deleteMatchFromUpcomingMatches(match))
         )
-        .catch(
-            err => dispatch(addMatchResultOrPredictionFail(err))
-        )
+            .catch(
+                err => dispatch(addMatchResultOrPredictionFail(err))
+            )
     }
 }
 

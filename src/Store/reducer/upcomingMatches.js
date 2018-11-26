@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
-import { connect } from 'react-redux';
 
 const initialState = {
     matchesPredictions: [],
@@ -40,7 +39,7 @@ const fetchUpcomingAndPredictionsFailed = ( state, action ) => {
 const initAddMatchResultOrPrediction = ( state, action ) => {
     //console.log("State of predictionID in reducer initAddMatchResult " +action.matchesPredictions.predictionID);
     //console.log("State of matchId in reducer initAddMatchResultOrPrediction " +action.matchesPredictions.matchID);
-    console.log("State of matchesPrediction in initAddMatchResultOrPrediction reducer is " + JSON.stringify(action.matchesPredictions));
+
     return updateObject( state, {
         selectedMatchForUpd: {
             matchID: action.matchesPredictions.matchID,
@@ -57,7 +56,6 @@ const initAddMatchResultOrPrediction = ( state, action ) => {
 }
 
 const initMatchResultInput = ( state, action ) => {
-    console.log("In initMatchResultInput Input action is " +JSON.stringify(action));
     return updateObject( state, {
         selectedMatchForUpd: {
             matchID: action.matchesPredictions.id,
@@ -74,7 +72,6 @@ const initMatchResultInput = ( state, action ) => {
 }
 
 const initPredictionInput = ( state, action ) => {
-    console.log("In initPrediction Input action is " +JSON.stringify(action));
     return updateObject( state, {
         selectedMatchForUpd: {
             matchID: action.matchesPredictions.matchID,
@@ -100,25 +97,25 @@ const addMatchResultOrPredictionSuccess = ( state, action ) => {
 }
 
 
-const addMatchResultOrPrediction = ( state, action ) => {
-    return updateObject( state, {
-        selectedMatchForUpd: {
-            matchID: action.matchID,
-            predictionID: action.predictionID,
-            teamAName: action.teamAName,
-            teamBName: action.teamBName,
-            teamAScore: action.teamAScore,
-            teamBScore: action.teamBScore,
-            matchKickoff: action.matchKickoff,
-            prediction: action.prediction
-        },
-        inputtingResult: false
-    } );
-}
+// const addMatchResultOrPrediction = ( state, action ) => {
+//     return updateObject( state, {
+//         selectedMatchForUpd: {
+//             matchID: action.matchID,
+//             predictionID: action.predictionID,
+//             teamAName: action.teamAName,
+//             teamBName: action.teamBName,
+//             teamAScore: action.teamAScore,
+//             teamBScore: action.teamBScore,
+//             matchKickoff: action.matchKickoff,
+//             prediction: action.prediction
+//         },
+//         inputtingResult: false
+//     } );
+// }
 
-const removeMatchFromUpcomingMatches = (state, action) => {
-    return true;
-}
+// const removeMatchFromUpcomingMatches = (state, action) => {
+//     return true;
+// }
 
 const addMatchResultOrPredictionStart= ( state, action ) => {
     return updateObject( state, {
@@ -147,11 +144,11 @@ const updatePredictionSuccess = (state, action) => {
     })
 }
 
-const UpdatePredictionStart= ( state, action ) => {
-    return updateObject( state, {
-        inputtingResult: true
-    } );
-}
+// const UpdatePredictionStart= ( state, action ) => {
+//     return updateObject( state, {
+//         inputtingResult: true
+//     } );
+// }
 
 const deleteCompletedPredictionFail = (state, action) => {
     return updateObject( state, {

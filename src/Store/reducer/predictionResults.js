@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
-import { connect } from 'react-redux';
 
 const initialState = {
     aggPredictionResults: [],

@@ -30,3 +30,11 @@
     border: 1px solid red;
     background-color: #FDA49A;
 }
+
+.InputElement[disabled] {
+    color: #DCDAD1;
+    padding: 2px;
+    margin: 0 0 0 0;
+    background-image: none;
+    background-color: lightgrey;
+}

@@ -3,6 +3,7 @@ import Input from "../../Components/UI/Input/Input";
 import Button from "../../Components/UI/Button/Button";
 import Spinner from "../../Components/UI/Spinner/Spinner";
 import axios from "../../axios-wcpredict";
+import { updateObject, checkValidity } from '../../shared/utility';
 
 class UpcomingMatchCreate extends Component {
 
@@ -14,7 +15,12 @@ class UpcomingMatchCreate extends Component {
                     type: 'text',
                     placeholder: 'Team A'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 1
+                },
+                valid: false
             },
             teamBName: {
                 elementType: 'input',
@@ -22,7 +28,12 @@ class UpcomingMatchCreate extends Component {
                     type: 'text',
                     placeholder: 'Team B'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 1
+                },
+                valid: false
             },
             matchKickoff: {
                 elementType: 'input',
@@ -30,10 +41,15 @@ class UpcomingMatchCreate extends Component {
                     type: 'datetime-local',
                     placeholder: 'Match kickoff'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false
             }
         },
-        loading: false
+        loading: false,
+        formIsValid: false
     }
 
     createMatch = (event) => {
@@ -58,20 +74,38 @@ class UpcomingMatchCreate extends Component {
             } );
     }
 
+    // inputChangedHandler = (event, inputIdentifier) => {
+    //
+    //     const updatedMatchForm = {
+    //         ...this.state.matchForm
+    //     };
+    //     const updatedFormElement = {
+    //         ...updatedMatchForm[inputIdentifier]
+    //     };
+    //     updatedFormElement.value = event.target.value;
+    //     updatedMatchForm[inputIdentifier] = updatedFormElement;
+    //     this.setState({matchForm: updatedMatchForm});
+    // }
+
     inputChangedHandler = (event, inputIdentifier) => {
-        const updatedMatchForm = {
-            ...this.state.matchForm
-        };
-        const updatedFormElement = {
-            ...updatedMatchForm[inputIdentifier]
-        };
-        updatedFormElement.value = event.target.value;
-        updatedMatchForm[inputIdentifier] = updatedFormElement;
-        this.setState({matchForm: updatedMatchForm});
+        const updatedFormElement = updateObject(this.state.matchForm[inputIdentifier], {
+            value: event.target.value,
+            valid: checkValidity(event.target.value, this.state.matchForm[inputIdentifier].validation),
+            touched: true
+        });
+        const updatedMatchForm = updateObject(this.state.matchForm, {
+            [inputIdentifier]: updatedFormElement
+        });
+        let formIsValid = true;
+        for (let inputIdentifier in updatedMatchForm) {
+            formIsValid = updatedMatchForm[inputIdentifier].valid && formIsValid;
+        }
+        console.log("Form is valid is " + formIsValid);
+        this.setState({matchForm: updatedMatchForm, formIsValid: formIsValid});
     }
 
     render(){
-
+        console.log("isFormValid " + this.state.formIsValid)
         const formElementsArray = [];
         for(let key in this.state.matchForm){
             formElementsArray.push({
@@ -88,10 +122,11 @@ class UpcomingMatchCreate extends Component {
                            elementType={formElement.config.elementType}
                            elementConfig={formElement.config.elementConfig}
                            value={formElement.config.value}
+                           invalid={!formElement.config.valid}
                            changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
                 ))}
 
-                <Button btnType="Success">ADD MATCH</Button>
+                <Button disabled={!this.state.formIsValid} btnType="Success">ADD MATCH</Button>
             </form>
         );
 

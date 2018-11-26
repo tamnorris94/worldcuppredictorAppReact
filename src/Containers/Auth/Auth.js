@@ -24,7 +24,7 @@ class Auth extends Component {
                     isEmail: true
                 },
                 valid: false,
-                enabled: true,
+                disabled: false,
                 touched: false
             },
             email: {
@@ -80,9 +80,16 @@ class Auth extends Component {
     }
 
     switchAuthModeHandler = () => {
-        let userNameEnabledProperty = {...this.state.controls.userName.enabled}
+        const userNameEnabledProperty = this.state.controls.userName.disabled;
+        const toggleUserNameDisable = updateObject( this.state.controls, {
+            userName: updateObject( this.state.controls.userName, {
+                disabled: !userNameEnabledProperty
+            } )
+        } );
         this.setState( prevState => {
-            return { isSignup: !prevState.isSignup, userNameEnabledProperty: !prevState.userNameEnabledProperty  };
+            return { isSignup: !prevState.isSignup,
+                controls: toggleUserNameDisable
+            };
         } );
     }
 
@@ -103,7 +110,7 @@ class Auth extends Component {
                 elementType={formElement.config.elementType}
                 elementConfig={formElement.config.elementConfig}
                 value={formElement.config.value}
-                disabled="disabled"
+                disabled={formElement.config.disabled}
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}

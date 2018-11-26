@@ -16,6 +16,7 @@ const input = ( props ) => {
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
+                disabled={props.disabled}
                 onChange={props.changed} />;
             break;
         case ( 'textarea' ):

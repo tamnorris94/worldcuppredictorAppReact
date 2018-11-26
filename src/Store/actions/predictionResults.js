@@ -13,7 +13,7 @@ export const fetchPredictionResults = () => {
         }
         );
     return dispatch => {
-        console.log("fetchedPredictionResults after fetching " + JSON.stringify(fetchedPredictionResults))
+
         retrievePredResults.then(
             response => dispatch(aggregatePredictionResults(fetchedPredictionResults))
         )
@@ -24,7 +24,7 @@ export const fetchPredictionResults = () => {
 }
 
 export const fetchPredictionResultsFail = (err) => {
-    console.log("The error in fetchPredictionResultsFail is " +err)
+
     return  {
         type: actionTypes.FETCH_PREDICTION_RESULTS_FAIL
     };
@@ -38,16 +38,15 @@ export const fetchPredictionResultsSuccess = (predictionResults) => {
     };
 };
 
-
-
 export const aggregatePredictionResults = (fetchedPredictionResults) => {
-    console.log("fetchedPredictionResults at aggregatePredictionResults " + JSON.stringify(fetchedPredictionResults))
     let predictionResults = [...fetchedPredictionResults.reduce((c, v) => {
         if (!c.has(v.userId)) c.set(v.userId, {"userId": v.userId,"points": 0, "userName": v.userName});
         c.get(v.userId).points += +v.points;
         return c;
     }, new Map()).values()];
-    console.log("Aggregated results are " +JSON.stringify(predictionResults));
+    predictionResults.sort(function(a, b){
+        return b.points - a.points;
+    });
     return dispatch => {
         dispatch(fetchPredictionResultsSuccess(predictionResults));
     }
@@ -75,7 +74,6 @@ export const fetchUserPredictionResults = (userId) => {
 }
 
 export const fetchedUserPredResultsSuccess = (fetchedUserPredResults) => {
-    console.log("fetchedUserPredResults at fetchUserPredResultsSuccess action are " + JSON.stringify(fetchedUserPredResults))
     return  {
         type: actionTypes.FETCH_USER_PRED_RESULTS_SUCCESS,
         fetchedUserPredResults: fetchedUserPredResults

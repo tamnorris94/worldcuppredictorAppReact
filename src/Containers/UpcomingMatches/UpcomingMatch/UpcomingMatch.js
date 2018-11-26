@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './UpcomingMatch.css';
 
 const UpcomingMatch = (props) => {
-    console.log("What is state of prediction?" + props.prediction);
     if(props.prediction){
         return (
             <article className={classes.UpcomingMatch} onClick={props.addMatchPrediction}>

@@ -13,6 +13,7 @@ class AggregatePredictionResults extends Component {
     }
 
     componentDidMount(){
+        console.log("Props on AggregatePredictionResults are " + JSON.stringify(this.props))
         this.props.onFetchPredictionResults();
     }
 
@@ -26,8 +27,8 @@ class AggregatePredictionResults extends Component {
     }
 
     render () {
+
         let aggPredictionResults = <p style={{textAlign: 'center'}}>Loading...!</p>;
-        console.log("Agg preds results are " +JSON.stringify(this.props.aggPredictionResults));
 
         if(!this.props.loading && !this.props.error){
             aggPredictionResults = this.props.aggPredictionResults.map(apr => {
@@ -42,7 +43,7 @@ class AggregatePredictionResults extends Component {
 
         let userPredResultsHistory = null;
 
-        if(this.props.displayingUserPredResults){
+        if(this.state.displayingUserPredResults){
             userPredResultsHistory = <UserPredResultsHistory userPredResults={this.props.userPredResults}  />
         }
 

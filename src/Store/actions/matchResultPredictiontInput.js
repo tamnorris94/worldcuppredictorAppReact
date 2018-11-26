@@ -2,12 +2,9 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios-wcpredict';
 import 'firebase/database';
 import { upcomingMatchesFBRef } from '../../Config/firebase';
-import { predictionsFBRef } from '../../Config/firebase';
-import { matchPredictionsFBRef } from '../../Config/firebase';
-
+//import { predictionsFBRef } from '../../Config/firebase';
 
 export const initAddMatchResultOrPrediction = ( matchPred  ) => {
-    console.log("MatchPred in initAddMatchResult " + JSON.stringify(matchPred));
     return {
         type: actionTypes.INIT_MATCH_RESULT_OR_PREDICTION_INPUT,
         matchID: matchPred.matchID,
@@ -22,11 +19,9 @@ export const initAddMatchResultOrPrediction = ( matchPred  ) => {
 }
 
 export const addMatchResultOrPrediction = (matchResultData, admin, token, prediction) => {
-    console.log("State of prediction received by addMatchResult" +prediction);
-    console.log("matchResultData looks like " +JSON.stringify(matchResultData));
     let match = "";
     for(let key in matchResultData){
-        if(key = "matchID"){
+        if(key === "matchID"){
             match = matchResultData[key]
         }
     }
@@ -41,10 +36,7 @@ export const addMatchResultOrPrediction = (matchResultData, admin, token, predic
         }
         else{
             if(matchResultData.prediction===true){
-                console.log("What is match id " + match.id);
                 const matchID = matchResultData.predictionID;
-                console.log("Match is id " + matchID);
-                console.log("matchResultData looks like " + JSON.stringify(matchResultData));
                 axios.put('https://react-my-burger-tam.firebaseio.com/matchPredictions/' + matchResultData.predictionID + '.json',{
                     teamAScore: matchResultData.teamAScore,
                     teamBScore: matchResultData.teamBScore
@@ -57,8 +49,6 @@ export const addMatchResultOrPrediction = (matchResultData, admin, token, predic
                 })
             }
             else{
-                console.log("Do we get in here?");
-                console.log("matchResultData looks like " + JSON.stringify(matchResultData));
                 axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
                     .then(matchResultData => {
                         dispatch(addMatchResultOrPredictionSuccess());
