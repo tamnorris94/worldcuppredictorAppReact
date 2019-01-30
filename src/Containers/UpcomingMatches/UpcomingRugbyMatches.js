@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import UpcomingMatch from "./UpcomingMatch/UpcomingMatch";
-import  MatchResultInput from "../MatchResultInput/MatchResultInput2";
+import UpcomingRugbyMatch from "./UpcomingRugbyMatch/UpcomingRugbyMatch";
+import  RugbyMatchPredResInput from "../RugbyMatchPredResInput/RugbyMatchPredResInput";
 import Modal from "../../Components/UI/Modal/Modal";
 import Aux from "../../Hoc/Auxiliary/Auxiliary";
 import * as actions from '../../Store/actions/index';
 import { connect } from 'react-redux';
 
-class UpcomingMatches extends Component {
+class UpcomingRugbyMatches extends Component {
 
     state = {
         inputtingResult: false,
@@ -56,8 +56,6 @@ class UpcomingMatches extends Component {
     addInitMatchPredictionHandler = (matchPred) => {
         let matchPredKickOff = new Date(matchPred.matchKickoff).getTime();
         let currentDateTime = new Date().getTime();
-        console.log("Current date is " + currentDateTime);
-        console.log("Match kickoff date is " + matchPredKickOff);
         this.setState({
             error: false
         })
@@ -89,9 +87,7 @@ class UpcomingMatches extends Component {
             inputtingResult: true
         })
         this.props.onUpdateMatchPredictionInit( matchPred);
-
     }
-
 
     addMatchResultInput = () => {
         this.setState({
@@ -116,7 +112,7 @@ class UpcomingMatches extends Component {
 
         if(!this.props.loading && !this.props.error){
             matchesPredictions = this.props.matchesPredictions.map(matchPred => {
-                return <UpcomingMatch
+                return <UpcomingRugbyMatch
                     key={matchPred.id}
                     teamAName={matchPred.teamAName}
                     teamBName={matchPred.teamBName}
@@ -131,7 +127,6 @@ class UpcomingMatches extends Component {
             });
         }
 
-
         if(this.props.selectedMatchForUpd){
             // if(!this.state.error){
             //     matchResultInput = <MatchResultInput id={this.props.selectedMatchForUpd.matchID}
@@ -142,10 +137,10 @@ class UpcomingMatches extends Component {
             // else{
             //     matchResultInput = <p>Match has already been played</p>
             // }
-            matchResultInput = <MatchResultInput id={this.props.selectedMatchForUpd.matchID}
-                                         resultInputCancel={this.cancelResultInputHandler}
-                                         resultSubmitted={this.addMatchResultInput}
-                                />
+            matchResultInput = <RugbyMatchPredResInput id={this.props.selectedMatchForUpd.matchID}
+                                                 resultInputCancel={this.cancelResultInputHandler}
+                                                 resultSubmitted={this.addMatchResultInput}
+            />
         }
 
         return (
@@ -216,4 +211,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)( UpcomingMatches );
+export default connect(mapStateToProps, mapDispatchToProps)( UpcomingRugbyMatches );

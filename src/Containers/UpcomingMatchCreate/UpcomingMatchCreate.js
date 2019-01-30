@@ -4,6 +4,8 @@ import Button from "../../Components/UI/Button/Button";
 import Spinner from "../../Components/UI/Spinner/Spinner";
 import axios from "../../axios-wcpredict";
 import { updateObject, checkValidity } from '../../shared/utility';
+import { connect } from 'react-redux';
+import * as actions from '../../Store/actions/index';
 
 class UpcomingMatchCreate extends Component {
 
@@ -52,9 +54,31 @@ class UpcomingMatchCreate extends Component {
         formIsValid: false
     }
 
+    // createMatch = (event) => {
+    //     event.preventDefault();
+    //     this.setState({ loading: true});
+    //     const matchData = {};
+    //     for (let teamElementIdentifier in this.state.matchForm){
+    //         matchData[teamElementIdentifier] = this.state.matchForm[teamElementIdentifier].value;
+    //     }
+    //     const match = {
+    //         teamAName : matchData.teamAName,
+    //         teamBName : matchData.teamBName,
+    //         matchKickoff: matchData.matchKickoff
+    //     }
+    //     axios.post( 'https://react-my-burger-tam.firebaseio.com/upcomingmatches.json', match )
+    //         .then( response => {
+    //             this.setState( { loading: false } );
+    //             this.props.history.push('/');
+    //         } )
+    //         .catch( error => {
+    //             this.setState( { loading: false } );
+    //         } );
+    // }
+
     createMatch = (event) => {
         event.preventDefault();
-        this.setState({ loading: true});
+        //this.setState({ loading: true});
         const matchData = {};
         for (let teamElementIdentifier in this.state.matchForm){
             matchData[teamElementIdentifier] = this.state.matchForm[teamElementIdentifier].value;
@@ -64,14 +88,14 @@ class UpcomingMatchCreate extends Component {
             teamBName : matchData.teamBName,
             matchKickoff: matchData.matchKickoff
         }
-        axios.post( 'https://react-my-burger-tam.firebaseio.com/upcomingmatches.json', match )
-            .then( response => {
-                this.setState( { loading: false } );
-                this.props.history.push('/');
-            } )
-            .catch( error => {
-                this.setState( { loading: false } );
-            } );
+
+        const updatedMatchForm = updateObject(this.state.matchForm, {
+            teamAName: updateObject(this.state.matchForm.teamAName, { value: "" }),
+            teamBName: updateObject(this.state.matchForm.teamBName, { value: "" }),
+            matchKickoff: updateObject(this.state.matchForm.matchKickoff, { value: "" })
+        })
+        this.setState({matchForm: updatedMatchForm});
+        this.props.onAddUpcomingMatch(match);
     }
 
     // inputChangedHandler = (event, inputIdentifier) => {
@@ -100,12 +124,11 @@ class UpcomingMatchCreate extends Component {
         for (let inputIdentifier in updatedMatchForm) {
             formIsValid = updatedMatchForm[inputIdentifier].valid && formIsValid;
         }
-        console.log("Form is valid is " + formIsValid);
         this.setState({matchForm: updatedMatchForm, formIsValid: formIsValid});
     }
 
     render(){
-        console.log("isFormValid " + this.state.formIsValid)
+
         const formElementsArray = [];
         for(let key in this.state.matchForm){
             formElementsArray.push({
@@ -130,7 +153,7 @@ class UpcomingMatchCreate extends Component {
             </form>
         );
 
-        if ( this.state.loading ) {
+        if ( this.props.loading ) {
             form = <Spinner />;
         }
 
@@ -144,4 +167,16 @@ class UpcomingMatchCreate extends Component {
     }
 }
 
-export default UpcomingMatchCreate;
+const mapStateToProps = state => {
+    return {
+        loading: state.upcomingMatches.loading
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddUpcomingMatch: (match) => dispatch(actions.addUpcomingMatch(match))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(UpcomingMatchCreate);

@@ -3,6 +3,8 @@ import axios from '../../axios-wcpredict';
 import { upcomingMatchesFBRef } from '../../Config/firebase';
 import { matchPredictionsFBRef } from '../../Config/firebase';
 import { matchPredictionResultsFBRef } from '../../Config/firebase';
+import { matchResultsFBRef } from '../../Config/firebase';
+import { databaseRef } from '../../Config/firebase';
 
 // export const fetchUpcomingAndPredictions = (admin, token, userId) => {
 //     return dispatch => {
@@ -51,6 +53,7 @@ export const fetchUpcomingAndPredictions = (admin, token, userId) => {
         })
     return dispatch => {
         let queryParams = null;
+        //If user is valid and not admin then fetch user predictions
         if(userId && admin === false){
             retrieveUpcomingMatches.then(
                 response => dispatch(fetchUserPredictions(fetchedUpcomingMatches, token, userId))
@@ -135,6 +138,7 @@ export const fetchUpcomingAndPredictions = (admin, token, userId) => {
 export const fetchUserPredictions = (fetchedUpcomingMatches, token, userId) => {
     const fetchedUserPreds = [];
     let combinedMatchesPredictions = [];
+    //fetch user predictions for userId
     const retrieveMatchPreds =  matchPredictionsFBRef.orderByChild("userId").equalTo(userId).once("value",
         function(snapshot){
             snapshot.forEach(function(snapshotChild){
@@ -158,10 +162,12 @@ export const fetchUserPredictions = (fetchedUpcomingMatches, token, userId) => {
                 break;
             }
         }
+        //if the match is in the userPredictions then add predictionID to combinedMatchesPredictions
+        //else predictionID will equal null.
         if(exists){
             combinedMatchesPredictions.push({
                 ...fetchedUserPreds[i],
-                matchKickoff: match.matchKickoff,
+                //matchKickoff: match.matchKickoff,
                 predictionID: fetchedUserPreds[i].id,
                 prediction: true
             })
@@ -170,6 +176,7 @@ export const fetchUserPredictions = (fetchedUpcomingMatches, token, userId) => {
             combinedMatchesPredictions.push({
                 ...match,
                 matchID: match.id,
+                predictionID: "",
                 prediction: false
             })
         }
@@ -243,36 +250,63 @@ export const addMatchResultOrPrediction = (matchResultData, admin, token, predic
     return dispatch => {
         dispatch( addMatchResultOrPredictionStart() );
         if(admin===true){
-            console.log("Token here is " + token);
-            axios.post( 'https://react-my-burger-tam.firebaseio.com/matchResults.json', matchResultData)
-                .then(response => {
-                    console.log("Do we get inside this? What does matchResultData look like" + JSON.stringify(response));
-                    dispatch(fetchPredictionsForCompletedMatch(matchResultData, token));
-                })
-                .catch(error => {
-                    dispatch(addMatchResultOrPredictionFail(error))
-                })
+            //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchResults.json', matchResultData)
+            matchResultsFBRef.push({
+                matchID: matchResultData.matchID,
+                matchKickoff: matchResultData.matchKickoff,
+                teamAName: matchResultData.teamAName,
+                teamAScore: matchResultData.teamAScore,
+                teamBName: matchResultData.teamBName,
+                teamBScore: matchResultData.teamBScore
+            })
+            .then(response => {
+                console.log("Do we get inside this? What does matchResultData look like" + JSON.stringify(response));
+                dispatch(fetchPredictionsForCompletedMatch(matchResultData, token));
+            })
+            .catch(error => {
+                dispatch(addMatchResultOrPredictionFail(error))
+            })
         }
         else{
-            if(matchResultData.prediction===true){
+            if(!matchResultData.predictionID == ""){
                 delete matchResultData["prediction"];
                 console.log("jsonPayload looks like " + JSON.stringify(matchResultData));
-                axios.put('https://react-my-burger-tam.firebaseio.com/matchPredictions/' + matchResultData.predictionID + '.json?auth=' + token,
-                    matchResultData
-                )
-                    .then(response => {
-                        console.log("response is " + JSON.stringify(response));
-                        dispatch(addMatchResultOrPredictionSuccess(response));
-                    })
-                    .catch(error => {
-                        console.log("Is this error that is getting thrown?" +error);
-                        dispatch(addMatchResultOrPredictionFail(error));
-                    })
+                // axios.put('https://react-my-burger-tam.firebaseio.com/matchPredictions/' + matchResultData.predictionID + '.json?auth=' + token,
+                //     matchResultData
+                // )
+                databaseRef.child('matchPredictions/' + matchResultData.predictionID).set({
+                    matchID: matchResultData.matchID,
+                    matchKickoff: matchResultData.matchKickoff,
+                    teamAName: matchResultData.teamAName,
+                    teamBName: matchResultData.teamBName,
+                    teamAScore: matchResultData.teamAScore,
+                    teamBScore: matchResultData.teamBScore,
+                    userId: matchResultData.userId,
+                    userName: matchResultData.userName
+                })
+                .then(response => {
+                    console.log("response is " + JSON.stringify(response));
+                    dispatch(addMatchResultOrPredictionSuccess(response));
+                })
+                .catch(error => {
+                    console.log("Is this error that is getting thrown?" +error);
+                    dispatch(addMatchResultOrPredictionFail(error));
+                })
             }
             else{
                 delete matchResultData["prediction"];
-                axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
-                    .then(response => {
+                //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
+                matchPredictionsFBRef.push({
+                    matchID: matchResultData.matchID,
+                    matchKickoff: matchResultData.matchKickoff,
+                    teamAName: matchResultData.teamAName,
+                    teamBName: matchResultData.teamBName,
+                    teamAScore: matchResultData.teamAScore,
+                    teamBScore: matchResultData.teamBScore,
+                    userId: matchResultData.userId,
+                    userName: matchResultData.userName
+                })
+                .then(response => {
                         dispatch(addMatchResultOrPredictionSuccess());
                     })
                     .catch(error => {dispatch(addMatchResultOrPredictionFail(error))})
@@ -287,10 +321,12 @@ export const addMatchResultOrPredictionStart = () => {
     };
 };
 
-export const deleteMatchFromUpcomingMatches = (predsResultsData, token) => {
-    const matchID = predsResultsData[0].matchID;
-
-    console.log("What does match look like " + matchID);
+export const deleteMatchFromUpcomingMatches = (matchID, token) => {
+    // console.log("Did we get in here?")
+    // console.log("What does matchResultData look like " + JSON.stringify(matchResultData))
+    // const matchID = matchResultData.matchID;
+    //
+    // console.log("What does match look like " + matchID);
 
     const deleteRequest =  upcomingMatchesFBRef.child(matchID).remove()
     return dispatch => {
@@ -325,6 +361,46 @@ export const addMatchResultOrPredictionSuccess = (response) => {
     };
 };
 
+// export const fetchPredictionsForCompletedMatch = (matchResultData, token) => {
+//     console.log("matchResultData at fetchPredictionsForCompletedMatch looks like " + JSON.stringify(matchResultData))
+//     let match = "";
+//     for(let key in matchResultData){
+//         if(key = "matchID"){
+//             match = matchResultData[key]
+//         }
+//     }
+//     const fetchedUserPredsForMatch = [];
+//     const retrievePreds =  matchPredictionsFBRef.orderByChild("matchID").equalTo(match).once("value",
+//         function(snapshot){
+//             snapshot.forEach(function(snapshotChild){
+//                 const item = snapshotChild.val();
+//                 item.key = snapshotChild.key;
+//                 fetchedUserPredsForMatch.push(item);
+//             })
+//         });
+//     if(fetchedUserPredsForMatch.length == 0){
+//         console.log("fetchedUserPredsForMatch length is " + fetchedUserPredsForMatch.length)
+//         console.log("Pants mcClutchy");
+//     }
+//     if(fetchedUserPredsForMatch.length > 0){
+//         return dispatch => {
+//             retrievePreds.then(
+//                 response =>
+//                     dispatch(calculatePointsForCompletedMatch(matchResultData, fetchedUserPredsForMatch))
+//             )
+//                 .catch(
+//                     err => dispatch(addMatchResultOrPredictionFail(err))
+//                 )
+//         }
+//     }
+//     else {
+//         return dispatch => {
+//             dispatch(deleteMatchFromUpcomingMatches());
+//         }
+//     }
+//
+// }
+
 export const fetchPredictionsForCompletedMatch = (matchResultData, token) => {
     console.log("matchResultData at fetchPredictionsForCompletedMatch looks like " + JSON.stringify(matchResultData))
     let match = "";
@@ -342,16 +418,20 @@ export const fetchPredictionsForCompletedMatch = (matchResultData, token) => {
                 fetchedUserPredsForMatch.push(item);
             })
         });
-    return dispatch => {
-        retrievePreds.then(
-            response => dispatch(calculatePointsForCompletedMatch(matchResultData, fetchedUserPredsForMatch))
-            //response => dispatch(addMatchResultOrPredictionSuccess(match))
-            //response => dispatch(deleteMatchFromUpcomingMatches(match))
-        )
-            .catch(
-                err => dispatch(addMatchResultOrPredictionFail(err))
-            )
+    console.log("fetchedUserPredsForMatch are " + JSON.stringify(fetchedUserPredsForMatch));
+    if(fetchedUserPredsForMatch.length == 0){
+        console.log("fetchedUserPredsForMatch length is " + fetchedUserPredsForMatch.length)
     }
+    return dispatch => {
+            retrievePreds.then(
+                response =>
+                    dispatch(calculatePointsForCompletedMatch(matchResultData, fetchedUserPredsForMatch))
+            )
+                .catch(
+                    err => dispatch(addMatchResultOrPredictionFail(err))
+                )
+        }
+
 }
 
 
@@ -365,52 +445,68 @@ export const fetchPredictionsForCompletedMatch = (matchResultData, token) => {
 
 export const calculatePointsForCompletedMatch = (completedMatchResult, userPredictions) => {
     console.log("userPredictions are " +JSON.stringify(userPredictions));
-    const predsResultsData = [];
-    userPredictions.forEach(pred => {
-        if((pred.teamAScore === completedMatchResult.teamAScore) && (pred.teamBScore === completedMatchResult.teamBScore)){
-            predsResultsData.push({ matchID: pred.matchID,
-                teamAName: pred.teamAName,
-                teamBName: pred.teamBName,
-                predictedTeamAScore: pred.teamAScore,
-                predictedTeamBScore: pred.teamBScore,
-                actualTeamAScore: completedMatchResult.teamAScore,
-                actualTeamBScore: completedMatchResult.teamBScore,
-                predictionId: pred.key,
-                userId: pred.userId,
-                userName: pred.userName,
-                points: 5})
+    console.log("userPredictions length is" +userPredictions.length);
+    console.log("What does completed match result look like " + JSON.stringify(completedMatchResult))
+    if(userPredictions.length > 0) {
+        const predsResultsData = [];
+        userPredictions.forEach(pred => {
+            if ((pred.teamAScore === completedMatchResult.teamAScore) && (pred.teamBScore === completedMatchResult.teamBScore)) {
+                predsResultsData.push({
+                    matchID: pred.matchID,
+                    teamAName: pred.teamAName,
+                    teamBName: pred.teamBName,
+                    predictedTeamAScore: pred.teamAScore,
+                    predictedTeamBScore: pred.teamBScore,
+                    actualTeamAScore: completedMatchResult.teamAScore,
+                    actualTeamBScore: completedMatchResult.teamBScore,
+                    predictionId: pred.key,
+                    userId: pred.userId,
+                    userName: pred.userName,
+                    points: 5
+                })
+            }
+            else if ((Math.sign(completedMatchResult.teamAScore - completedMatchResult.teamBScore)) === (Math.sign(pred.teamAScore - pred.teamBScore))) {
+                predsResultsData.push({
+                    matchID: pred.matchID,
+                    teamAName: pred.teamAName,
+                    teamBName: pred.teamBName,
+                    predictedTeamAScore: pred.teamAScore,
+                    predictedTeamBScore: pred.teamBScore,
+                    actualTeamAScore: completedMatchResult.teamAScore,
+                    actualTeamBScore: completedMatchResult.teamBScore,
+                    predictionId: pred.key,
+                    userId: pred.userId,
+                    userName: pred.userName,
+                    points: 2
+                })
+            }
+            else {
+                predsResultsData.push({
+                    matchID: pred.matchID,
+                    teamAName: pred.teamAName,
+                    teamBName: pred.teamBName,
+                    predictedTeamAScore: pred.teamAScore,
+                    predictedTeamBScore: pred.teamBScore,
+                    actualTeamAScore: completedMatchResult.teamAScore,
+                    actualTeamBScore: completedMatchResult.teamBScore,
+                    predictionId: pred.key,
+                    userId: pred.userId,
+                    userName: pred.userName,
+                    points: 0
+                })
+            }
+
+        });
+        return dispatch => {
+            dispatch(addMatchPredictionResults(predsResultsData));
         }
-        else if((Math.sign(completedMatchResult.teamAScore-completedMatchResult.teamBScore)) === (Math.sign(pred.teamAScore-pred.teamBScore))){
-            predsResultsData.push({ matchID: pred.matchID,
-                teamAName: pred.teamAName,
-                teamBName: pred.teamBName,
-                predictedTeamAScore: pred.teamAScore,
-                predictedTeamBScore: pred.teamBScore,
-                actualTeamAScore: completedMatchResult.teamAScore,
-                actualTeamBScore: completedMatchResult.teamBScore,
-                predictionId: pred.key,
-                userId: pred.userId,
-                userName: pred.userName,
-                points: 2})
-        }
-        else{
-            predsResultsData.push({ matchID: pred.matchID,
-                teamAName: pred.teamAName,
-                teamBName: pred.teamBName,
-                predictedTeamAScore: pred.teamAScore,
-                predictedTeamBScore: pred.teamBScore,
-                actualTeamAScore: completedMatchResult.teamAScore,
-                actualTeamBScore: completedMatchResult.teamBScore,
-                predictionId: pred.key,
-                userId: pred.userId,
-                userName: pred.userName,
-                points: 0})
+    }
+    else{
+            return dispatch => {
+                dispatch(deleteMatchFromUpcomingMatches(completedMatchResult.matchID));
+            }
         }
 
-    });
-    return dispatch => {
-        dispatch(addMatchPredictionResults(predsResultsData));
-    }
 }
 
 
@@ -451,7 +547,7 @@ export const deleteCompletedPredictions = (predsResultsData) => {
     return dispatch => {
         Promise.all(promises)
             .then(
-                dispatch(deleteMatchFromUpcomingMatches(predsResultsData))
+                dispatch(deleteMatchFromUpcomingMatches(predsResultsData[0].matchID))
             )
             .catch(
                 error => dispatch(deleteCompletedPredictionFail(error))
@@ -480,3 +576,31 @@ export const deleteCompletedPredictionFail = (error) => {
         type: actionTypes.DELETE_COMPLETED_PREDICTION_FAIL
     };
 };
+
+export const addUpcomingMatch = (upcomingMatch) => {
+    return dispatch => {
+        upcomingMatchesFBRef.push({
+            matchKickoff: upcomingMatch.matchKickoff,
+            teamAName: upcomingMatch.teamAName,
+            teamBName: upcomingMatch.teamBName
+        })
+        .then( response => {
+            dispatch(addUpcomingMatchSuccess());
+        } )
+        .catch( error => {
+            dispatch(addUpcomingMatchFail(error));
+        } );
+    }
+}
+
+export const addUpcomingMatchSuccess = (res) => {
+    return {
+        type: actionTypes.ADD_UPCOMING_MATCH_SUCCESS
+    };
+}
+
+export const addUpcomingMatchFail = (res) => {
+    return {
+        type: actionTypes.ADD_UPCOMING_MATCH_FAIL
+    };
+}

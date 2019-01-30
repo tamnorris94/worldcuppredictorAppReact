@@ -2,28 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5923f8aa-e16c-4c5a-bcf8-92b7e9640ba4" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatch/UpcomingRugbyMatch.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatch/UpcomingRugbyMatch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatches.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Store/actions/rugbyMatchPredResultInput.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Store/reducer/rugbyMatchPredResultInput.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Navigation/NavigationItems/NavigationItems.js" afterPath="$PROJECT_DIR$/src/Components/Navigation/NavigationItems/NavigationItems.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UI/Button/Button.css" afterPath="$PROJECT_DIR$/src/Components/UI/Button/Button.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UI/Button/Button.js" afterPath="$PROJECT_DIR$/src/Components/UI/Button/Button.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UI/Input/Input.css" afterPath="$PROJECT_DIR$/src/Components/UI/Input/Input.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UI/Input/Input.js" afterPath="$PROJECT_DIR$/src/Components/UI/Input/Input.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UI/Modal/Modal.css" afterPath="$PROJECT_DIR$/src/Components/UI/Modal/Modal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UI/Modal/Modal.js" afterPath="$PROJECT_DIR$/src/Components/UI/Modal/Modal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResult/UserPredResult.js" afterPath="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResult/UserPredResult.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultHistory.css" afterPath="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultHistory.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultsHistory.js" afterPath="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultsHistory.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Config/firebase.js" afterPath="$PROJECT_DIR$/src/Config/firebase.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Containers/AggregatePredictionResults/AggregatePredictionResults.js" afterPath="$PROJECT_DIR$/src/Containers/AggregatePredictionResults/AggregatePredictionResults.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Containers/Auth/Auth.js" afterPath="$PROJECT_DIR$/src/Containers/Auth/Auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput.css" afterPath="$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput2.js" afterPath="$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Containers/UpcomingMatchCreate/UpcomingMatchCreate.js" afterPath="$PROJECT_DIR$/src/Containers/UpcomingMatchCreate/UpcomingMatchCreate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatch/UpcomingMatch.js" afterPath="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatch/UpcomingMatch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatches.js" afterPath="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatches.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/actions/auth.js" afterPath="$PROJECT_DIR$/src/Store/actions/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/actions/matchResultPredictiontInput.js" afterPath="$PROJECT_DIR$/src/Store/actions/matchResultPredictiontInput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/actions/predictionResults.js" afterPath="$PROJECT_DIR$/src/Store/actions/predictionResults.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/actions/actionTypes.js" afterPath="$PROJECT_DIR$/src/Store/actions/actionTypes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/actions/index.js" afterPath="$PROJECT_DIR$/src/Store/actions/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/actions/upcomingMatches.js" afterPath="$PROJECT_DIR$/src/Store/actions/upcomingMatches.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/reducer/auth.js" afterPath="$PROJECT_DIR$/src/Store/reducer/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/reducer/predictionResults.js" afterPath="$PROJECT_DIR$/src/Store/reducer/predictionResults.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Store/reducer/upcomingMatches.js" afterPath="$PROJECT_DIR$/src/Store/reducer/upcomingMatches.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,118 +49,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="MatchResultInput2.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput2.js">
+      <file leaf-file-name="RugbyMatchPredResInput.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2900">
-              <caret line="126" column="31" lean-forward="false" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
+            <state relative-caret-position="-468">
+              <caret line="162" column="5" lean-forward="false" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
-                <element signature="e#3952#4006#0" expanded="false" />
-                <element signature="e#5386#6050#0" expanded="false" />
-                <element signature="e#6056#6108#0" expanded="false" />
-                <element signature="e#8754#8766#0" expanded="false" />
+                <element signature="e#3239#3280#0" expanded="false" />
+                <element signature="e#4575#4616#0" expanded="false" />
+                <element signature="e#5237#5284#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpcomingMatchCreate.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatchCreate/UpcomingMatchCreate.js">
+      <file leaf-file-name="PredResSelectControls.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2050">
-              <caret line="98" column="31" lean-forward="false" selection-start-line="98" selection-start-column="31" selection-end-line="98" selection-end-column="31" />
-              <folding>
-                <element signature="e#2433#2487#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Auth.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Containers/Auth/Auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1750">
-              <caret line="79" column="5" lean-forward="false" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+            <state relative-caret-position="250">
+              <caret line="23" column="80" lean-forward="false" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Input.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/UI/Input/Input.js">
+      <file leaf-file-name="PredResSelectControl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+            <state relative-caret-position="150">
+              <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpcomingMatches.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatches.js">
+      <file leaf-file-name="rugbyMatchPredResultInput.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Store/actions/rugbyMatchPredResultInput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2708">
-              <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="48" />
-              <folding>
-                <element signature="e#825#876#0" expanded="false" />
-                <element signature="e#4090#4145#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Store/reducer/auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="35" column="39" lean-forward="true" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+            <state relative-caret-position="375">
+              <caret line="15" column="2" lean-forward="false" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upcomingMatches.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Store/actions/upcomingMatches.js">
+      <file leaf-file-name="rugbyMatchPredResultInput.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Store/reducer/rugbyMatchPredResultInput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4350">
-              <caret line="273" column="125" lean-forward="false" selection-start-line="273" selection-start-column="110" selection-end-line="273" selection-end-column="125" />
-              <folding>
-                <element signature="e#284#357#0" expanded="false" />
-                <element signature="e#2984#3067#0" expanded="false" />
-                <element signature="e#8534#8609#0" expanded="false" />
-                <element signature="e#16684#16751#0" expanded="false" />
-                <element signature="e#18313#18381#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Store/actions/auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1950">
-              <caret line="80" column="16" lean-forward="false" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upcomingMatches.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Store/reducer/upcomingMatches.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3275">
-              <caret line="132" column="35" lean-forward="false" selection-start-line="132" selection-start-column="6" selection-end-line="132" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="completedMatches.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Store/reducer/completedMatches.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+            <state relative-caret-position="225">
+              <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -162,8 +108,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -173,6 +119,7 @@
       <find>test</find>
       <find>place</find>
       <find>INIT_maTCH_PRE</find>
+      <find>resultInputForm</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,57 +128,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Containers/YourMatchPredictions/YourPrediction/YourPrediction.css" />
-        <option value="$PROJECT_DIR$/src/Containers/YourMatchPredictions/YourPrediction/YourPrediction.js" />
-        <option value="$PROJECT_DIR$/src/Containers/YourMatchPredictions/YourMatchPredictions.js" />
-        <option value="$PROJECT_DIR$/src/Containers/YourMatchPredictions/UserPrediction/UserPrediction.css" />
-        <option value="$PROJECT_DIR$/src/Containers/YourMatchPredictions/UserPrediction/UserPrediction.js" />
-        <option value="$PROJECT_DIR$/src/Containers/YourMatchPredictions/UserPredictions.js" />
-        <option value="$PROJECT_DIR$/src/Containers/UserPredictions/UserPredictions.js" />
-        <option value="$PROJECT_DIR$/src/Containers/CompletedMatches/CompletedMatch/CompletedMatch.js" />
-        <option value="$PROJECT_DIR$/src/Containers/UserPredictions/UserPrediction/UserPrediction.js" />
-        <option value="$PROJECT_DIR$/src/Store/actions/matchResultInput.js" />
-        <option value="$PROJECT_DIR$/src/Containers/CompletedMatches/CompletedMatches.js" />
-        <option value="$PROJECT_DIR$/src/Store/actions/matchPredictions.js" />
-        <option value="$PROJECT_DIR$/src/Store/actions/userPredictions.js" />
-        <option value="$PROJECT_DIR$/src/Store/reducer/userPredictions.js" />
-        <option value="$PROJECT_DIR$/src/Store/reducer/matchResultPredictionInput.js" />
-        <option value="$PROJECT_DIR$/src/Config/keys.js" />
-        <option value="$PROJECT_DIR$/src/Components/Navigation/NavigationItems/NavigationItems.js" />
-        <option value="$PROJECT_DIR$/src/Containers/PredictionResults/PredictionResults.js" />
-        <option value="$PROJECT_DIR$/src/Containers/PredictionResults/UserPredictionResults/UserPredictionResults.js" />
-        <option value="$PROJECT_DIR$/src/Containers/PredictionResults/UserPredictionAggResults/UserPredictionAggResults.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/Containers/AggregatePredictionResults/UserAggPredictionResult/UserAggPredictionResult.css" />
-        <option value="$PROJECT_DIR$/src/Store/actions/actionTypes.js" />
-        <option value="$PROJECT_DIR$/src/Store/actions/index.js" />
         <option value="$PROJECT_DIR$/src/Containers/UserPredResultsHistory/UserPredResultsHistory.js" />
         <option value="$PROJECT_DIR$/src/Containers/UserPredResultsHistory/UserPredResult/UserPredResult.js" />
-        <option value="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResult/UserPredResult.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/Containers/AggregatePredictionResults/UserAggPredictionResult/UserAggPredictionResult.js" />
-        <option value="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultHistory.css" />
         <option value="$PROJECT_DIR$/src/Components/UI/Input/Input.css" />
         <option value="$PROJECT_DIR$/src/Containers/Auth/Auth.js" />
         <option value="$PROJECT_DIR$/src/Store/actions/predictionResults.js" />
-        <option value="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultsHistory.js" />
         <option value="$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput.css" />
         <option value="$PROJECT_DIR$/src/Store/reducer/predictionResults.js" />
         <option value="$PROJECT_DIR$/src/Containers/AggregatePredictionResults/AggregatePredictionResults.js" />
-        <option value="$PROJECT_DIR$/src/Components/UI/Modal/Modal.css" />
-        <option value="$PROJECT_DIR$/src/Config/firebase.js" />
-        <option value="$PROJECT_DIR$/src/Components/UI/Button/Button.js" />
         <option value="$PROJECT_DIR$/src/Store/actions/matchResultPredictiontInput.js" />
         <option value="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatch/UpcomingMatch.js" />
         <option value="$PROJECT_DIR$/src/Components/UI/Modal/Modal.js" />
-        <option value="$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput2.js" />
         <option value="$PROJECT_DIR$/src/Components/UI/Input/Input.js" />
-        <option value="$PROJECT_DIR$/src/Store/reducer/upcomingMatches.js" />
-        <option value="$PROJECT_DIR$/src/Store/actions/upcomingMatches.js" />
         <option value="$PROJECT_DIR$/src/Store/reducer/auth.js" />
         <option value="$PROJECT_DIR$/src/Store/actions/auth.js" />
+        <option value="$PROJECT_DIR$/src/Config/firebase.js" />
+        <option value="$PROJECT_DIR$/src/Store/reducer/upcomingMatches.js" />
         <option value="$PROJECT_DIR$/src/Containers/UpcomingMatchCreate/UpcomingMatchCreate.js" />
+        <option value="$PROJECT_DIR$/src/Store/actions/upcomingMatches.js" />
         <option value="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatches.js" />
+        <option value="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatchesRugby.js" />
+        <option value="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatch/UpcomingRugbyMatch.css" />
+        <option value="$PROJECT_DIR$/src/Containers/RugbyMatchPredictionResultInput/RugbyMatchPredictionResultInput.css" />
+        <option value="$PROJECT_DIR$/src/Components/PredictionResultSelection/PredictionResultSelection.js" />
+        <option value="$PROJECT_DIR$/src/Components/PredictionResultSelection/PredictionResultSelection.css" />
+        <option value="$PROJECT_DIR$/src/Components/PredictionResultSelectionControls/PredictionSelectionResultControl/PredictionSelectionResultControl.css" />
+        <option value="$PROJECT_DIR$/src/Components/PredictionResultSelectionControls/PredictionSelectionResultControl/PredictionSelectionResultControl.js" />
+        <option value="$PROJECT_DIR$/src/Components/PredictionResultSelectionControls/PredictionResultSelectionControl/PredictionResultSelectionControl.js" />
+        <option value="$PROJECT_DIR$/src/Components/PredictionResultSelectionControls/PredictionResultSelectionControls.js" />
+        <option value="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResult/UserPredResult.js" />
+        <option value="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultsHistory.js" />
+        <option value="$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultHistory.css" />
+        <option value="$PROJECT_DIR$/src/Components/Navigation/NavigationItems/NavigationItems.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatch/UpcomingRugbyMatch.js" />
+        <option value="$PROJECT_DIR$/src/Containers/RugbyMatchPredictionResultInput/RugbyMatchPredictionResultInput.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/Store/actions/rugbyMatchPredResultInput.js" />
+        <option value="$PROJECT_DIR$/src/Store/actions/index.js" />
+        <option value="$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput2.js" />
+        <option value="$PROJECT_DIR$/src/Store/actions/actionTypes.js" />
+        <option value="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatches.js" />
+        <option value="$PROJECT_DIR$/src/Components/UI/Modal/Modal.css" />
+        <option value="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js" />
+        <option value="$PROJECT_DIR$/src/Components/UI/Button/Button.css" />
+        <option value="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.css" />
+        <option value="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js" />
+        <option value="$PROJECT_DIR$/src/Store/reducer/rugbyMatchPredResultInput.js" />
+        <option value="$PROJECT_DIR$/src/Components/UI/Button/Button.js" />
+        <option value="$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js" />
       </list>
     </option>
   </component>
@@ -247,10 +194,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="5" />
-    <option name="y" value="10" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
     <option name="width" value="1942" />
-    <option name="height" value="1032" />
+    <option name="height" value="1042" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -293,7 +240,38 @@
               <item name="worldcupscorepredictapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="PredResSelectControls" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="worldcupscorepredictapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="worldcupscorepredictapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="PredResSelectControls" type="462c0819:PsiDirectoryNode" />
+              <item name="PredResSelectControl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="worldcupscorepredictapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="worldcupscorepredictapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
               <item name="UI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="worldcupscorepredictapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="worldcupscorepredictapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Button" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="worldcupscorepredictapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="worldcupscorepredictapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Modal" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="worldcupscorepredictapp" type="b2602c69:ProjectViewProjectNode" />
@@ -313,7 +291,7 @@
               <item name="worldcupscorepredictapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Containers" type="462c0819:PsiDirectoryNode" />
-              <item name="UpcomingMatchCreate" type="462c0819:PsiDirectoryNode" />
+              <item name="RugbyMatchPredResInput" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="worldcupscorepredictapp" type="b2602c69:ProjectViewProjectNode" />
@@ -326,9 +304,7 @@
               <item name="worldcupscorepredictapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="worldcupscorepredictapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Containers" type="462c0819:PsiDirectoryNode" />
-              <item name="UpcomingMatches" type="462c0819:PsiDirectoryNode" />
-              <item name="UpcomingMatch" type="462c0819:PsiDirectoryNode" />
+              <item name="Hoc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="worldcupscorepredictapp" type="b2602c69:ProjectViewProjectNode" />
@@ -366,10 +342,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../NodeProjects/jwt-auth" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../UdemyCourse-InstructorExamples/testing--01-finished" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -990,35 +967,217 @@
       <workItem from="1543240065442" duration="1374000" />
       <workItem from="1543241881501" duration="1853000" />
       <workItem from="1543243774690" duration="1778000" />
-      <workItem from="1543245612968" duration="1129000" />
+      <workItem from="1543245612968" duration="1671000" />
+      <workItem from="1543249577488" duration="1782000" />
+      <workItem from="1543251389869" duration="375000" />
+      <workItem from="1543311954408" duration="1740000" />
+      <workItem from="1543313780241" duration="1790000" />
+      <workItem from="1543315809575" duration="1843000" />
+      <workItem from="1543323699545" duration="1671000" />
+      <workItem from="1543325541429" duration="1792000" />
+      <workItem from="1543327380932" duration="1779000" />
+      <workItem from="1543329191485" duration="1619000" />
+      <workItem from="1543337632518" duration="1229000" />
+      <workItem from="1543415163921" duration="1631000" />
+      <workItem from="1543416921793" duration="1776000" />
+      <workItem from="1543418727729" duration="1796000" />
+      <workItem from="1543420556870" duration="572000" />
+      <workItem from="1543422398085" duration="1778000" />
+      <workItem from="1543424254379" duration="1096000" />
+      <workItem from="1543430528416" duration="784000" />
+      <workItem from="1543496383874" duration="605000" />
+      <workItem from="1543498196630" duration="599000" />
+      <workItem from="1543509840836" duration="1221000" />
+      <workItem from="1543589589303" duration="1521000" />
+      <workItem from="1543591156769" duration="1783000" />
+      <workItem from="1543592975298" duration="974000" />
+      <workItem from="1543595162820" duration="1489000" />
+      <workItem from="1543597058673" duration="1793000" />
+      <workItem from="1543669928049" duration="1475000" />
+      <workItem from="1543679381600" duration="1786000" />
+      <workItem from="1543850100176" duration="1232000" />
+      <workItem from="1543852368028" duration="599000" />
+      <workItem from="1543915344239" duration="1787000" />
+      <workItem from="1543928165318" duration="1794000" />
+      <workItem from="1543935042827" duration="1235000" />
+      <workItem from="1543941117504" duration="1298000" />
+      <workItem from="1543942959918" duration="531000" />
+      <workItem from="1544004988424" duration="1284000" />
+      <workItem from="1544175957460" duration="1450000" />
+      <workItem from="1544177945378" duration="1362000" />
+      <workItem from="1544179779107" duration="1119000" />
+      <workItem from="1544202609756" duration="627000" />
+      <workItem from="1544205691208" duration="1775000" />
+      <workItem from="1544281168260" duration="1353000" />
+      <workItem from="1544535007209" duration="599000" />
+      <workItem from="1544536854235" duration="1025000" />
+      <workItem from="1544538753336" duration="644000" />
+      <workItem from="1544540567525" duration="964000" />
+      <workItem from="1544542637025" duration="1225000" />
+      <workItem from="1544709042297" duration="1792000" />
+      <workItem from="1544710905728" duration="1790000" />
+      <workItem from="1544712833739" duration="1788000" />
+      <workItem from="1544714663265" duration="1661000" />
+      <workItem from="1544716471031" duration="2136000" />
+      <workItem from="1544719124512" duration="823000" />
+      <workItem from="1544802296655" duration="1416000" />
+      <workItem from="1544804018180" duration="1215000" />
+      <workItem from="1545232386280" duration="1720000" />
+      <workItem from="1545234195466" duration="2017000" />
+      <workItem from="1545313604833" duration="1781000" />
+      <workItem from="1545315415864" duration="1779000" />
+      <workItem from="1545317462855" duration="2059000" />
+      <workItem from="1545476355011" duration="1774000" />
+      <workItem from="1545596536276" duration="1460000" />
+      <workItem from="1545598729194" duration="1811000" />
+      <workItem from="1545924521793" duration="1804000" />
+      <workItem from="1545926355230" duration="1784000" />
+      <workItem from="1545928184333" duration="1281000" />
+      <workItem from="1545938494027" duration="101000" />
+      <workItem from="1545943089994" duration="1017000" />
+      <workItem from="1545945045366" duration="850000" />
+      <workItem from="1546364974591" duration="981000" />
+      <workItem from="1546373379032" duration="1635000" />
+      <workItem from="1546375823681" duration="1782000" />
+      <workItem from="1546377637879" duration="1190000" />
+      <workItem from="1546427507179" duration="1471000" />
+      <workItem from="1546454071568" duration="1785000" />
+      <workItem from="1546616679455" duration="1780000" />
+      <workItem from="1546618612738" duration="2074000" />
+      <workItem from="1546620897764" duration="1803000" />
+      <workItem from="1547216580918" duration="1205000" />
+      <workItem from="1547221279660" duration="892000" />
+      <workItem from="1547223097333" duration="1415000" />
+      <workItem from="1547462376879" duration="1401000" />
+      <workItem from="1547475000641" duration="1782000" />
+      <workItem from="1547476981940" duration="1795000" />
+      <workItem from="1547478949930" duration="1780000" />
+      <workItem from="1547480766164" duration="2043000" />
+      <workItem from="1547484086093" duration="369000" />
+      <workItem from="1547560819129" duration="1743000" />
+      <workItem from="1547562599938" duration="1786000" />
+      <workItem from="1547564415578" duration="1785000" />
+      <workItem from="1547566236989" duration="1772000" />
+      <workItem from="1547568295241" duration="992000" />
+      <workItem from="1547570245016" duration="892000" />
+      <workItem from="1547652794026" duration="1494000" />
+      <workItem from="1547657561195" duration="598000" />
+      <workItem from="1547732707804" duration="624000" />
+      <workItem from="1547735438134" duration="904000" />
+      <workItem from="1547737256963" duration="1776000" />
+      <workItem from="1547740029386" duration="1798000" />
+      <workItem from="1547742691472" duration="1384000" />
+      <workItem from="1547805464090" duration="248000" />
+      <workItem from="1547805727682" duration="1285000" />
+      <workItem from="1547807138662" duration="1612000" />
+      <workItem from="1547809179712" duration="1793000" />
+      <workItem from="1547811803917" duration="732000" />
+      <workItem from="1547814116610" duration="1785000" />
+      <workItem from="1547816219549" duration="619000" />
+      <workItem from="1547821321784" duration="804000" />
+      <workItem from="1548083460756" duration="707000" />
+      <workItem from="1548085318400" duration="2111000" />
+      <workItem from="1548087623798" duration="1612000" />
+      <workItem from="1548165008071" duration="1120000" />
+      <workItem from="1548167876009" duration="1780000" />
+      <workItem from="1548169775963" duration="1784000" />
+      <workItem from="1548171588187" duration="2014000" />
+      <workItem from="1548175844461" duration="599000" />
+      <workItem from="1548260721721" duration="1874000" />
+      <workItem from="1548330919704" duration="367000" />
+      <workItem from="1548342295798" duration="1467000" />
+      <workItem from="1548344137243" duration="1784000" />
+      <workItem from="1548345951208" duration="1798000" />
+      <workItem from="1548348832056" duration="1593000" />
+      <workItem from="1548414070647" duration="1577000" />
+      <workItem from="1548416040353" duration="1778000" />
+      <workItem from="1548420250920" duration="1789000" />
+      <workItem from="1548422890632" duration="1495000" />
+      <workItem from="1548424752498" duration="2091000" />
+      <workItem from="1548427110155" duration="1685000" />
+      <workItem from="1548429035543" duration="1779000" />
+      <workItem from="1548431218605" duration="1590000" />
+      <workItem from="1548433782398" duration="1232000" />
+      <workItem from="1548444404246" duration="1775000" />
+      <workItem from="1548451510893" duration="1793000" />
+      <workItem from="1548493834386" duration="1227000" />
+      <workItem from="1548496785408" duration="1104000" />
+      <workItem from="1548500645513" duration="1026000" />
+      <workItem from="1548668658955" duration="1555000" />
+      <workItem from="1548672276920" duration="1781000" />
+      <workItem from="1548674088347" duration="1550000" />
+      <workItem from="1548676225656" duration="688000" />
+      <workItem from="1548680173245" duration="1784000" />
+      <workItem from="1548681994762" duration="1884000" />
+      <workItem from="1548683990941" duration="1187000" />
+      <workItem from="1548686113715" duration="1789000" />
+      <workItem from="1548687973391" duration="1556000" />
+      <workItem from="1548689795202" duration="2155000" />
+      <workItem from="1548692268278" duration="1781000" />
+      <workItem from="1548694080805" duration="515000" />
+      <workItem from="1548753479405" duration="1564000" />
+      <workItem from="1548755282866" duration="1782000" />
+      <workItem from="1548757122872" duration="1779000" />
+      <workItem from="1548759021608" duration="564000" />
+      <workItem from="1548769527073" duration="1780000" />
+      <workItem from="1548771698342" duration="1780000" />
+      <workItem from="1548773518415" duration="946000" />
+      <workItem from="1548775829467" duration="1114000" />
+      <workItem from="1548779086429" duration="884000" />
+      <workItem from="1548840586161" duration="1816000" />
+      <workItem from="1548842436191" duration="1592000" />
+      <workItem from="1548844387560" duration="1845000" />
+      <workItem from="1548846366548" duration="1782000" />
+      <workItem from="1548853622127" duration="1584000" />
+      <workItem from="1548855478214" duration="920000" />
+      <workItem from="1548858841928" duration="1410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="851855000" />
+    <option name="totallyTimeSpent" value="1083985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19257295" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14323607" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36741975" sideWeight="0.23925729" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24256837" sideWeight="0.30079576" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22917771" sideWeight="0.49481866" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36741975" sideWeight="0.7607427" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12254642" sideWeight="0.5051814" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24256837" sideWeight="0.69920427" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12254642" sideWeight="0.5051814" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4292509" sideWeight="0.49814323" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2604043" sideWeight="0.4938992" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23900118" sideWeight="0.11883289" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19262782" sideWeight="0.8811671" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18143237" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2604043" sideWeight="0.4938992" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22917771" sideWeight="0.49481866" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12254642" sideWeight="0.5051814" order="3" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1038,228 +1197,57 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/axios-wcpredict.js">
+    <entry file="file://$PROJECT_DIR$/src/Store/reducer/predictionResults.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        <state relative-caret-position="-553">
+          <caret line="1" column="52" lean-forward="false" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/UserPredictions/UserPrediction/UserPrediction.js" />
-    <entry file="file://$PROJECT_DIR$/src/Containers/CompletedMatches/CompletedMatches.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/UI/Input/Input.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="23" column="58" lean-forward="false" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
+        <state relative-caret-position="400">
+          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/CompletedMatches/CompletedMatch/CompletedMatch.js">
+    <entry file="file://$PROJECT_DIR$/src/Store/reducer/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="6" column="95" lean-forward="false" selection-start-line="6" selection-start-column="95" selection-end-line="6" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/actions/matchPredictions.js" />
-    <entry file="file://$PROJECT_DIR$/src/Store/reducer/userPredictions.js" />
-    <entry file="file://$PROJECT_DIR$/src/Store/actions/userPredictions.js" />
-    <entry file="file://$PROJECT_DIR$/src/Containers/UserPredictions/UserPredictions.js" />
-    <entry file="file://$PROJECT_DIR$/src/Config/keys.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Config/dev.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Navigation/NavigationItems/NavigationItem/NavigationItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="10" column="71" lean-forward="false" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Navigation/NavigationItems/NavigationItems.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hoc/asyncComponent/asyncComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hoc/Auxiliary/Auxiliary.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hoc/Layout/Layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="68" column="93" lean-forward="false" selection-start-line="68" selection-start-column="93" selection-end-line="68" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/AggregatePredictionResults/UserAggPredictionResult/UserAggPredictionResult.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/actions/completedMatches.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="27" column="6" lean-forward="false" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/actions/actionTypes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1375">
-          <caret line="55" column="75" lean-forward="true" selection-start-line="55" selection-start-column="75" selection-end-line="55" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/actions/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1175">
-          <caret line="47" column="30" lean-forward="false" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatch/UpcomingMatch.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/reducer/matchResultPredictionInput.js" />
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultHistory.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UI/Input/Input.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="38" column="32" lean-forward="false" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/AggregatePredictionResults/UserAggPredictionResult/UserAggPredictionResult.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResult/UserPredResult.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultsHistory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UI/Modal/Modal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/AggregatePredictionResults/AggregatePredictionResults.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="15" column="92" lean-forward="false" selection-start-line="15" selection-start-column="92" selection-end-line="15" selection-end-column="92" />
+        <state relative-caret-position="850">
+          <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Config/firebase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="100">
+          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/Auth/Auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1750">
+          <caret line="79" column="5" lean-forward="false" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hoc/withErrorHandler/withErrorHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
+        <state relative-caret-position="1050">
           <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shared/utility.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/UI/Backdrop/Backdrop.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="2" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatch/UpcomingMatch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1270,24 +1258,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/actions/predictionResults.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/UI/Backdrop/Backdrop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1225">
-          <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="46" />
+        <state relative-caret-position="125">
+          <caret line="5" column="73" lean-forward="false" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="73" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/actions/matchResultPredictiontInput.js">
+    <entry file="file://$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3075">
-          <caret line="123" column="53" lean-forward="true" selection-start-line="123" selection-start-column="53" selection-end-line="123" selection-end-column="53" />
+        <state relative-caret-position="225">
+          <caret line="9" column="27" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/reducer/predictionResults.js">
+    <entry file="file://$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-553">
-          <caret line="1" column="52" lean-forward="false" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
+        <state relative-caret-position="250">
+          <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatches.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2275">
+          <caret line="129" column="18" lean-forward="false" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/CompletedMatches/CompletedMatch/CompletedMatch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/CompletedMatches/CompletedMatches.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-727">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/AddResultsToCompletedMatches/AddResultsToCompletedMatches.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-477">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/AggregatePredictionResults/UserAggPredictionResult/UserAggPredictionResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResult/UserPredResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="24" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultHistory.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatchCreate/UpcomingMatchCreate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="96" column="53" lean-forward="false" selection-start-line="91" selection-start-column="7" selection-end-line="96" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/UserPredResultsHistory/UserPredResultsHistory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1075">
+          <caret line="44" column="57" lean-forward="false" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hoc/asyncComponent/asyncComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hoc/Auxiliary/Auxiliary.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Navigation/NavigationItems/NavigationItems.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="69" lean-forward="true" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="73" column="93" lean-forward="false" selection-start-line="73" selection-start-column="93" selection-end-line="73" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatch/UpcomingRugbyMatch.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatch/UpcomingMatch.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatch/UpcomingMatch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="16" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatch/UpcomingRugbyMatch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="15" column="62" lean-forward="false" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1295,102 +1417,158 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UI/Input/Input.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Store/reducer/upcomingMatches.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3275">
-          <caret line="132" column="35" lean-forward="false" selection-start-line="132" selection-start-column="6" selection-end-line="132" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="468">
+          <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/Auth/Auth.js">
+    <entry file="file://$PROJECT_DIR$/src/Store/actions/completedMatches.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1750">
-          <caret line="79" column="5" lean-forward="false" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Store/actions/matchResultPredictiontInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Store/actions/upcomingMatches.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4350">
-          <caret line="273" column="125" lean-forward="false" selection-start-line="273" selection-start-column="110" selection-end-line="273" selection-end-column="125" />
-          <folding>
-            <element signature="e#284#357#0" expanded="false" />
-            <element signature="e#2984#3067#0" expanded="false" />
-            <element signature="e#8534#8609#0" expanded="false" />
-            <element signature="e#16684#16751#0" expanded="false" />
-            <element signature="e#18313#18381#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="468">
+          <caret line="159" column="43" lean-forward="false" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Store/reducer/auth.js">
+    <entry file="file://$PROJECT_DIR$/src/Store/actions/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="35" column="39" lean-forward="true" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-          <folding />
+        <state relative-caret-position="468">
+          <caret line="53" column="19" lean-forward="false" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Store/actions/actionTypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="60" column="55" lean-forward="false" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/axios-wcpredict.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Store/actions/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="80" column="16" lean-forward="false" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="444">
+          <caret line="72" column="96" lean-forward="false" selection-start-line="72" selection-start-column="96" selection-end-line="72" selection-end-column="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatches.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="57" column="51" lean-forward="false" selection-start-line="57" selection-start-column="51" selection-end-line="57" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2900">
-          <caret line="126" column="31" lean-forward="false" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
+        <state relative-caret-position="574">
+          <caret line="324" column="89" lean-forward="false" selection-start-line="324" selection-start-column="60" selection-end-line="324" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/UI/Modal/Modal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shared/utility.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#3952#4006#0" expanded="false" />
-            <element signature="e#5386#6050#0" expanded="false" />
-            <element signature="e#6056#6108#0" expanded="false" />
-            <element signature="e#8754#8766#0" expanded="false" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatchCreate/UpcomingMatchCreate.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2050">
-          <caret line="98" column="31" lean-forward="false" selection-start-line="98" selection-start-column="31" selection-end-line="98" selection-end-column="31" />
-          <folding>
-            <element signature="e#2433#2487#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="367">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingMatches.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2708">
-          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="48" />
+        <state relative-caret-position="150">
+          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Store/actions/rugbyMatchPredResultInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="2" lean-forward="false" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Store/reducer/rugbyMatchPredResultInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="23" column="80" lean-forward="false" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="162" column="5" lean-forward="false" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
           <folding>
-            <element signature="e#825#876#0" expanded="false" />
-            <element signature="e#4090#4145#0" expanded="false" />
+            <element signature="e#3239#3280#0" expanded="false" />
+            <element signature="e#4575#4616#0" expanded="false" />
+            <element signature="e#5237#5284#0" expanded="false" />
           </folding>
         </state>
       </provider>

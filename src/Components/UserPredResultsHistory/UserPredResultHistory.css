@@ -12,3 +12,13 @@
     background-color : orangered;
     border: double;
 }
+
+.UserPredResultHistory table {
+     border: 1px solid black;
+     width: 100%;
+     align: left
+ }
+
+.UserPredResultHistory th {
+    text-align: left;
+}

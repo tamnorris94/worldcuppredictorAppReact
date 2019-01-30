@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UpcomingMatchCreate from "./Containers/UpcomingMatchCreate/UpcomingMatchCreate";
+import UpcomingRugbyMatches from "./Containers/UpcomingMatches/UpcomingRugbyMatches";
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Layout from './Hoc/Layout/Layout';
 import Home from './Containers/Home/Home';
@@ -10,6 +11,10 @@ import asyncComponent from './Hoc/asyncComponent/asyncComponent';
 
 const asyncUpcomingMatches = asyncComponent(() => {
     return import('./Containers/UpcomingMatches/UpcomingMatches');
+});
+
+const asyncUpcomingRugbyMatches = asyncComponent(() => {
+    return import('./Containers/UpcomingMatches/UpcomingRugbyMatches');
 });
 
 const asyncCompletedMatches = asyncComponent(() => {
@@ -37,6 +42,7 @@ class App extends Component {
    let routes = (
        <Switch>
            <Route path="/upcomingmatches" component={asyncUpcomingMatches} />
+           <Route path="/upcomingrugbymatches" component={asyncUpcomingRugbyMatches}/>
            <Route path="/completedmatches" component={asyncCompletedMatches} />
            <Route path="/addupcomingmatch" component={UpcomingMatchCreate}/>
            <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>
@@ -50,6 +56,7 @@ class App extends Component {
            <Switch>
                <Route path="/" exact component={Home}/>
                <Route path="/upcomingmatches" component={asyncUpcomingMatches}/>
+               <Route path="/upcomingrugbymatches" component={asyncUpcomingRugbyMatches}/>
                <Route path="/completedmatches" component={asyncCompletedMatches}/>
                <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>
                <Route path="/logout" component={Logout} />
@@ -64,6 +71,7 @@ class App extends Component {
               <Switch>
                   <Route path="/" exact component={Home}/>
                   <Route path="/upcomingmatches" component={asyncUpcomingMatches}/>
+                  <Route path="/upcomingrugbymatches" component={asyncUpcomingRugbyMatches}/>
                   <Route path="/completedmatches" component={asyncCompletedMatches}/>
                   <Route path="/addupcomingmatch" component={UpcomingMatchCreate}/>
                   <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>

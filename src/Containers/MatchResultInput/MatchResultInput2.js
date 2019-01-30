@@ -49,7 +49,7 @@ class MatchResultPredictionInput extends Component {
         formIsValid: false
     }
 
-    orderHandler = ( event ) => {
+    submitResultPredictionHandler = ( event ) => {
         event.preventDefault();
 
         const matchResultData = {};
@@ -58,44 +58,82 @@ class MatchResultPredictionInput extends Component {
         }
         if(this.props.admin){
             const matchResultData = {
-                matchID : this.props.matchID,
-                teamAName: this.props.teamAName,
-                teamBName: this.props.teamBName,
+                matchID : this.props.selectedMatchForUpdate.matchID,
+                teamAName: this.props.selectedMatchForUpdate.teamAName,
+                teamBName: this.props.selectedMatchForUpdate.teamBName,
                 teamAScore: this.state.resultInputForm.teamAScore.value,
                 teamBScore: this.state.resultInputForm.teamBScore.value,
-                matchKickoff: this.props.matchKickoff
+                matchKickoff: this.props.selectedMatchForUpdate.matchKickoff
             }
-            this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.prediction );
+            //this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.prediction );
+            this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin );
         }
         else {
             const matchResultData = {
-                matchID : this.props.matchID,
-                predictionID: this.props.predictionID,
-                teamAName: this.props.teamAName,
-                teamBName: this.props.teamBName,
+                matchID : this.props.selectedMatchForUpdate.matchID,
+                predictionID: this.props.selectedMatchForUpdate.predictionID,
+                teamAName: this.props.selectedMatchForUpdate.teamAName,
+                teamBName: this.props.selectedMatchForUpdate.teamBName,
                 teamAScore: this.state.resultInputForm.teamAScore.value,
                 teamBScore: this.state.resultInputForm.teamBScore.value,
-                matchKickoff: this.props.matchKickoff,
+                matchKickoff: this.props.selectedMatchForUpdate.matchKickoff,
                 userId: this.props.userId,
                 userName: this.props.userName,
                 prediction: this.props.prediction
             }
-            this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.token );
+            //this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.token );
+            this.props.onInputMatchResultOrPrediction( matchResultData );
         }
     }
 
-    componentWillReceiveProps (nextProps){
-        console.log("ComponentcomponentWillReceiveProps is executed.")
-        if(this.props.teamAName !== nextProps.teamAName && this.props.teamBName !== nextProps.teamBName){
-            const updatedteamAScore = updateObject(this.state.resultInputForm.teamAScore, {
-                label: nextProps.teamAName
-            })
-            const updatedteamBScore = updateObject(this.state.resultInputForm.teamBScore, {
-                label: nextProps.teamBName
-            })
+    // componentWillReceiveProps (nextProps){
+    //     console.log("ComponentcomponentWillReceiveProps is executed.")
+    //     if(this.props.teamAName !== nextProps.teamAName && this.props.teamBName !== nextProps.teamBName){
+    //         const updatedteamAScore = updateObject(this.state.resultInputForm.teamAScore, {
+    //             label: nextProps.teamAName
+    //         })
+    //         const updatedteamBScore = updateObject(this.state.resultInputForm.teamBScore, {
+    //             label: nextProps.teamBName
+    //         })
+    //         const updatedResultInputForm = updateObject(this.state.resultInputForm, {
+    //             teamAScore: updatedteamAScore,
+    //             teamBScore: updatedteamBScore
+    //         })
+    //         this.setState({resultInputForm: updatedResultInputForm});
+    //     }
+    // }
+
+    componentDidMount(){
+        console.log("componentDidMount run");
+        const updatedResultInputForm = updateObject(this.state.resultInputForm, {
+            teamAScore: updateObject(this.state.resultInputForm.teamAScore, { label: this.props.selectedMatchForUpdate.teamAName}),
+            teamBScore: updateObject(this.state.resultInputForm.teamBScore, { label: this.props.selectedMatchForUpdate.teamBName}),
+        })
+        this.setState({resultInputForm: updatedResultInputForm});
+    }
+
+    // componentWillReceiveProps (nextProps){
+    //     console.log("ComponentcomponentWillReceiveProps is executed.")
+    //     if(this.props.teamAName !== nextProps.teamAName && this.props.teamBName !== nextProps.teamBName){
+    //         const updatedResultInputForm = updateObject(this.state.resultInputForm, {
+    //             teamAScore: updateObject(this.state.resultInputForm.teamAScore, { label: nextProps.teamAName}),
+    //             teamBScore: updateObject(this.state.resultInputForm.teamBScore, { label: nextProps.teamBName}),
+    //         })
+    //         this.setState({resultInputForm: updatedResultInputForm});
+    //     }
+    // }
+
+    componentDidUpdate(prevProps){
+        // console.log("componentDidUpdate run. Props are : " + this.props.selectedMatchForUpdate.teamAName + " " +this.props.selectedMatchForUpdate.teamBName);
+        // console.log("Props are " + this.props.selectedMatchForUpdate.teamAName + " " +this.props.selectedMatchForUpdate.teamBName);
+        // console.log("Props matchID is " + this.props.selectedMatchForUpdate.matchID);
+        // console.log("prevProps matchID is " + prevProps.matchID);
+        // console.log("prevProps are " + prevProps.teamAName + " " +prevProps.teamBName);
+        // console.log(this.state.resultInputForm.teamAScore.label);
+        if(this.props.selectedMatchForUpdate.teamAName !== prevProps.selectedMatchForUpdate.teamAName && this.props.selectedMatchForUpdate.teamBName !== prevProps.selectedMatchForUpdate.teamBName){
             const updatedResultInputForm = updateObject(this.state.resultInputForm, {
-                teamAScore: updatedteamAScore,
-                teamBScore: updatedteamBScore
+                teamAScore: updateObject(this.state.resultInputForm.teamAScore, { label: this.props.selectedMatchForUpdate.teamAName}),
+                teamBScore: updateObject(this.state.resultInputForm.teamBScore, { label: this.props.selectedMatchForUpdate.teamBName}),
             })
             this.setState({resultInputForm: updatedResultInputForm});
         }
@@ -142,9 +180,9 @@ class MatchResultPredictionInput extends Component {
             } )
         } );
         let formIsValid = true;
-        for (let inputIdentifier in updatedresultInputForm) {
-            formIsValid = updatedresultInputForm[teamAScore].valid && formIsValid;
-        }
+        // for (let inputIdentifier in updatedresultInputForm) {
+        //     formIsValid = updatedresultInputForm[teamAScore].valid && formIsValid;
+        // }
         this.setState({resultInputForm: updatedresultInputForm, formIsValid: formIsValid});
     }
 
@@ -175,35 +213,35 @@ class MatchResultPredictionInput extends Component {
     }
 
     //Maybe here should only be passing the scores, because at this point the id, names etc are already known.
-    addResultOrPredictionHandler = ( event ) => {
-        event.preventDefault();
-        if(this.props.admin){
-            const matchResultData = {
-                matchID : this.props.matchID,
-                teamAName: this.props.teamAName,
-                teamBName: this.props.teamBName,
-                teamAScore: this.state.resultInputForm.teamAScore.value,
-                teamBScore: this.state.resultInputForm.teamBScore.value,
-                matchKickoff: this.props.matchKickoff
-            }
-            this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.prediction );
-        }
-        else {
-            const matchResultData = {
-                matchID : this.props.matchID,
-                predictionID: this.props.predictionID,
-                teamAName: this.props.teamAName,
-                teamBName: this.props.teamBName,
-                teamAScore: this.state.resultInputForm.teamAScore.value,
-                teamBScore: this.state.resultInputForm.teamBScore.value,
-                matchKickoff: this.props.matchKickoff,
-                userId: this.props.userId,
-                userName: this.props.userName,
-                prediction: this.props.prediction
-            }
-            this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.token );
-        }
-    }
+    // addResultOrPredictionHandler = ( event ) => {
+    //     event.preventDefault();
+    //     if(this.props.admin){
+    //         const matchResultData = {
+    //             matchID : this.props.selectedMatchForUpdate.matchID,
+    //             teamAName: this.props.selectedMatchForUpdate.teamAName,
+    //             teamBName: this.props.selectedMatchForUpdate.teamBName,
+    //             teamAScore: this.state.resultInputForm.teamAScore.value,
+    //             teamBScore: this.state.resultInputForm.teamBScore.value,
+    //             matchKickoff: this.props.selectedMatchForUpdate.matchKickoff
+    //         }
+    //         this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.prediction );
+    //     }
+    //     else {
+    //         const matchResultData = {
+    //             matchID : this.props.selectedMatchForUpdate.matchID,
+    //             predictionID: this.props.selectedMatchForUpdate.predictionID,
+    //             teamAName: this.props.selectedMatchForUpdate.teamAName,
+    //             teamBName: this.props.selectedMatchForUpdate.teamBName,
+    //             teamAScore: this.state.resultInputForm.teamAScore.value,
+    //             teamBScore: this.state.resultInputForm.teamBScore.value,
+    //             matchKickoff: this.props.selectedMatchForUpdate.matchKickoff,
+    //             userId: this.props.userId,
+    //             userName: this.props.userName,
+    //             prediction: this.props.selectedMatchForUpdate.prediction
+    //         }
+    //         this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.token, this.props.prediction );
+    //     }
+    // }
 
     // render(){
     //
@@ -251,7 +289,8 @@ class MatchResultPredictionInput extends Component {
     //     )
     // }
 
-    render () {
+    render() {
+        console.log("render run. Props are : " + this.props.selectedMatchForUpdate.teamAName + " " +this.props.selectedMatchForUpdate.teamBName);
         const formElementsArray = [];
         for (let key in this.state.resultInputForm) {
             formElementsArray.push({
@@ -260,26 +299,37 @@ class MatchResultPredictionInput extends Component {
             });
         }
         let teamName = null;
-        let matchResultInputForm = (
+        let matchResultInputForm = null;
 
-            <form className={classes.MatchResultInput}>
-                {formElementsArray.map(formElement => (
-                    <div key={formElement.id}>
-                    <p>{formElement.config.label} score: </p>
-                    <Input
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
-                        touched={formElement.config.touched}
-                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-                    </div>
-                ))}
-                <Button btnType="Success" clicked={this.orderHandler} disabled={!this.state.formIsValid}>ADD MATCH RESULT</Button>
-                <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
-            </form>
-        );
+        let matchPredKickOff = new Date(this.props.selectedMatchForUpdate.matchKickoff).getTime();
+        let currentDateTime = new Date().getTime();
+        if(matchPredKickOff < currentDateTime && !this.props.admin){
+            matchResultInputForm = <p>Match has already been played</p>
+        }
+        else {
+            matchResultInputForm = (
+                <form className={classes.MatchResultInput}>
+                    {formElementsArray.map(formElement => (
+                        <div key={formElement.id}>
+                            <p>{formElement.config.label} score: </p>
+                            <Input
+                                elementType={formElement.config.elementType}
+                                elementConfig={formElement.config.elementConfig}
+                                value={formElement.config.value}
+                                invalid={!formElement.config.valid}
+                                shouldValidate={formElement.config.validation}
+                                touched={formElement.config.touched}
+                                changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+                        </div>
+                    ))}
+                    <Button btnType="Success" clicked={this.submitResultPredictionHandler} disabled={!this.state.formIsValid}>ADD MATCH RESULT</Button>
+                    <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
+                </form>
+            );
+        }
+
+
+
         if ( this.props.loading ) {
             matchResultInputForm = <Spinner />;
         }
@@ -291,30 +341,21 @@ class MatchResultPredictionInput extends Component {
     }
 }
 
-
-
 const mapStateToProps = state => {
     return {
-        matchID: state.upcomingMatches.selectedMatchForUpd.matchID,
-        predictionID: state.upcomingMatches.selectedMatchForUpd.predictionID,
-        teamAName: state.upcomingMatches.selectedMatchForUpd.teamAName,
-        teamBName: state.upcomingMatches.selectedMatchForUpd.teamBName,
-        teamAScore: state.upcomingMatches.selectedMatchForUpd.teamAScore,
-        teamBScore: state.upcomingMatches.selectedMatchForUpd.teamBScore,
-        matchKickoff: state.upcomingMatches.selectedMatchForUpd.matchKickoff,
+        selectedMatchForUpdate: state.upcomingMatches.selectedMatchForUpd,
         redirectPath: state.upcomingMatches.redirectPath,
         userId: state.auth.userId,
         userName: state.auth.userName,
         token: state.auth.token,
-        admin: state.auth.admin,
-        prediction: state.upcomingMatches.selectedMatchForUpd.prediction
+        admin: state.auth.admin
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         //onInputMatchResult: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff)),
-        onInputMatchResultOrPrediction: (matchResultData, admin, token, prediction) => dispatch(actions.addMatchResultOrPrediction(matchResultData, admin, token, prediction)),
+        onInputMatchResultOrPrediction: (matchResultData, admin) => dispatch(actions.addMatchResultOrPrediction(matchResultData, admin)),
         //onInputMatchPrediction: (matchPreData) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId))
     }
 }

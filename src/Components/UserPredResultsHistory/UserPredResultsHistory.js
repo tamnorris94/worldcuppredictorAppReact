@@ -22,11 +22,29 @@ const userPredResultsHistory = (props) => {
             else {
                 predictionResultStyle = classes.IncorrectWinner;
             }
+
             return <article key={index} className={predictionResultStyle} clicked={props.cancelDisplayUserPredResultsHandler}>
-                <div>
-                    <p> {upr.teamAName} vs {upr.teamBName}</p>
-                    <p>Actual Score: {upr.actualTeamAScore} - {upr.actualTeamBScore}      Your predicted Score {upr.predictedTeamAScore} - {upr.predictedTeamBScore}</p>
-                    <p>Points: {upr.points} </p>
+                <div className={classes.UserPredResultHistory}>
+                    <table>
+                        <tr>
+                            <th>Match</th>
+                            <th>{upr.teamAName}</th>
+                            <th>{upr.teamBName}</th>
+                        </tr>
+                        <tr>
+                            <th>Actual Score: </th>
+                            <th>{upr.actualTeamAScore}</th>
+                            <th>{upr.actualTeamBScore}</th>
+                        </tr>
+                        <tr>
+                            <th>Your Predicted Score: </th>
+                            <th>{upr.predictedTeamAScore}</th>
+                            <th>{upr.predictedTeamBScore}</th>
+                        </tr>
+                        <tr>
+                            <th>Points: {upr.points}</th>
+                        </tr>
+                    </table>
                 </div>
             </article>
         }));

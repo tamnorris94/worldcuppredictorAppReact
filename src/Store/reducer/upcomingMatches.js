@@ -162,6 +162,21 @@ const deleteCompletedPredictionSuccess = (state, action) => {
     } );
 }
 
+const addUpcomingMatchSuccess = (state, action) => {
+    return updateObject( state, {
+        error: false,
+        loading: false,
+        redirectPath: '/',
+    })
+}
+
+const addUpcomingMatchFail = (state, action) => {
+    return updateObject( state, {
+        error: true,
+        loading: false
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type){
         case actionTypes.FETCH_UPCOMING_PREDICTIONS_START: return fetchUpcomingAndPredictionsStart(state, action);
@@ -177,6 +192,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.UPDATE_PREDICTION_SUCCESS: return updatePredictionSuccess(state, action);
         case actionTypes.DELETE_COMPLETED_PREDICTION_FAIL: return deleteCompletedPredictionFail(state, action);
         case actionTypes.DELETE_COMPLETED_PREDICTION_SUCCESS: return deleteCompletedPredictionSuccess(state, action);
+        case actionTypes.ADD_UPCOMING_MATCH_SUCCESS: return addUpcomingMatchSuccess(state, action);
+        case actionTypes.ADD_UPCOMING_MATCH_FAIL: return addUpcomingMatchFail(state, action);
         default: return state;
     }
 };
