@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5923f8aa-e16c-4c5a-bcf8-92b7e9640ba4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js" afterPath="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js" afterPath="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js" afterPath="$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,13 +25,9 @@
       <file leaf-file-name="RugbyMatchPredResInput.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="193" column="62" lean-forward="true" selection-start-line="193" selection-start-column="62" selection-end-line="193" selection-end-column="62" />
-              <folding>
-                <element signature="e#3239#3280#0" expanded="false" />
-                <element signature="e#4575#4616#0" expanded="false" />
-                <element signature="e#5237#5284#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="350">
+              <caret line="203" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="249" selection-end-column="93" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -36,8 +35,8 @@
       <file leaf-file-name="PredResSelectControls.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="23" column="80" lean-forward="false" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
+            <state relative-caret-position="575">
+              <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -46,8 +45,40 @@
       <file leaf-file-name="PredResSelectControl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+            <state relative-caret-position="125">
+              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Button.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Button.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PredResSelectControl.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1075">
+              <caret line="43" column="27" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -142,12 +173,12 @@
         <option value="$PROJECT_DIR$/src/Store/actions/actionTypes.js" />
         <option value="$PROJECT_DIR$/src/Containers/UpcomingMatches/UpcomingRugbyMatches.js" />
         <option value="$PROJECT_DIR$/src/Components/UI/Modal/Modal.css" />
-        <option value="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js" />
         <option value="$PROJECT_DIR$/src/Components/UI/Button/Button.css" />
         <option value="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.css" />
-        <option value="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js" />
         <option value="$PROJECT_DIR$/src/Store/reducer/rugbyMatchPredResultInput.js" />
         <option value="$PROJECT_DIR$/src/Components/UI/Button/Button.js" />
+        <option value="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js" />
+        <option value="$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js" />
         <option value="$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js" />
       </list>
     </option>
@@ -306,8 +337,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1100,24 +1131,31 @@
       <workItem from="1548846366548" duration="1782000" />
       <workItem from="1548853622127" duration="1584000" />
       <workItem from="1548855478214" duration="920000" />
-      <workItem from="1548858841928" duration="1694000" />
+      <workItem from="1548858841928" duration="1781000" />
+      <workItem from="1548860653066" duration="1780000" />
+      <workItem from="1548862542707" duration="1974000" />
+      <workItem from="1548864933365" duration="1998000" />
+      <workItem from="1548926883105" duration="1775000" />
+      <workItem from="1548928690080" duration="1771000" />
+      <workItem from="1548932495742" duration="27000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1084269000" />
+    <option name="totallyTimeSpent" value="1093681000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21909814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19787799" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7217598" sideWeight="0.30079576" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2841855" sideWeight="0.3167109" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22917771" sideWeight="0.49481866" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7217598" sideWeight="0.69920427" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2841855" sideWeight="0.6832891" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12254642" sideWeight="0.5051814" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1452,13 +1490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Containers/MatchResultInput/MatchResultInput2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="574">
@@ -1480,32 +1511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Store/actions/rugbyMatchPredResultInput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1522,23 +1527,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1075">
+          <caret line="43" column="27" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/UI/Button/Button.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControl/PredResSelectControl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/PredResSelectControls/PredResSelectControls.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="23" column="80" lean-forward="false" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
+        <state relative-caret-position="575">
+          <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Containers/RugbyMatchPredResInput/RugbyMatchPredResInput.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="193" column="62" lean-forward="true" selection-start-line="193" selection-start-column="62" selection-end-line="193" selection-end-column="62" />
-          <folding>
-            <element signature="e#3239#3280#0" expanded="false" />
-            <element signature="e#4575#4616#0" expanded="false" />
-            <element signature="e#5237#5284#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="350">
+          <caret line="203" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="249" selection-end-column="93" />
+          <folding />
         </state>
       </provider>
     </entry>

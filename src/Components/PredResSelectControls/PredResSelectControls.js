@@ -16,15 +16,16 @@ const predResSelectControls = [
 const PredictionResultSelectionControls = ( props ) => (
     <div className={classes.PredictionResultSelectionControls}>
         <div className="btn-group" role="group" aria-label="Basic Example">
-        <ButtonGroup toggle={this.toggle}>
-        {predResSelectControls.map( ctrl => (
-            <PredResSelectControl
-                key={ctrl.label}
-                label={ctrl.label}
-                selectMargin={(winningMargin) => props.selectMargin(ctrl.label)}
-            />
-        ))}
-        </ButtonGroup>
+            <ButtonGroup toggle={this.toggle}>
+            {predResSelectControls.map( ctrl => (
+                <PredResSelectControl
+                    key={ctrl.label}
+                    label={ctrl.label}
+                    selectMargin={(winningMargin) => props.selectMargin(ctrl.label)}
+                    selectedMargin={props.selectedMargin}
+                />
+            ))}
+            </ButtonGroup>
         </div>
     </div>
 );

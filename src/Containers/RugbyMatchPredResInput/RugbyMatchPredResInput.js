@@ -24,7 +24,7 @@ class RugbyMatchPredictionResultInput extends Component {
                 selected: true
             }
         },
-        //inputtingPrediction: true
+        selectedMargin: "11-15"
     }
 
     printSomethingToConsole = (event, winningMargin) => {
@@ -137,11 +137,17 @@ class RugbyMatchPredictionResultInput extends Component {
 
 
     setWinningMarginHandler(winningMargin){
+        let updatedMarginSelection = this.state.selectedMargin;
+        console.log("setWinningMarginHandler is " + updatedMarginSelection);
+        //console.log("setWinningMarginHandler updatedMarginSelection is " + updatedMarginSelection);
+        updatedMarginSelection = updateObject(updatedMarginSelection, winningMargin);
+        console.log("updatedMarginSelection is " + updatedMarginSelection);
         //event.preventDefault();
         //console.log("Event is " + event);
-        console.log("Winning Margin handler executed " + winningMargin);
-        const updatedWinningMargin = updateObject(this.state.winningMargin, { winningMargin });
-        //this.setState({ winningMargin: updatedWinningMargin});
+        //console.log("Winning Margin handler executed " + winningMargin);
+        //const updatedWinningMargin = updateObject(this.state.winningMargin, { winningMargin });
+        this.setState({ selectedMargin: winningMargin});
+        this.props.onSetWinningMargin(winningMargin);
     }
 
     setWinningTeamHandler(winningTeam){
@@ -157,13 +163,12 @@ class RugbyMatchPredictionResultInput extends Component {
             }
             updatedTeamSelection = updateObject(updatedTeamSelection, { [key]: updatedTeamSelectionTeam});
         };
-        console.log("setWinningTeamHandler : Updated teamSelection is " + JSON.stringify(updatedTeamSelection));
         this.setState({teamSelection: updatedTeamSelection});
         this.props.onSetWinningTeam(winningTeam);
     }
 
     render() {
-        console.log("Updated state in render is " + JSON.stringify(this.state.teamSelection));
+        //console.log("Updated state in render is " + JSON.stringify(this.state.teamSelection));
         //console.log("render run. Props are : " + this.props.selectedMatchForUpdate.teamAName + " " +this.props.selectedMatchForUpdate.teamBName);
         const formElementsArray = [];
         for (let key in this.state.teamSelection) {
@@ -198,8 +203,10 @@ class RugbyMatchPredictionResultInput extends Component {
                     ))}
 
                     <PredResSelectControls
-                        //selectMargin={(winningMargin) => this.printSomethingToConsole(winningMargin)}
-                        selectMargin={this.props.onSetWinningMargin}/>
+                        selectedMargin={this.state.selectedMargin}
+                        selectMargin={(winningMargin) => this.setWinningMarginHandler(winningMargin)}
+                        //selectMargin={this.props.onSetWinningMargin}
+                        />
 
                     <Button btnType="Success" clicked={this.printSomethingToConsole}>SUBMIT PREDICTION</Button>
                     <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
