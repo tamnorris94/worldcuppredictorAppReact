@@ -1,4 +1,4 @@
-.UserAggPredictionResult{
+.AggregatePredictionResults{
     width : 100%;
     margin : 26px auto;
     border : 1px solid #eee;
@@ -6,12 +6,4 @@
     padding : 16px;
     text-align : center;
     display: flex;
-}
-
-@media (min-width : 500px){
-    .UserAggPredictionResult {
-        width : 550px;
-        display: flex;
-    }
-
 }

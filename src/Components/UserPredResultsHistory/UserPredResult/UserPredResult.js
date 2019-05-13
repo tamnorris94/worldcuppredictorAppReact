@@ -1,30 +1,46 @@
 import React from 'react';
+import classes from '../UserPredResultHistory.css';
 
 const userPredResult = (props) => {
 
+    const moment = require('moment');
+    const lDate = moment(props.matchKickoff).format("ddd, MMMM Do, h:mm a");
+
+    let predictionResultStyle = null;
+
+    if(props.points === 2){
+        predictionResultStyle = classes.CorrectWinnerOrDraw;
+    }
+    else if(props.points === 5){
+        predictionResultStyle = classes.ExactScoreMatch;
+    }
+    else {
+        predictionResultStyle = classes.IncorrectWinner;
+    }
+
+    console.log("In userPredResult : predictionResultStyle " +predictionResultStyle);
+
     return (
-        <article>
-            <div>
+        <article key={props.index} className={predictionResultStyle} >
+            <div className={classes.UserPredResultHistory}>
                 <table>
+                    <tbody>
                     <tr>
-                        <th>{props.matchKickoff}</th>
-                        <th>{props.teamAName}</th>
-                        <th>{props.teamBName}</th>
+                        <td>{lDate}</td>
                     </tr>
                     <tr>
-                        <th>Actual Score: </th>
-                        <th>{props.teamAActualScore}</th>
-                        <th>{props.teamBActualScore}</th>
+                        <td>Match: {props.teamAName} vs {props.teamBName}</td>
                     </tr>
                     <tr>
-                        <th>Your Predicted Score: </th>
-                        <th>{props.teamAPredictedScore}</th>
-                        <th>{props.teamBPredictedScore}</th>
+                        <td>Winner: {props.actualWinningTeam} / Predicted Winner: {props.predictedWinningTeam}</td>
                     </tr>
                     <tr>
-                        <th>Points: </th>
-                        <th>{props.points}</th>
+                        <td>Margin:{props.actualWinningMargin} / Predicted Margin:{props.predictedWinningMargin}</td>
                     </tr>
+                    <tr>
+                        <td>Points: {props.points}</td>
+                    </tr>
+                    </tbody>
                 </table>
             </div>
         </article>

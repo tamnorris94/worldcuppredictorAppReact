@@ -15,10 +15,16 @@ export {
     addMatchResultOrPredictionFail,
     addMatchPredictionResultsFail,
     addMatchResultOrPredictionSuccess,
+    submitMatchResultOrPrediction,
     deleteCompletedPredictionFail,
     addUpcomingMatch,
     addUpcomingMatchSuccess,
-    addUpcomingMatchFail
+    addUpcomingMatchFail,
+    setWinningTeam,
+    cancelMatchResultPredInput,
+    addMatchResultSuccess,
+    addMatchPredictionSuccess,
+    addNewMatchPredictionSuccess
 } from './upcomingMatches';
 export {
     fetchCompletedMatchesFail,
@@ -48,9 +54,9 @@ export {
     fetchPredictionResultsFail,
     fetchedUserPredResultsSuccess,
     fetchedUserPredResultsFail,
-    fetchUserPredictionResults
+    fetchUserPredictionResults,
 } from './predictionResults';
 export {
-    setWinningTeam,
+    //setWinningTeam,
     setWinningMargin
 } from './rugbyMatchPredResultInput';

@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './UserPredResultHistory.css';
+import UserPredResult from './UserPredResult/UserPredResult';
 
 const userPredResultsHistory = (props) => {
 
@@ -23,30 +24,41 @@ const userPredResultsHistory = (props) => {
                 predictionResultStyle = classes.IncorrectWinner;
             }
 
-            return <article key={index} className={predictionResultStyle} clicked={props.cancelDisplayUserPredResultsHandler}>
-                <div className={classes.UserPredResultHistory}>
-                    <table>
-                        <tr>
-                            <th>Match</th>
-                            <th>{upr.teamAName}</th>
-                            <th>{upr.teamBName}</th>
-                        </tr>
-                        <tr>
-                            <th>Actual Score: </th>
-                            <th>{upr.actualTeamAScore}</th>
-                            <th>{upr.actualTeamBScore}</th>
-                        </tr>
-                        <tr>
-                            <th>Your Predicted Score: </th>
-                            <th>{upr.predictedTeamAScore}</th>
-                            <th>{upr.predictedTeamBScore}</th>
-                        </tr>
-                        <tr>
-                            <th>Points: {upr.points}</th>
-                        </tr>
-                    </table>
-                </div>
-            </article>
+            //  return <article key={index} className={predictionResultStyle} clicked={props.cancelDisplayUserPredResultsHandler}>
+            //     <div className={classes.UserPredResultHistory}>
+            //         <table>
+            //             <tbody>
+            //             <tr>
+            //                 <td>Match</td>
+            //                 <td>{upr.teamAName}</td>
+            //                 <td>{upr.teamBName}</td>
+            //             </tr>
+            //             <tr>
+            //                 <td>Winner: {upr.actualWinningTeam}</td>
+            //                 <td>Predicted Winner: {upr.predictedWinningTeam} </td>
+            //             </tr>
+            //             <tr>
+            //                 <td>Margin: {upr.actualWinningMargin}</td>
+            //                 <td>Predicted Margin: {upr.predictedWinningMargin} </td>
+            //             </tr>
+            //             <tr>
+            //                 <td>Points: {upr.points}</td>
+            //             </tr>
+            //             </tbody>
+            //         </table>
+            //     </div>
+            // </article>
+
+            return <UserPredResult className={predictionResultStyle}
+                    matchKickoff={upr.matchKickoff}
+                    teamAName={upr.teamAName}
+                    teamBName={upr.teamBName}
+                    actualWinningMargin={upr.actualWinningMargin}
+                    actualWinningTeam={upr.actualWinningTeam}
+                    predictedWinningMargin={upr.predictedWinningMargin}
+                    predictedWinningTeam={upr.predictedWinningTeam}
+                    points={upr.points}>Pants</UserPredResult>
+
         }));
 }
 

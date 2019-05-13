@@ -322,7 +322,7 @@ class MatchResultPredictionInput extends Component {
                                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                         </div>
                     ))}
-                    <Button btnType="Success" clicked={this.submitResultPredictionHandler} disabled={!this.state.formIsValid}>ADD MATCH RESULT</Button>
+                    <Button btnType="Success" clicked={this.props.resultSubmitted} disabled={!this.state.formIsValid}>ADD MATCH RESULT</Button>
                     <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
                 </form>
             );

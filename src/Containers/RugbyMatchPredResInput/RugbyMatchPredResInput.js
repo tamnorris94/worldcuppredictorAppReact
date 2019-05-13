@@ -6,8 +6,9 @@ import Spinner from "../../Components/UI/Spinner/Spinner";
 import * as actions from '../../Store/actions/index';
 import { connect } from 'react-redux';
 import { updateObject, checkValidity } from '../../shared/utility';
-import PredResSelectControls from '../../Components/PredResSelectControls/PredResSelectControls';
+import MarginSelectionControls from '../../Components/MarginSelectionControls/MarginSelectionControls';
 import Aux from '../../Hoc/Auxiliary/Auxiliary';
+import TeamSelectionControl from '../../Components/TeamSelectionControls/TeamSelectionControl/TeamSelectionControl';
 
 class RugbyMatchPredictionResultInput extends Component {
 
@@ -24,17 +25,17 @@ class RugbyMatchPredictionResultInput extends Component {
                 selected: true
             }
         },
-        selectedMargin: "11-15"
+        selectedmargin: "",
+        selectedteam: "",
+        canSubmitForm: false
     }
 
     printSomethingToConsole = (event, winningMargin) => {
         event.preventDefault();
-        console.log("printSomethingToConsole got run");
         this.setState( { inputtingPrediction: false } );
     }
 
     submitResultPredictionHandler = ( event ) => {
-        console.log("submitResultPredictionHandler got run");
         event.preventDefault();
         const teamSelectionData = {};
         for (let teamSelectionIdentifier in this.state.teamSelection) {
@@ -45,7 +46,7 @@ class RugbyMatchPredictionResultInput extends Component {
                 matchID : this.props.selectedMatchForUpdate.matchID,
                 teamAName: this.props.selectedMatchForUpdate.teamAName,
                 teamBName: this.props.selectedMatchForUpdate.teamBName,
-                teamAName: this.state.teamSelection.teamAName.value,
+                teamAScore: this.state.teamSelection.teamAName.value,
                 teamBScore: this.state.teamSelection.teamBName.value,
                 matchKickoff: this.props.selectedMatchForUpdate.matchKickoff
             }
@@ -58,7 +59,7 @@ class RugbyMatchPredictionResultInput extends Component {
                 predictionID: this.props.selectedMatchForUpdate.predictionID,
                 teamAName: this.props.selectedMatchForUpdate.teamAName,
                 teamBName: this.props.selectedMatchForUpdate.teamBName,
-                teamAName: this.state.teamSelection.teamAName.value,
+                teamAScore: this.state.teamSelection.teamAName.value,
                 teamBScore: this.state.teamSelection.teamBName.value,
                 matchKickoff: this.props.selectedMatchForUpdate.matchKickoff,
                 userId: this.props.userId,
@@ -96,37 +97,44 @@ class RugbyMatchPredictionResultInput extends Component {
         this.setState({teamSelection: updatedTeamSelection});
     }
 
-    // componentWillReceiveProps (nextProps){
-    //     console.log("ComponentcomponentWillReceiveProps is executed.")
-    //     if(this.props.teamAName !== nextProps.teamAName && this.props.teamBName !== nextProps.teamBName){
-    //         const updatedResultInputForm = updateObject(this.state.resultInputForm, {
-    //             teamAScore: updateObject(this.state.resultInputForm.teamAScore, { label: nextProps.teamAName}),
-    //             teamBScore: updateObject(this.state.resultInputForm.teamBScore, { label: nextProps.teamBName}),
-    //         })
-    //         this.setState({resultInputForm: updatedResultInputForm});
-    //     }
-    // }
+    componentWillReceiveProps (nextProps){
+        console.log("ComponentcomponentWillReceiveProps is executed.")
+        if(this.props.teamAName !== nextProps.teamAName && this.props.teamBName !== nextProps.teamBName){
+            const updatedResultInputForm = updateObject(this.state.resultInputForm, {
+                teamAScore: updateObject(this.state.resultInputForm.teamAScore, { label: nextProps.teamAName}),
+                teamBScore: updateObject(this.state.resultInputForm.teamBScore, { label: nextProps.teamBName}),
+            })
+            this.setState({resultInputForm: updatedResultInputForm});
+        }
+    }
 
     // shouldComponentUpdate(nextProps, nextState){
-    //     console.log("State teamALabel " + this.state.resultInputForm.teamAScore.label);
-    //     console.log("nextState teamALabel " + nextState.resultInputForm.teamAScore.label);
-    //     if(this.props.selectedMatchForUpdate !== nextProps.selectedMatchForUpdate && !this.state.inputtingPrediction){
+    //     //console.log("State teamALabel " + this.state.resultInputForm.teamAScore.label);
+    //     console.log("this.props.selectedMatchForUpdate.matchID " + this.props.selectedMatchForUpdate.matchID);
+    //     console.log("nextProps.selectedMatchForUpdate.matchID " + nextProps.selectedMatchForUpdate.matchID);
+    //     if(this.props.selectedMatchForUpdate.matchID !== nextProps.selectedMatchForUpdate.matchID){
+    //         console.log("shouldComponentUpdate returns true")
+    //         const updatedTeamSelection = updateObject(this.state.resultInputForm, {
+    //             teamAName: updateObject(this.state.teamSelection.teamAName, { label: this.props.selectedMatchForUpdate.teamAName}),
+    //             teamBName: updateObject(this.state.teamSelection.teamBName, { label: this.props.selectedMatchForUpdate.teamBName}),
+    //         })
+    //         this.setState({teamSelection: updatedTeamSelection});
     //         return true;
     //     }
     //     else{
+    //         console.log("shouldComponentUpdate returns false")
     //         return false;
     //     }
     //
     // }
 
+
     componentDidUpdate(prevProps){
-        //console.log("componentDidUpdate run. Props are : " + this.props.selectedMatchForUpdate.teamAName + " " +this.props.selectedMatchForUpdate.teamBName);
-        // console.log("Props are " + this.props.selectedMatchForUpdate.teamAName + " " +this.props.selectedMatchForUpdate.teamBName);
-        // console.log("Props matchID is " + this.props.selectedMatchForUpdate.matchID);
-        // console.log("prevProps matchID is " + prevProps.matchID);
-        // console.log("prevProps are " + prevProps.teamAName + " " +prevProps.teamBName);
-        // console.log(this.state.resultInputForm.teamAScore.label);
-        if(this.props.selectedMatchForUpdate.teamAName !== prevProps.selectedMatchForUpdate.teamAName && this.props.selectedMatchForUpdate.teamBName !== prevProps.selectedMatchForUpdate.teamBName){
+        console.log("componentDidUpdate happens");
+        console.log("this.props.selectedMatchForUpdate.matchID = " +this.props.selectedMatchForUpdate.matchID)
+        console.log("prevProps.selectedMatchForUpdate.matchID = " +prevProps.selectedMatchForUpdate.matchID)
+        if(this.props.selectedMatchForUpdate.matchID !== prevProps.selectedMatchForUpdate.matchID)
+        {
             const updatedTeamSelection = updateObject(this.state.resultInputForm, {
                 teamAName: updateObject(this.state.teamSelection.teamAName, { label: this.props.selectedMatchForUpdate.teamAName}),
                 teamBName: updateObject(this.state.teamSelection.teamBName, { label: this.props.selectedMatchForUpdate.teamBName}),
@@ -137,79 +145,117 @@ class RugbyMatchPredictionResultInput extends Component {
 
 
     setWinningMarginHandler(winningMargin){
-        let updatedMarginSelection = this.state.selectedMargin;
-        console.log("setWinningMarginHandler is " + updatedMarginSelection);
-        //console.log("setWinningMarginHandler updatedMarginSelection is " + updatedMarginSelection);
+        let updatedMarginSelection = this.state.selectedmargin;
         updatedMarginSelection = updateObject(updatedMarginSelection, winningMargin);
-        console.log("updatedMarginSelection is " + updatedMarginSelection);
         //event.preventDefault();
-        //console.log("Event is " + event);
-        //console.log("Winning Margin handler executed " + winningMargin);
         //const updatedWinningMargin = updateObject(this.state.winningMargin, { winningMargin });
-        this.setState({ selectedMargin: winningMargin});
+        this.setState({ selectedmargin: winningMargin});
         this.props.onSetWinningMargin(winningMargin);
     }
 
     setWinningTeamHandler(winningTeam){
-        let updatedTeamSelection = {...this.state.teamSelection};
-        for (let key in updatedTeamSelection){
-            let teamName = updatedTeamSelection[key].label;
-            let updatedTeamSelectionTeam = updatedTeamSelection[key];
-            if(teamName === winningTeam){
-                updatedTeamSelectionTeam = updateObject(updatedTeamSelectionTeam, { selected: true})
-            }
-            else {
-                updatedTeamSelectionTeam = updateObject(updatedTeamSelectionTeam, { selected: false})
-            }
-            updatedTeamSelection = updateObject(updatedTeamSelection, { [key]: updatedTeamSelectionTeam});
-        };
-        this.setState({teamSelection: updatedTeamSelection});
+        this.setState({
+            selectedteam: winningTeam
+        });
         this.props.onSetWinningTeam(winningTeam);
     }
 
+    //I don't think I need to do this here because all this data is stored in state which is accessible in upcoming matches
+    submitResultOrPredictionHandler =( event, admin ) => {
+        event.preventDefault();
+        //console.log("Inside submitResultOrPredictionHandler, selectedMatchForUpdate " + JSON.stringify(this.props.selectedMatchForUpdate));
+
+        const resultPredictionData = {
+            winningTeam: this.props.winningTeam,
+            winningMargin: this.props.winningMargin,
+            matchID: this.props.selectedMatchForUpdate.matchID,
+            matchKickoff: this.props.selectedMatchForUpdate.matchKickoff,
+            teamAName: this.props.selectedMatchForUpdate.teamAName,
+            teamBName: this.props.selectedMatchForUpdate.teamBName,
+            predictionID: this.props.selectedMatchForUpdate.predictionID,
+            prediction: this.props.selectedMatchForUpdate.prediction,
+            userId: this.props.userId,
+            userName: this.props.userName
+        }
+        this.props.onSubmitMatchResultOrPrediction(resultPredictionData, this.props.admin);
+    }
+
+    cancelMatchResPredInputHandler = (event) => {
+        event.preventDefault();
+        this.props.resultInputCancel();
+    }
+
     render() {
-        //console.log("Updated state in render is " + JSON.stringify(this.state.teamSelection));
-        //console.log("render run. Props are : " + this.props.selectedMatchForUpdate.teamAName + " " +this.props.selectedMatchForUpdate.teamBName);
-        const formElementsArray = [];
+
+        let canSubmitPrediction = false;
+        if(this.state.selectedteam != "" && this.state.selectedmargin != ""){
+            canSubmitPrediction = true;
+        }
+
+       const formElementsArray = [];
         for (let key in this.state.teamSelection) {
             formElementsArray.push({
                 id: key,
                 config: this.state.teamSelection[key]
             });
         }
+
+        const marginSelectionsArray = [];
+
+        for (let key in this.state.marginSelections){
+            marginSelectionsArray.push({
+                id: key,
+                marginSelectionConfig: this.state.marginSelections[key]
+            })
+        }
+
         let teamName = null;
         let matchResultInputForm = null;
+        const moment = require('moment');
 
         let matchPredKickOff = new Date(this.props.selectedMatchForUpdate.matchKickoff).getTime();
-        let currentDateTime = new Date().getTime();
-        if(matchPredKickOff < currentDateTime && !this.props.admin){
+        let matchPredKickoffToLocal = moment.utc(this.props.selectedMatchForUpdate.matchKickoff).local().format("ddd, MMMM Do YYYY, h:mm a");
+        //let matchPredKickOff = new Date(this.props.selectedMatchForUpdate.matchKickoff);
+        let matchPredKickOff2 = moment.utc(this.props.selectedMatchForUpdate.matchKickoff).local();
+        let currentDateTime = new Date();
+        let currentLocalTime = moment.utc(currentDateTime).local().format("ddd, MMMM Do YYYY, h:mm a");
+        let currentLocalTime2 = moment.utc(currentDateTime).local();
+        console.log("matchPredKickoffToLocal is " +matchPredKickoffToLocal);
+        //console.log("this.props.selectedMatchForUpdate.matchKickoff is " +this.props.selectedMatchForUpdate.matchKickoff);
+        //console.log("In render of RugbyMatchPredResInput currentDateTime is " +currentDateTime);
+        // console.log("In render of RugbyMatchPredResInput currentLocalTime is " +currentLocalTime);
+        // console.log("In render of RugbyMatchPredResInput matchPredKickOff is " +matchPredKickOff);
+        // console.log("In render of RugbyMatchPredResInput matchPredKickOff2 is " +matchPredKickOff2);
+        // console.log("In render of RugbyMatchPredResInput currentLocalTime2 is " +currentLocalTime2);
+        if(matchPredKickOff2 < currentLocalTime2 && !this.props.admin){
             matchResultInputForm = <p>Match has already been played</p>
         }
         else {
             //This is the same as original matchResultInput form but instead of having 2 input
             //boxes for the result or prediction I need to replace these with the new component
-            //PredResSelectControl and cycle through all of these for each team.
-            //Do I need the PredResSelectControls component? As BurgerBuilder has.
+            //MarginSelectionControl and cycle through all of these for each team.
+            //Do I need the MarginSelectionControls component? As BurgerBuilder has.
             matchResultInputForm = (
                 <form className={classes.MatchResultInput}>
-                    {formElementsArray.map(formElement => (
-                        <div key={formElement.id}>
-                            <div className="btn-group" role="group" aria-label="Basic Example">
-                                <Button selected={formElement.config.selected} type="button" btnType={formElement.config.selected} clicked={(event)=>this.setWinningTeamHandler(formElement.config.label)}>
-                                    {formElement.config.label}
-                                </Button>
-                            </div>
-                        </div>
-                    ))}
 
-                    <PredResSelectControls
-                        selectedMargin={this.state.selectedMargin}
+                    <div style={{position: "absolute"}}>
+                    {formElementsArray.map(formElement => (
+                            <div key={formElement.id} className="btn-group" role="group" aria-label="Basic Example">
+                                <TeamSelectionControl selected={formElement.config.selected}
+                                                      selectTeam={(event)=>this.setWinningTeamHandler(formElement.config.label)}
+                                                      selectedteam={this.state.selectedteam}>
+                                    {formElement.config.label}
+                                </TeamSelectionControl>
+                            </div>
+                    ))}
+                    <MarginSelectionControls
+                        selectedmargin={this.state.selectedmargin}
                         selectMargin={(winningMargin) => this.setWinningMarginHandler(winningMargin)}
                         //selectMargin={this.props.onSetWinningMargin}
                         />
-
-                    <Button btnType="Success" clicked={this.printSomethingToConsole}>SUBMIT PREDICTION</Button>
-                    <Button btnType="Danger" clicked={this.props.resultInputCancel}>CANCEL</Button>
+                    <Button disabled={!canSubmitPrediction} btnType="Success" clicked={this.submitResultOrPredictionHandler}>SUBMIT PREDICTION</Button>
+                    <Button btnType="Danger" clicked={this.cancelMatchResPredInputHandler}>CANCEL</Button>
+                    </div>
                 </form>
             );
         }
@@ -233,16 +279,18 @@ const mapStateToProps = state => {
         userName: state.auth.userName,
         token: state.auth.token,
         admin: state.auth.admin,
-        winningTeam: state.rugbyMatchPredResultInput.winningTeam
+        winningTeam: state.upcomingMatches.winningTeam,
+        winningMargin: state.upcomingMatches.winningMargin
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         //onInputMatchResult: (matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff)),
-        onInputMatchResultOrPrediction: (matchResultData, admin) => dispatch(actions.addMatchResultOrPrediction(matchResultData, admin)),
+        onSubmitMatchResultOrPrediction: (matchResultData, admin) => dispatch(actions.submitMatchResultOrPrediction(matchResultData, admin)),
         onSetWinningTeam: (winningTeam) => dispatch(actions.setWinningTeam(winningTeam)),
-        onSetWinningMargin: (winningMargin) => dispatch(actions.setWinningMargin(winningMargin))
+        onSetWinningMargin: (winningMargin) => dispatch(actions.setWinningMargin(winningMargin)),
+        resultInputCancel: () => dispatch(actions.cancelMatchResultPredInput())
         //onInputMatchPrediction: (matchPreData) => dispatch(actions.addMatchResult(matchID, teamAName, teamBName, teamAScore, teamBScore, matchKickoff, userId))
     }
 }

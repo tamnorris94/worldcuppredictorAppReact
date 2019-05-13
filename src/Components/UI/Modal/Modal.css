@@ -1,8 +1,8 @@
 .Modal {
     position: fixed;
-    z-index: 100;
+    z-index: 1500;
     background-color: white;
-    width: 70%;
+    width: 100%;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px black;
     padding: 16px;
@@ -19,7 +19,7 @@
 
 @media (min-width: 600px) {
     .Modal {
-        width: 200px;
+        width: 400px;
         left: calc(50% - 250px);
         marginTop: 0px !important;
         marginLeft: auto;

@@ -5,6 +5,7 @@ import Aux from "../../Hoc/Auxiliary/Auxiliary";
 import UserAggPredictionResult from './UserAggPredictionResult/UserAggPredictionResult';
 import UserPredResultsHistory from '../../Components/UserPredResultsHistory/UserPredResultsHistory';
 import Modal from "../../Components/UI/Modal/Modal";
+import classes from './AggregatePredictionResults.css';
 
 class AggregatePredictionResults extends Component {
 
@@ -32,18 +33,24 @@ class AggregatePredictionResults extends Component {
 
         if(!this.props.loading && !this.props.error){
             aggPredictionResults = this.props.aggPredictionResults.map(apr => {
-                return <UserAggPredictionResult
-                key={apr.userId}
-                userId={apr.userId}
-                userName={apr.userName}
-                points={apr.points}
-                displayPredictionResultsForUser={() => this.initDisplayUserPredictionResults(apr.userId)}/>
+                return(
+                    <div className={classes.AggregatePredictionResults}>
+                        <UserAggPredictionResult
+                            key={apr.userId}
+                            userId={apr.userId}
+                            userName={apr.userName}
+                            points={apr.points}
+                            displayPredictionResultsForUser={() => this.initDisplayUserPredictionResults(apr.userId)}/>
+                    </div>
+                )
+
             })
         }
 
         let userPredResultsHistory = null;
 
         if(this.state.displayingUserPredResults){
+            console.log("What do userPredResults look like? " + JSON.stringify(this.props.userPredResults));
             userPredResultsHistory = <UserPredResultsHistory userPredResults={this.props.userPredResults}  />
         }
 

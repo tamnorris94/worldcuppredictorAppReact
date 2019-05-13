@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import UpcomingRugbyMatch from "./UpcomingRugbyMatch/UpcomingRugbyMatch";
 import  RugbyMatchPredResInput from "../RugbyMatchPredResInput/RugbyMatchPredResInput";
+import withErrorHandler from '../../Hoc/withErrorHandler/withErrorHandler';
 import Modal from "../../Components/UI/Modal/Modal";
 import Aux from "../../Hoc/Auxiliary/Auxiliary";
 import * as actions from '../../Store/actions/index';
 import { connect } from 'react-redux';
+import axios from '../../axios-wcpredict';
 
-class UpcomingRugbyMatches extends Component {
+export class UpcomingRugbyMatches extends Component {
 
     state = {
         inputtingResult: false,
@@ -90,25 +92,33 @@ class UpcomingRugbyMatches extends Component {
     }
 
     addMatchResultInput = () => {
-        this.setState({
-            inputtingResult: false
-        })
-        this.props.history.push('/upcomingmatches');
+        //console.log("addMatchResultInput : State of inputting result before is " + this.state.inputtingResult);
+        this.setState({inputtingResult: false })
+        const resultPredictionData = {
+            winningTeam: this.props.winningTeam,
+            winningMargin: this.props.winningMargin,
+            matchID: this.props.selectedMatchForUpdate.matchID,
+            matchKickoff: this.props.selectedMatchForUpdate.matchKickoff,
+            teamAName: this.props.selectedMatchForUpdate.teamAName,
+            teamBName: this.props.selectedMatchForUpdate.teamBName,
+            predictionID: this.props.selectedMatchForUpdate.predictionID,
+            userId: this.props.userId,
+            userName: this.props.userName
+        }
+        //console.log("addMatchResultInput : State of inputting result after is " + this.state.inputtingResult);
+        this.props.onSubmitMatchResultOrPrediction(resultPredictionData, this.props.admin);
+        //this.props.history.push('/upcomingmatches');
     }
 
-    // resultSubmitHandler = () => {
-    //     this.setState({
-    //         inputtingResult: false
-    //     })
-    // }
-
     cancelResultInputHandler = () => {
-        this.setState( {inputtingResult : false} )
+        this.props.onInputResultOrPredCancel();
+
     }
 
     render() {
         let matchResultInput = null;
         let matchesPredictions = <p style={{textAlign: 'center'}}>Loading...!</p>;
+        //console.log("Inside render of UpcomingRugbyMatch " + JSON.stringify(this.props.matchesPredictions));
 
         if(!this.props.loading && !this.props.error){
             matchesPredictions = this.props.matchesPredictions.map(matchPred => {
@@ -120,6 +130,8 @@ class UpcomingRugbyMatches extends Component {
                     teamAScore={matchPred.teamAScore}
                     teamBScore={matchPred.teamBScore}
                     prediction={matchPred.prediction}
+                    predictedWinningMargin={matchPred.predictedWinningMargin}
+                    predictedWinningTeam={matchPred.predictedWinningTeam}
                     predictionID={matchPred.predictionID}
                     addMatchPrediction={() => this.addInitMatchPredictionHandler(matchPred)}
                     //updateMatchPrediction={() => this.initUpdateMatchPredictionHandler(matchPred)}
@@ -189,10 +201,12 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchUpcomingAndPredictions: (admin, token, userId) => dispatch(actions.fetchUpcomingAndPredictions(admin, token, userId)),
         //onAddMatchPredictionInit: (matchPred ) => dispatch(actions.initAddMatchResultOrPrediction(matchPred)),
+        onSubmitMatchResultOrPrediction: (matchResultData, admin) => dispatch(actions.submitMatchResultOrPrediction(matchResultData, admin)),
         onAddMatchResult: (matchPred ) => dispatch(actions.initAddMatchResult(matchPred)),
         onAddMatchPrediction: (matchPred) => dispatch(actions.initAddMatchPrediction(matchPred)),
         onUpdateMatchPredictionInit: (matchPred ) => dispatch(actions.initUpdatePrediction(matchPred)),
-        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
+        onInputResultOrPredCancel: () => dispatch(actions.cancelMatchResultPredInput())
     }
 }
 
@@ -211,4 +225,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)( UpcomingRugbyMatches );
+export default connect(mapStateToProps, mapDispatchToProps)( withErrorHandler(UpcomingRugbyMatches, axios));

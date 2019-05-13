@@ -42,8 +42,7 @@ class App extends Component {
    let routes = (
        <Switch>
            <Route path="/upcomingmatches" component={asyncUpcomingMatches} />
-           <Route path="/upcomingrugbymatches" component={asyncUpcomingRugbyMatches}/>
-           <Route path="/completedmatches" component={asyncCompletedMatches} />
+           <Route path="/upcominggames" component={asyncUpcomingRugbyMatches}/>
            <Route path="/addupcomingmatch" component={UpcomingMatchCreate}/>
            <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>
            <Route path="/auth" component={asyncAuth}/>
@@ -56,8 +55,7 @@ class App extends Component {
            <Switch>
                <Route path="/" exact component={Home}/>
                <Route path="/upcomingmatches" component={asyncUpcomingMatches}/>
-               <Route path="/upcomingrugbymatches" component={asyncUpcomingRugbyMatches}/>
-               <Route path="/completedmatches" component={asyncCompletedMatches}/>
+               <Route path="/upcominggames" component={asyncUpcomingRugbyMatches}/>
                <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>
                <Route path="/logout" component={Logout} />
                <Route path="/auth" component={asyncAuth}/>
@@ -71,8 +69,7 @@ class App extends Component {
               <Switch>
                   <Route path="/" exact component={Home}/>
                   <Route path="/upcomingmatches" component={asyncUpcomingMatches}/>
-                  <Route path="/upcomingrugbymatches" component={asyncUpcomingRugbyMatches}/>
-                  <Route path="/completedmatches" component={asyncCompletedMatches}/>
+                  <Route path="/upcominggames" component={asyncUpcomingRugbyMatches}/>
                   <Route path="/addupcomingmatch" component={UpcomingMatchCreate}/>
                   <Route path="/predictionResults" component={asyncAggregatePredictionResults}/>
                   <Route path="/logout" component={Logout} />

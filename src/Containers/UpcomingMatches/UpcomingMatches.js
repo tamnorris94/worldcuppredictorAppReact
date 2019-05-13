@@ -150,7 +150,7 @@ class UpcomingMatches extends Component {
 
         return (
             <Aux>
-                <Modal show={this.props.inputtingResult} modalClosed={this.cancelResultInputHandler}>
+                <Modal show={this.props.inputtingResPrediction} modalClosed={this.cancelResultInputHandler}>
                     {matchResultInput}
                 </Modal>
                 {matchesPredictions}

@@ -56,12 +56,44 @@ class Auth extends Component {
                 touched: false
             }
         },
-        isSignup: true
+        isSignup: true,
+        authFormValid: false,
+        errorMessage: "",
+        submitting: false
     }
 
     componentDidMount () {
             this.props.onSetAuthRedirectPath();
     }
+
+    // componentWillReceiveProps(nextProps){
+    //     console.log("componentWillReceiveProps What is nextProps.error? " + JSON.stringify(nextProps.error));
+    //     console.log("componentWillReceiveProps What is this props.error? " + JSON.stringify(this.props.error))
+    //     // console.log("componentWillReceiveProps What is nextProps.error? " + nextProps.error.message);
+    //     // console.log("componentWillReceiveProps What is this props.error.message? " + this.props.error.message)
+    //     if (nextProps.error !== this.props.error) {
+    //         this.setState({ errorMessage : nextProps.error.message })
+    //     }
+    // }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        let newError = null;
+        if(nextProps.error != null){
+            newError = nextProps.error.errors[0].message;
+        }
+        if(newError!==prevState.errorMessage){
+            return { errorMessage: newError};
+        }
+        else return null;
+    }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(prevProps.error!==this.props.error){
+    //         //Perform some operation here
+    //         this.setState({errorMessage: this.props.error});
+    //         this.classMethod();
+    //     }
+    // }
 
     inputChangedHandler = ( event, controlName ) => {
         const updatedControls = updateObject( this.state.controls, {
@@ -74,9 +106,45 @@ class Auth extends Component {
         this.setState( { controls: updatedControls } );
     }
 
+    // submitAuthentication = () => {
+    //     this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.userName.value, this.state.isSignup );
+    // }
+
+    // submitHandler = ( event ) => {
+    //     event.preventDefault();
+    //     if(this.state.isSignup && this.state.controls.userName.value == ""){
+    //         console.log("There's an error");
+    //         this.state.errorMessage = "You must enter username to signup";
+    //     }
+    //     else{
+    //         this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.userName.value, this.state.isSignup );
+    //     }
+    // }
+
+    submitAuthentication = () => {
+        if(this.state.isSignup && this.state.controls.userName.value == ""){
+            console.log("There's an error");
+            //this.state.errorMessage = "You must enter username to signup";
+        }
+        else{
+            console.log("Does it submit onAuth action?")
+            this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.userName.value, this.state.isSignup );
+        }
+    }
+
     submitHandler = ( event ) => {
         event.preventDefault();
-        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.userName.value, this.state.isSignup );
+        this.setState({
+            submitting: true
+        })
+        if(this.state.isSignup && this.state.controls.userName.value == ""){
+            this.setState({
+                errorMessage: "You must enter a username to sign up"
+            })
+        }
+        else{
+            this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.controls.userName.value, this.state.isSignup );
+        }
     }
 
     switchAuthModeHandler = () => {
@@ -123,11 +191,23 @@ class Auth extends Component {
 
         let errorMessage = null;
 
-        if ( this.props.error ) {
+        if(!this.state.errorMessage==""){
             errorMessage = (
-                <p>{this.props.error.message}</p>
+                     <p>{this.state.errorMessage}</p>
             );
         }
+
+        // if(this.state.isSignup && this.state.controls.userName.value == "" && this.state.submitting){
+        //     errorMessage = (
+        //         <p>You must enter a username to sign up</p>
+        //     );
+        // }
+
+        // if( this.props.error ) {
+        //     errorMessage = (
+        //         <p>{this.props.error.message}</p>
+        //     );
+        // }
 
         let authRedirect = null;
         if ( this.props.isAuthenticated ) {
@@ -140,11 +220,12 @@ class Auth extends Component {
                 {errorMessage}
                 <form onSubmit={this.submitHandler}>
                     {form}
-                    <Button btnType="Success">SUBMIT</Button>
+                    <Button btnType="Success" >SUBMIT</Button>
                 </form>
                 <Button
                     clicked={this.switchAuthModeHandler}
-                    btnType="Danger">SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}</Button>
+                    btnType="Danger"
+                     >SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}</Button>
             </div>
         );
     }

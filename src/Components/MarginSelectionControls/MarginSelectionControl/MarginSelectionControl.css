@@ -1,11 +1,11 @@
-.PredResSelectControl {
+.MarginSelectionControl {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 5px 0;
 }
 
-.PredResSelectControl button {
+.MarginSelectionControl button {
     display: block;
     font: inherit;
     padding: 5px;
@@ -17,14 +17,14 @@
 }
 
 
-.PredResSelectControl button:disabled {
+.MarginSelectionControl button:disabled {
     background-color: #AC9980;
     border: 1px solid #7E7365;
     color: #ccc;
     cursor: default;
 }
 
-.PredResSelectControl button:hover:disabled {
+.MarginSelectionControl button:hover:disabled {
     background-color: #AC9980;
     color: #ccc;
     cursor: not-allowed;
@@ -36,22 +36,22 @@
     width: 80px;
 }
 
-.PredResSelectControl .Less {
+.MarginSelectionControl .Less {
     background-color: #D39952;
     color: white;
 }
 
-.PredResSelectControl .More {
+.MarginSelectionControl .More {
     background-color: #8F5E1E;
     color: white;
 }
 
-.PredResSelectControl .Less:hover, .PredResSelectControl .Less:active {
+.MarginSelectionControl .Less:hover, .MarginSelectionControl .Less:active {
     background-color: #DAA972;
     color: white;
 }
 
-.PredResSelectControl .More:hover,.PredResSelectControl .More:active {
+.MarginSelectionControl .More:hover,.MarginSelectionControl .More:active {
     background-color: #99703F;
     color: white;
 }

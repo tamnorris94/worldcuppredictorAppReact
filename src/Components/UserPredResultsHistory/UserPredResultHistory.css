@@ -16,9 +16,14 @@
 .UserPredResultHistory table {
      border: 1px solid black;
      width: 100%;
-     align: left
+     align: left;
  }
 
 .UserPredResultHistory th {
     text-align: left;
+    white-space: nowrap;
+}
+
+.UserPredResultHistory td {
+    white-space: nowrap;
 }

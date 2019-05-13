@@ -5,10 +5,12 @@
     box-shadow : 0 2px 3px #ccc;
     padding : 16px;
     text-align : center;
+    display: flex;
 }
 
 @media (min-width : 500px){
     .RugbyMatchPredictionResultInput {
         width : 450px;
+        display: flex;
     }
 }

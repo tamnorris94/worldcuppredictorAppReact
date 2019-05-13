@@ -192,6 +192,7 @@ export const fetchUserPredictions = (fetchedUpcomingMatches, token, userId) => {
 }
 
 export const fetchUpcomingAndPredictionsSuccess = (matchesPredictions ) => {
+    console.log("Actions fetchUpcomingAndPredictionsSuccess matchesPredictions " + JSON.stringify(matchesPredictions));
     return {
         type: actionTypes.FETCH_UPCOMING_PREDICTIONS_SUCCESS,
         matchesPredictions: matchesPredictions
@@ -201,12 +202,6 @@ export const fetchUpcomingAndPredictionsSuccess = (matchesPredictions ) => {
 export const fetchUpcomingAndPredictionsFail = () => {
     return  {
         type: actionTypes.FETCH_UPCOMING_PREDICTIONS_FAIL
-    };
-};
-
-export const addMatchResultSuccess = () => {
-    return {
-        type: actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_SUCCESS
     };
 };
 
@@ -238,82 +233,88 @@ export const initAddMatchPrediction = ( matchPred ) => {
     };
 }
 
-export const addMatchResultOrPrediction = (matchResultData, admin, token, prediction) => {
-    //console.log("State of prediction received by addMatchResult" +prediction);
-    console.log("In addMatchResultOrPrediction matchResultData looks like " +JSON.stringify(matchResultData));
-    let match = "";
-    for(let key in matchResultData){
-        if(key = "matchID"){
-            match = matchResultData[key]
-        }
-    }
-    return dispatch => {
-        dispatch( addMatchResultOrPredictionStart() );
-        if(admin===true){
-            //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchResults.json', matchResultData)
-            matchResultsFBRef.push({
-                matchID: matchResultData.matchID,
-                matchKickoff: matchResultData.matchKickoff,
-                teamAName: matchResultData.teamAName,
-                teamAScore: matchResultData.teamAScore,
-                teamBName: matchResultData.teamBName,
-                teamBScore: matchResultData.teamBScore
-            })
-            .then(response => {
-                console.log("Do we get inside this? What does matchResultData look like" + JSON.stringify(response));
-                dispatch(fetchPredictionsForCompletedMatch(matchResultData, token));
-            })
-            .catch(error => {
-                dispatch(addMatchResultOrPredictionFail(error))
-            })
-        }
-        else{
-            if(!matchResultData.predictionID == ""){
-                delete matchResultData["prediction"];
-                console.log("jsonPayload looks like " + JSON.stringify(matchResultData));
-                // axios.put('https://react-my-burger-tam.firebaseio.com/matchPredictions/' + matchResultData.predictionID + '.json?auth=' + token,
-                //     matchResultData
-                // )
-                databaseRef.child('matchPredictions/' + matchResultData.predictionID).set({
-                    matchID: matchResultData.matchID,
-                    matchKickoff: matchResultData.matchKickoff,
-                    teamAName: matchResultData.teamAName,
-                    teamBName: matchResultData.teamBName,
-                    teamAScore: matchResultData.teamAScore,
-                    teamBScore: matchResultData.teamBScore,
-                    userId: matchResultData.userId,
-                    userName: matchResultData.userName
-                })
-                .then(response => {
-                    console.log("response is " + JSON.stringify(response));
-                    dispatch(addMatchResultOrPredictionSuccess(response));
-                })
-                .catch(error => {
-                    console.log("Is this error that is getting thrown?" +error);
-                    dispatch(addMatchResultOrPredictionFail(error));
-                })
-            }
-            else{
-                delete matchResultData["prediction"];
-                //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
-                matchPredictionsFBRef.push({
-                    matchID: matchResultData.matchID,
-                    matchKickoff: matchResultData.matchKickoff,
-                    teamAName: matchResultData.teamAName,
-                    teamBName: matchResultData.teamBName,
-                    teamAScore: matchResultData.teamAScore,
-                    teamBScore: matchResultData.teamBScore,
-                    userId: matchResultData.userId,
-                    userName: matchResultData.userName
-                })
-                .then(response => {
-                        dispatch(addMatchResultOrPredictionSuccess());
-                    })
-                    .catch(error => {dispatch(addMatchResultOrPredictionFail(error))})
-            }
-        }
-    };
-}
+//This doesn't appear to be getting run
+// export const addMatchResultOrPrediction = (matchResultData, admin, token, prediction) => {
+//
+//     console.log("In addMatchResultOrPrediction matchResultData looks like " +JSON.stringify(matchResultData));
+//     let match = "";
+//     for(let key in matchResultData){
+//         if(key = "matchID"){
+//             match = matchResultData[key]
+//         }
+//     }
+//     return dispatch => {
+//         console.log("Actions addMatchResultOrPrediction matchResultData " +JSON.stringify(matchResultData));
+//         dispatch( addMatchResultOrPredictionStart() );
+//         if(admin===true){
+//             //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchResults.json', matchResultData)
+//             matchResultsFBRef.push({
+//                 matchID: matchResultData.matchID,
+//                 matchKickoff: matchResultData.matchKickoff,
+//                 teamAName: matchResultData.teamAName,
+//                 teamAScore: matchResultData.teamAScore,
+//                 teamBName: matchResultData.teamBName,
+//                 teamBScore: matchResultData.teamBScore
+//             })
+//             .then(response => {
+//                 console.log("Do we get inside this? What does matchResultData look like" + JSON.stringify(response));
+//                 dispatch(fetchPredictionsForCompletedMatch(matchResultData, token));
+//             })
+//             .catch(error => {
+//                 dispatch(addMatchResultOrPredictionFail(error))
+//             })
+//         }
+//         else{
+//             if(!matchResultData.predictionID == "")
+//             //if(matchResultData.prediction)
+//             {
+//                 delete matchResultData["prediction"];
+//                 //console.log("jsonPayload looks like " + JSON.stringify(matchResultData));
+//                 // axios.put('https://react-my-burger-tam.firebaseio.com/matchPredictions/' + matchResultData.predictionID + '.json?auth=' + token,
+//                 //     matchResultData
+//                 // )
+//                 databaseRef.child('matchPredictions/' + matchResultData.predictionID).set({
+//                     matchID: matchResultData.matchID,
+//                     matchKickoff: matchResultData.matchKickoff,
+//                     teamAName: matchResultData.teamAName,
+//                     teamBName: matchResultData.teamBName,
+//                     teamAScore: matchResultData.teamAScore,
+//                     teamBScore: matchResultData.teamBScore,
+//                     userId: matchResultData.userId,
+//                     userName: matchResultData.userName
+//                 })
+//                 .then(response => {
+//                    // console.log("response is " + JSON.stringify(response));
+//                     //console.log("addMatchResultOrPrediction matchResultData.matchID " +JSON.stringify(matchResultData.matchID));
+//                     //dispatch(addMatchResultOrPredictionSuccess(response));
+//                     dispatch(addMatchPredictionSuccess(matchResultData.matchID));
+//                 })
+//                 .catch(error => {
+//                     //console.log("Is this error that is getting thrown?" +error);
+//                     dispatch(addMatchResultOrPredictionFail(error));
+//                 })
+//             }
+//             else{
+//                 delete matchResultData["prediction"];
+//                 //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
+//                 matchPredictionsFBRef.push({
+//                     matchID: matchResultData.matchID,
+//                     matchKickoff: matchResultData.matchKickoff,
+//                     teamAName: matchResultData.teamAName,
+//                     teamBName: matchResultData.teamBName,
+//                     teamAScore: matchResultData.teamAScore,
+//                     teamBScore: matchResultData.teamBScore,
+//                     userId: matchResultData.userId,
+//                     userName: matchResultData.userName
+//                 })
+//                 .then(response => {
+//                         dispatch(addMatchPredictionSuccess(matchResultData.matchID));
+//                     })
+//                     .catch(error => {dispatch(addMatchResultOrPredictionFail(error))})
+//             }
+//         }
+//     };
+// }
 
 export const addMatchResultOrPredictionStart = () => {
     return {
@@ -332,7 +333,7 @@ export const deleteMatchFromUpcomingMatches = (matchID, token) => {
     return dispatch => {
         deleteRequest.then(
             //response => dispatch(fetchPredictionsForCompletedMatch(match, token))
-            response => dispatch(addMatchResultOrPredictionSuccess())
+            response => dispatch(addMatchResultSuccess(matchID))
         )
             .catch(
                 err => dispatch(addMatchResultOrPredictionFail(err))
@@ -341,7 +342,7 @@ export const deleteMatchFromUpcomingMatches = (matchID, token) => {
 }
 
 export const addMatchResultOrPredictionFail = (error) => {
-    console.log("The error is " + error);
+    //console.log("The error is " + error);
     return {
         type: actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_FAIL
     };
@@ -354,6 +355,42 @@ export const addMatchPredictionResultsFail = (response) => {
     };
 };
 
+export const addMatchPredictionSuccess = (matchId, matches) => {
+    //console.log("In actions addMatchPredictionSuccess matchId" + JSON.stringify(matchId));
+    return {
+        type: actionTypes.ADD_MATCH_PREDICTION_SUCCESS,
+        matches: matches,
+        matchId: matchId
+    };
+}
+
+//For adding a new match prediction updates the predictionID in matchesPredictions so that
+//record can be updated without needing a rerender
+export const addNewMatchPredictionSuccess = (matchPredictionData, newPredID, matchID) => {
+    //console.log("In actions addNewMatchPredictionSuccess newPredID" + newPredID);
+    //console.log("In actions addNewMatchPredictionSuccess matches " + JSON.stringify(matchPredictionData));
+    //console.log("In actions addNewMatchPredictionSuccess matchID is " + matchPredictionData.matchID);
+    // return {
+    //     type: actionTypes.ADD_NEW_MATCH_PREDICTION_SUCCESS,
+    //     matches: matches,
+    //     newPredID: newPredID
+    // };
+    return {
+        type: actionTypes.ADD_NEW_MATCH_PREDICTION_SUCCESS,
+        matchPredictionData: matchPredictionData,
+        newPredID: newPredID
+    };
+}
+
+export const addMatchResultSuccess = (matchId, matches) => {
+    return {
+        type: actionTypes.ADD_MATCH_RESULT_SUCCESS,
+        matches: matches,
+        matchId: matchId
+    };
+};
+
+//might be able to delete this, as adding seperate actions for addPredictionSuccess and addResultSuccess
 export const addMatchResultOrPredictionSuccess = (response) => {
     return {
         type: actionTypes.ADD_MATCH_RESULT_OR_PREDICTION_SUCCESS
@@ -401,8 +438,8 @@ export const addMatchResultOrPredictionSuccess = (response) => {
 //
 // }
 
-export const fetchPredictionsForCompletedMatch = (matchResultData, token) => {
-    console.log("matchResultData at fetchPredictionsForCompletedMatch looks like " + JSON.stringify(matchResultData))
+export const fetchPredictionsForCompletedMatch = (matchResultData) => {
+    //console.log("matchResultData at fetchPredictionsForCompletedMatch looks like " + JSON.stringify(matchResultData))
     let match = "";
     for(let key in matchResultData){
         if(key = "matchID"){
@@ -418,20 +455,19 @@ export const fetchPredictionsForCompletedMatch = (matchResultData, token) => {
                 fetchedUserPredsForMatch.push(item);
             })
         });
-    console.log("fetchedUserPredsForMatch are " + JSON.stringify(fetchedUserPredsForMatch));
+    //console.log("fetchedUserPredsForMatch are " + JSON.stringify(fetchedUserPredsForMatch));
     if(fetchedUserPredsForMatch.length == 0){
-        console.log("fetchedUserPredsForMatch length is " + fetchedUserPredsForMatch.length)
+        //console.log("fetchedUserPredsForMatch length is " + fetchedUserPredsForMatch.length)
     }
     return dispatch => {
             retrievePreds.then(
                 response =>
-                    dispatch(calculatePointsForCompletedMatch(matchResultData, fetchedUserPredsForMatch))
+                    dispatch(calculatePointsForCompletedRugbyMatch(matchResultData, fetchedUserPredsForMatch))
             )
                 .catch(
                     err => dispatch(addMatchResultOrPredictionFail(err))
                 )
         }
-
 }
 
 
@@ -509,6 +545,80 @@ export const calculatePointsForCompletedMatch = (completedMatchResult, userPredi
 
 }
 
+export const calculatePointsForCompletedRugbyMatch = (completedMatchResult, userPredictions) => {
+    //console.log("calculatePointsForCompletedRugbyMatch : userPredictions are " +JSON.stringify(userPredictions));
+    //console.log("calculatePointsForCompletedRugbyMatch completedMatchResult " + JSON.stringify(completedMatchResult))
+    //If there are predictions for the completed match, then calculate the points
+    if(userPredictions.length > 0) {
+        const predsResultsData = [];
+        userPredictions.forEach(pred => {
+            // console.log("pred.predictedWinningTeam is " + pred.predictedWinningTeam);
+            // console.log("pred.predictedWinningMargin is " + pred.predictedWinningMargin);
+            // console.log("completedMatchResult.winningMargin is " + completedMatchResult.winningMargin);
+            // console.log("completedMatchResult.winningMargin is " + completedMatchResult.winningMargin);
+
+            if (pred.predictedWinningTeam == completedMatchResult.winningTeam && pred.predictedWinningMargin == completedMatchResult.winningMargin) {
+                predsResultsData.push({
+                    matchID: pred.matchID,
+                    matchKickoff: pred.matchKickoff,
+                    teamAName: pred.teamAName,
+                    teamBName: pred.teamBName,
+                    predictedWinningTeam: pred.predictedWinningTeam,
+                    actualWinningTeam: completedMatchResult.winningTeam,
+                    predictedWinningMargin: pred.predictedWinningMargin,
+                    actualWinningMargin: completedMatchResult.winningMargin,
+                    predictionId: pred.key,
+                    userId: pred.userId,
+                    userName: pred.userName,
+                    points: 5
+                })
+            }
+            else if (pred.predictedWinningTeam == completedMatchResult.winningTeam && !(pred.predictedWinningMargin == completedMatchResult.winningMargin)){
+                predsResultsData.push({
+                    matchID: pred.matchID,
+                    matchKickoff: pred.matchKickoff,
+                    teamAName: pred.teamAName,
+                    teamBName: pred.teamBName,
+                    predictedWinningTeam: pred.predictedWinningTeam,
+                    actualWinningTeam: completedMatchResult.winningTeam,
+                    predictedWinningMargin: pred.predictedWinningMargin,
+                    actualWinningMargin: completedMatchResult.winningMargin,
+                    predictionId: pred.key,
+                    userId: pred.userId,
+                    userName: pred.userName,
+                    points: 2
+                })
+            }
+            else {
+                predsResultsData.push({
+                    matchID: pred.matchID,
+                    matchKickoff: pred.matchKickoff,
+                    teamAName: pred.teamAName,
+                    teamBName: pred.teamBName,
+                    predictedWinningTeam: pred.predictedWinningTeam,
+                    actualWinningTeam: completedMatchResult.winningTeam,
+                    predictedWinningMargin: pred.predictedWinningMargin,
+                    actualWinningMargin: completedMatchResult.winningMargin,
+                    predictionId: pred.key,
+                    userId: pred.userId,
+                    userName: pred.userName,
+                    points: 0
+                })
+            }
+
+        });
+        return dispatch => {
+            dispatch(addMatchPredictionResults(predsResultsData));
+        }
+    }
+    else{
+        return dispatch => {
+            dispatch(deleteMatchFromUpcomingMatches(completedMatchResult.matchID));
+        }
+    }
+
+}
+
 
 // export const addMatchPredictionResults = (predsResultsData) => {
 //     console.log("Preds result data at addMatchPredictionResults is " + JSON.stringify(predsResultsData))
@@ -571,7 +681,7 @@ export const deleteCompletedPredictions = (predsResultsData) => {
 // }
 
 export const deleteCompletedPredictionFail = (error) => {
-    console.log("The error is " + error);
+    //console.log("The error is " + error);
     return {
         type: actionTypes.DELETE_COMPLETED_PREDICTION_FAIL
     };
@@ -603,4 +713,179 @@ export const addUpcomingMatchFail = (res) => {
     return {
         type: actionTypes.ADD_UPCOMING_MATCH_FAIL
     };
+}
+
+// export const submitMatchResultOrPrediction = (resultPredictionData, admin, prediction) => {
+//     console.log("submitMatchResultOrPrediction state of admin is " +admin);
+//     console.log("submitMatchResultOrPrediction : jsonPayload looks like " + JSON.stringify(resultPredictionData));
+//     return dispatch => {
+//         dispatch(addResultOrPredictionStart());
+//         if (admin === true) {
+//             matchResultsFBRef.push({
+//                 matchID: resultPredictionData.matchID,
+//                 teamAName: resultPredictionData.teamAName,
+//                 teamBName: resultPredictionData.teamBName,
+//                 winningTeam: resultPredictionData.winningTeam,
+//                 winningMargin: resultPredictionData.winningMargin
+//
+//             })
+//         }
+//         else{
+//             if(!resultPredictionData.predictionID == ""){
+//                 delete resultPredictionData["prediction"];
+//                 //matchPredictionsFBRef.child('matchPredictions/' + resultPredictionData.predictionID).set({
+//                 matchPredictionsFBRef.child(resultPredictionData.predictionID).set({
+//                     matchID: resultPredictionData.matchID,
+//                     matchKickoff: resultPredictionData.matchKickoff,
+//                     teamAName: resultPredictionData.teamAName,
+//                     teamBName: resultPredictionData.teamBName,
+//                     userId: resultPredictionData.userId,
+//                     userName: resultPredictionData.userName,
+//                     predictedWinningTeam: resultPredictionData.winningTeam,
+//                     predictedWinningMargin: resultPredictionData.winningMargin
+//                 })
+//                     .then(response => {
+//                         console.log("response is " + JSON.stringify(response));
+//                         dispatch(addResultOrPredictionSuccess(response));
+//                     })
+//                     .catch(error => {
+//                         console.log("Is this error that is getting thrown?" +error);
+//                         dispatch(addResultOrPredictionFail(error));
+//                     })
+//             }
+//             else{
+//                 delete resultPredictionData["prediction"];
+//                 //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
+//                 matchPredictionsFBRef.push({
+//                     matchID: resultPredictionData.matchID,
+//                     matchKickoff: resultPredictionData.matchKickoff,
+//                     teamAName: resultPredictionData.teamAName,
+//                     teamBName: resultPredictionData.teamBName,
+//                     userId: resultPredictionData.userId,
+//                     userName: resultPredictionData.userName,
+//                     predictedWinningTeam: resultPredictionData.winningTeam,
+//                     predictedWinningMargin: resultPredictionData.winningMargin
+//                 })
+//                     .then(response => {
+//                         dispatch(addResultOrPredictionSuccess());
+//                     })
+//                     .catch(error => {dispatch(addResultOrPredictionFail(error))})
+//             }
+//         }
+//     }
+// }
+
+export const submitMatchResultOrPrediction = (resultPredictionData, admin) => {
+    console.log("submitMatchResultOrPrediction resultPredictionData " +JSON.stringify(resultPredictionData));
+    //console.log("Actions submitMatchResultOrPrediction : jsonPayload looks like " + JSON.stringify(resultPredictionData));
+    //console.log("submitMatchResultOrPrediction: What does prediction look like here " + JSON.stringify(prediction));
+    return dispatch => {
+        dispatch(addResultOrPredictionStart());
+        //If the user is the admin user, then add record to matchResults table, fetchPredictions for the completed match and
+        //delete the match from the upcoming matches table.
+        if (admin === true) {
+            matchResultsFBRef.push({
+                matchID: resultPredictionData.matchID,
+                teamAName: resultPredictionData.teamAName,
+                teamBName: resultPredictionData.teamBName,
+                winningTeam: resultPredictionData.winningTeam,
+                winningMargin: resultPredictionData.winningMargin,
+                matchKickoff: resultPredictionData.matchKickoff
+
+            })
+                .then(response => {
+                    //console.log("Do we get inside this? What does matchResultData look like" + JSON.stringify(response));
+                    dispatch(fetchPredictionsForCompletedMatch(resultPredictionData));
+                })
+                .catch(error => {
+                    dispatch(addMatchResultOrPredictionFail(error))
+                })
+        }
+        //If user is not admin, then add record to matchPredictions table or update existing record if prediction already exists for this.
+        else{
+
+            //If the user already had a prediction for the match
+            //if(resultPredictionData.prediction)
+            if(!resultPredictionData.predictionID == "")
+            {
+                //delete resultPredictionData["prediction"];
+                //matchPredictionsFBRef.child('matchPredictions/' + resultPredictionData.predictionID).set({
+                //matchPredictionsFBRef.child(resultPredictionData.predictionID).set({
+                matchPredictionsFBRef.child(resultPredictionData.predictionID).set({
+                    matchID: resultPredictionData.matchID,
+                    matchKickoff: resultPredictionData.matchKickoff,
+                    teamAName: resultPredictionData.teamAName,
+                    teamBName: resultPredictionData.teamBName,
+                    userId: resultPredictionData.userId,
+                    userName: resultPredictionData.userName,
+                    predictedWinningTeam: resultPredictionData.winningTeam,
+                    predictedWinningMargin: resultPredictionData.winningMargin,
+                    matchKickoff: resultPredictionData.matchKickoff
+                })
+                .then(response => {
+                    //console.log("submitMatchResultOrPrediction response is " + JSON.stringify(response));
+                    //dispatch(addResultOrPredictionSuccess(response));
+                    dispatch(addMatchPredictionSuccess(resultPredictionData.matchID));
+                })
+                .catch(error => {
+                    //console.log("Is this error that is getting thrown?" +error);
+                    dispatch(addResultOrPredictionFail(error));
+                })
+            }
+            else{
+                //delete resultPredictionData["prediction"];
+                //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
+                matchPredictionsFBRef.push({
+                    matchID: resultPredictionData.matchID,
+                    matchKickoff: resultPredictionData.matchKickoff,
+                    teamAName: resultPredictionData.teamAName,
+                    teamBName: resultPredictionData.teamBName,
+                    userId: resultPredictionData.userId,
+                    userName: resultPredictionData.userName,
+                    predictedWinningTeam: resultPredictionData.winningTeam,
+                    predictedWinningMargin: resultPredictionData.winningMargin,
+                    matchKickoff: resultPredictionData.matchKickoff
+                })
+                .then(response => {
+                        const newPredID = response.key;
+                        console.log("Response here is " + response.key);
+                        dispatch(addNewMatchPredictionSuccess(resultPredictionData, newPredID, resultPredictionData.matchID));
+                        //dispatch(addNewMatchPredictionSuccess(resultPredictionData.matchID, newPredID));
+                })
+                .catch(error => {dispatch(addResultOrPredictionFail(error))})
+            }
+        }
+    }
+}
+
+export const addResultOrPredictionSuccess = () => {
+    return {
+        type: actionTypes.ADD_RESULT_OR_PREDICTION_SUCCESS
+    };
+};
+
+export const addResultOrPredictionFail = (err) => {
+    console.log("Error in addResultOrPredictionFail: " +err);
+    return {
+        type: actionTypes.ADD_RESULT_OR_PREDICTION_FAIL
+    };
+};
+
+export const addResultOrPredictionStart = () => {
+    return {
+        type: actionTypes.ADD_RESULT_OR_PREDICTION_START
+    };
+};
+
+export const setWinningTeam = ( winningTeam ) => {
+    return {
+        type: actionTypes.SET_WINNING_TEAM,
+        winningTeam: winningTeam
+    };
+};
+
+export const cancelMatchResultPredInput = () => {
+    return {
+        type: actionTypes.CANCEL_MATCH_RES_OR_PRED_INPUT
+    }
 }
