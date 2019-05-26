@@ -32,10 +32,10 @@ const userPredResult = (props) => {
                         <td>Match: {props.teamAName} vs {props.teamBName}</td>
                     </tr>
                     <tr>
-                        <td>Winner: {props.actualWinningTeam} / Predicted Winner: {props.predictedWinningTeam}</td>
+                        <td>Your Prediction: {props.predictedWinningTeam} {props.predictedWinningMargin}</td>
                     </tr>
                     <tr>
-                        <td>Margin:{props.actualWinningMargin} / Predicted Margin:{props.predictedWinningMargin}</td>
+                        <td>Actual Result: {props.actualWinningTeam} {props.actualWinningMargin}</td>
                     </tr>
                     <tr>
                         <td>Points: {props.points}</td>

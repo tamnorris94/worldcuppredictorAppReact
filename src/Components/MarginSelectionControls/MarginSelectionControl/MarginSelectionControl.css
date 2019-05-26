@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 140px;
     margin: 5px 0;
 }
 
@@ -10,7 +11,7 @@
     font: inherit;
     padding: 5px;
     margin: 0 5px;
-    width: 80px;
+    width: 180px;
     border: 1px solid #AA6817;
     cursor: pointer;
     outline: none;

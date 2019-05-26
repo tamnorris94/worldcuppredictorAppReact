@@ -8,9 +8,30 @@
     display: flex;
 }
 
+.teamSelectionControl {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+
 @media (min-width : 500px){
     .RugbyMatchPredictionResultInput {
         width : 450px;
         display: flex;
     }
+}
+
+.login-form {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    height: 100%;
+}
+
+.Button {
+    btn: true;
+    btn-lg: true;
+    btn-block: true;
 }

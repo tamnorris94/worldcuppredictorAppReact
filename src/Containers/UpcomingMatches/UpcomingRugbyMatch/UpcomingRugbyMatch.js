@@ -19,21 +19,21 @@ const UpcomingRugbyMatch = (props) => {
 
     if(props.prediction){
         return (
-            <article className={classes.UpcomingRugbyMatch} onClick={props.addMatchPrediction}>
+            <article className={classes.UpcomingMatchCurrentPrediction} onClick={props.addMatchPrediction}>
                 <div>
                     <p>{props.teamBName} @{props.teamAName}</p>
                     <p>{lDate}</p>
-                    <p>Predicted Team : {props.predictedWinningTeam}</p>
-                    <p>Predicted Margin : {props.predictedWinningMargin}</p>
+                    <p>Current Prediction: {props.predictedWinningTeam} {props.predictedWinningMargin}</p>
                 </div>
             </article>
         );
     }
     else{
-        return (<article className={classes.UpcomingRugbyMatch} onClick={props.addMatchPrediction}>
+        return (<article className={classes.UpcomingMatchNoCurrentPrediction} onClick={props.addMatchPrediction}>
             <div>
                 <p>{props.teamBName} @ {props.teamAName}</p>
                 <p>{lDate}</p>
+                <p>You have not entered a prediction for this match yet.</p>
             </div>
         </article>);
     }

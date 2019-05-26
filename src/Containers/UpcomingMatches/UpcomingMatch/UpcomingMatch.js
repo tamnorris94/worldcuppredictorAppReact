@@ -16,6 +16,7 @@ const UpcomingMatch = (props) => {
          return (<article className={classes.UpcomingMatch} onClick={props.addMatchPrediction}>
             <div>
                 <p>{props.matchKickoff}: {props.teamAName} @ {props.teamBName}</p>
+                <p>You have not entered a prediction for this match yet.</p>
             </div>
         </article>);
     }

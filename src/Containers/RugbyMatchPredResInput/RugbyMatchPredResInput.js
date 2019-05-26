@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { updateObject, checkValidity } from '../../shared/utility';
 import MarginSelectionControls from '../../Components/MarginSelectionControls/MarginSelectionControls';
 import Aux from '../../Hoc/Auxiliary/Auxiliary';
+//import { Button, Form, FormGroup, ButtonGroup, Row, Col } from 'reactstrap';
 import TeamSelectionControl from '../../Components/TeamSelectionControls/TeamSelectionControl/TeamSelectionControl';
 
 class RugbyMatchPredictionResultInput extends Component {
@@ -71,23 +72,6 @@ class RugbyMatchPredictionResultInput extends Component {
         }
     }
 
-    // componentWillReceiveProps (nextProps){
-    //     console.log("ComponentcomponentWillReceiveProps is executed.")
-    //     if(this.props.teamAName !== nextProps.teamAName && this.props.teamBName !== nextProps.teamBName){
-    //         const updatedteamAScore = updateObject(this.state.resultInputForm.teamAScore, {
-    //             label: nextProps.teamAName
-    //         })
-    //         const updatedteamBScore = updateObject(this.state.resultInputForm.teamBScore, {
-    //             label: nextProps.teamBName
-    //         })
-    //         const updatedResultInputForm = updateObject(this.state.resultInputForm, {
-    //             teamAScore: updatedteamAScore,
-    //             teamBScore: updatedteamBScore
-    //         })
-    //         this.setState({resultInputForm: updatedResultInputForm});
-    //     }
-    // }
-
     componentDidMount(){
         //console.log("componentDidMount run");
         const updatedTeamSelection = updateObject(this.state.teamSelection, {
@@ -108,26 +92,6 @@ class RugbyMatchPredictionResultInput extends Component {
         }
     }
 
-    // shouldComponentUpdate(nextProps, nextState){
-    //     //console.log("State teamALabel " + this.state.resultInputForm.teamAScore.label);
-    //     console.log("this.props.selectedMatchForUpdate.matchID " + this.props.selectedMatchForUpdate.matchID);
-    //     console.log("nextProps.selectedMatchForUpdate.matchID " + nextProps.selectedMatchForUpdate.matchID);
-    //     if(this.props.selectedMatchForUpdate.matchID !== nextProps.selectedMatchForUpdate.matchID){
-    //         console.log("shouldComponentUpdate returns true")
-    //         const updatedTeamSelection = updateObject(this.state.resultInputForm, {
-    //             teamAName: updateObject(this.state.teamSelection.teamAName, { label: this.props.selectedMatchForUpdate.teamAName}),
-    //             teamBName: updateObject(this.state.teamSelection.teamBName, { label: this.props.selectedMatchForUpdate.teamBName}),
-    //         })
-    //         this.setState({teamSelection: updatedTeamSelection});
-    //         return true;
-    //     }
-    //     else{
-    //         console.log("shouldComponentUpdate returns false")
-    //         return false;
-    //     }
-    //
-    // }
-
 
     componentDidUpdate(prevProps){
         console.log("componentDidUpdate happens");
@@ -147,8 +111,6 @@ class RugbyMatchPredictionResultInput extends Component {
     setWinningMarginHandler(winningMargin){
         let updatedMarginSelection = this.state.selectedmargin;
         updatedMarginSelection = updateObject(updatedMarginSelection, winningMargin);
-        //event.preventDefault();
-        //const updatedWinningMargin = updateObject(this.state.winningMargin, { winningMargin });
         this.setState({ selectedmargin: winningMargin});
         this.props.onSetWinningMargin(winningMargin);
     }
@@ -220,13 +182,7 @@ class RugbyMatchPredictionResultInput extends Component {
         let currentDateTime = new Date();
         let currentLocalTime = moment.utc(currentDateTime).local().format("ddd, MMMM Do YYYY, h:mm a");
         let currentLocalTime2 = moment.utc(currentDateTime).local();
-        console.log("matchPredKickoffToLocal is " +matchPredKickoffToLocal);
-        //console.log("this.props.selectedMatchForUpdate.matchKickoff is " +this.props.selectedMatchForUpdate.matchKickoff);
-        //console.log("In render of RugbyMatchPredResInput currentDateTime is " +currentDateTime);
-        // console.log("In render of RugbyMatchPredResInput currentLocalTime is " +currentLocalTime);
-        // console.log("In render of RugbyMatchPredResInput matchPredKickOff is " +matchPredKickOff);
-        // console.log("In render of RugbyMatchPredResInput matchPredKickOff2 is " +matchPredKickOff2);
-        // console.log("In render of RugbyMatchPredResInput currentLocalTime2 is " +currentLocalTime2);
+
         if(matchPredKickOff2 < currentLocalTime2 && !this.props.admin){
             matchResultInputForm = <p>Match has already been played</p>
         }
@@ -236,10 +192,9 @@ class RugbyMatchPredictionResultInput extends Component {
             //MarginSelectionControl and cycle through all of these for each team.
             //Do I need the MarginSelectionControls component? As BurgerBuilder has.
             matchResultInputForm = (
-                <form className={classes.MatchResultInput}>
-
-                    <div style={{position: "absolute"}}>
-                    {formElementsArray.map(formElement => (
+                <form>
+                    <div className={classes.teamSelectionControl}>
+                        {formElementsArray.map(formElement => (
                             <div key={formElement.id} className="btn-group" role="group" aria-label="Basic Example">
                                 <TeamSelectionControl selected={formElement.config.selected}
                                                       selectTeam={(event)=>this.setWinningTeamHandler(formElement.config.label)}
@@ -247,15 +202,15 @@ class RugbyMatchPredictionResultInput extends Component {
                                     {formElement.config.label}
                                 </TeamSelectionControl>
                             </div>
-                    ))}
+                        ))}
+                    </div>
+
                     <MarginSelectionControls
                         selectedmargin={this.state.selectedmargin}
                         selectMargin={(winningMargin) => this.setWinningMarginHandler(winningMargin)}
-                        //selectMargin={this.props.onSetWinningMargin}
-                        />
+                    />
                     <Button disabled={!canSubmitPrediction} btnType="Success" clicked={this.submitResultOrPredictionHandler}>SUBMIT PREDICTION</Button>
                     <Button btnType="Danger" clicked={this.cancelMatchResPredInputHandler}>CANCEL</Button>
-                    </div>
                 </form>
             );
         }
