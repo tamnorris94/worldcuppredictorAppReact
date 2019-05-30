@@ -14,8 +14,7 @@ const marginSelectionControls = [
 
 const MarginSelectionControls = (props ) => (
 
-        <div className="btn-group">
-            <ButtonGroup toggle={this.toggle}>
+    <div className="btn-group">
             {marginSelectionControls.map( ctrl => (
                 <MarginSelectionControl
                     key={ctrl.label}
@@ -24,8 +23,7 @@ const MarginSelectionControls = (props ) => (
                     selectedmargin={props.selectedmargin}
                 />
             ))}
-            </ButtonGroup>
-        </div>
+    </div>
 );
 
 export default MarginSelectionControls;

@@ -100,12 +100,6 @@ class UpcomingMatches extends Component {
         this.props.history.push('/upcomingmatches');
     }
 
-    // resultSubmitHandler = () => {
-    //     this.setState({
-    //         inputtingResult: false
-    //     })
-    // }
-
     cancelResultInputHandler = () => {
         this.setState( {inputtingResult : false} )
     }

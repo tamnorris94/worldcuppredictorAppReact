@@ -21,40 +21,6 @@ export class UpcomingRugbyMatches extends Component {
         this.props.onFetchUpcomingAndPredictions(this.props.admin, this.props.token, this.props.userId);
     }
 
-    // componentDidUpdate(){
-    //     this.props.onFetchUpcomingAndPredictions(this.props.admin, this.props.token, this.props.userId);
-    // }
-
-    // addInitMatchPredictionHandler = (matchPred) => {
-    //     this.setState({
-    //         inputtingResult: true
-    //     })
-    //     if(this.props.admin){
-    //         this.props.onAddMatchResult( matchPred);
-    //     }
-    //     else{
-    //         this.props.onAddMatchPrediction(matchPred);
-    //     }
-    // }
-
-    // addInitMatchPredictionHandler = (matchPred) => {
-    //     if(!this.props.isAuth){
-    //         this.props.onSetAuthRedirectPath('/auth');
-    //         this.props.history.push('/auth');
-    //     }
-    //     else{
-    //         this.setState({
-    //             inputtingResult: true
-    //         })
-    //         if(this.props.admin){
-    //             this.props.onAddMatchResult( matchPred);
-    //         }
-    //         else{
-    //             this.props.onAddMatchPrediction(matchPred);
-    //         }
-    //     }
-    // }
-
     addInitMatchPredictionHandler = (matchPred) => {
         let matchPredKickOff = new Date(matchPred.matchKickoff).getTime();
         let currentDateTime = new Date().getTime();
@@ -140,15 +106,6 @@ export class UpcomingRugbyMatches extends Component {
         }
 
         if(this.props.selectedMatchForUpd){
-            // if(!this.state.error){
-            //     matchResultInput = <MatchResultInput id={this.props.selectedMatchForUpd.matchID}
-            //                                          resultInputCancel={this.cancelResultInputHandler}
-            //                                          resultSubmitted={this.addMatchResultInput}
-            //     />
-            // }
-            // else{
-            //     matchResultInput = <p>Match has already been played</p>
-            // }
             matchResultInput = <RugbyMatchPredResInput id={this.props.selectedMatchForUpd.matchID}
                                                  resultInputCancel={this.cancelResultInputHandler}
                                                  resultSubmitted={this.addMatchResultInput}
@@ -165,37 +122,6 @@ export class UpcomingRugbyMatches extends Component {
         );
     }
 }
-
-// const checkIfMatchInPredictions = (match, preds) =>{
-//     let exists = false;
-//     let i;
-//     let matchID = match.id;
-//     let cyclesThroughForLoop = 0;
-//     for(i=0;i<preds.length; i++){
-//         let predsMatchID = preds[i].matchID;
-//         cyclesThroughForLoop++;
-//         if(matchID === predsMatchID){
-//             exists = true;
-//             break;
-//         }
-//     }
-//     if(exists){
-//
-//         this.state.matchesPredictionsArray.push({
-//             ...preds[i],
-//             prediction: true
-//         })
-//     }
-//     else {
-//         this.state.matchesPredictionsArray.push({
-//             ...match,
-//             prediction: false
-//         })
-//     }
-//     this.setState({
-//         matchPredsArrayCheck: true
-//     })
-// };
 
 const mapDispatchToProps = dispatch => {
     return {

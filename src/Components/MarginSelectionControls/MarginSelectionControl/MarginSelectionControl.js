@@ -1,7 +1,8 @@
 import React from 'react';
 
 import classes from './MarginSelectionControl.css';
-import Button from "../../../Components/UI/Button/Button";
+//import Button from "../../../Components/UI/Button/Button";
+import { Button } from 'reactstrap';
 
 const MarginSelectionControl = (props) => {
     const MarginSelectionControlClasses = [classes.PredResSelectControl];
@@ -14,15 +15,15 @@ const MarginSelectionControl = (props) => {
 
     return (
         <div className={classes.MarginSelectionControl}>
-            <button
+            <Button
                 type="button"
                 label={props.label}
                 className={MarginSelectionControlClasses.join(' ')}
                 onClick={props.selectMargin}
                 selectedmargin={props.selectedmargin}
-            >{props.label}</button>
+            >{props.label}</Button>
         </div>
-        )
+    )
 };
 
 export default MarginSelectionControl;

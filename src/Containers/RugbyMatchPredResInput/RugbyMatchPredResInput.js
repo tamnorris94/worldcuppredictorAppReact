@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { updateObject, checkValidity } from '../../shared/utility';
 import MarginSelectionControls from '../../Components/MarginSelectionControls/MarginSelectionControls';
 import Aux from '../../Hoc/Auxiliary/Auxiliary';
-//import { Button, Form, FormGroup, ButtonGroup, Row, Col } from 'reactstrap';
+import { Form, FormGroup, ButtonGroup, Row, Col } from 'reactstrap';
 import TeamSelectionControl from '../../Components/TeamSelectionControls/TeamSelectionControl/TeamSelectionControl';
 
 class RugbyMatchPredictionResultInput extends Component {
@@ -51,7 +51,6 @@ class RugbyMatchPredictionResultInput extends Component {
                 teamBScore: this.state.teamSelection.teamBName.value,
                 matchKickoff: this.props.selectedMatchForUpdate.matchKickoff
             }
-            //this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.prediction );
             this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin );
         }
         else {
@@ -67,13 +66,11 @@ class RugbyMatchPredictionResultInput extends Component {
                 userName: this.props.userName,
                 prediction: this.props.prediction
             }
-            //this.props.onInputMatchResultOrPrediction( matchResultData, this.props.admin, this.props.token );
             this.props.onInputMatchResultOrPrediction( matchResultData );
         }
     }
 
     componentDidMount(){
-        //console.log("componentDidMount run");
         const updatedTeamSelection = updateObject(this.state.teamSelection, {
             teamAName: updateObject(this.state.teamSelection.teamAName, { label: this.props.selectedMatchForUpdate.teamAName}),
             teamBName: updateObject(this.state.teamSelection.teamBName, { label: this.props.selectedMatchForUpdate.teamBName}),
@@ -154,7 +151,7 @@ class RugbyMatchPredictionResultInput extends Component {
             canSubmitPrediction = true;
         }
 
-       const formElementsArray = [];
+        const formElementsArray = [];
         for (let key in this.state.teamSelection) {
             formElementsArray.push({
                 id: key,
@@ -192,26 +189,39 @@ class RugbyMatchPredictionResultInput extends Component {
             //MarginSelectionControl and cycle through all of these for each team.
             //Do I need the MarginSelectionControls component? As BurgerBuilder has.
             matchResultInputForm = (
-                <form>
-                    <div className={classes.teamSelectionControl}>
-                        {formElementsArray.map(formElement => (
-                            <div key={formElement.id} className="btn-group" role="group" aria-label="Basic Example">
-                                <TeamSelectionControl selected={formElement.config.selected}
-                                                      selectTeam={(event)=>this.setWinningTeamHandler(formElement.config.label)}
-                                                      selectedteam={this.state.selectedteam}>
-                                    {formElement.config.label}
-                                </TeamSelectionControl>
+                <Form>
+                    <Row>
+                        <Col>
+                            <div className={classes.teamSelectionControl}>
+                                {formElementsArray.map(formElement => (
+                                    <div key={formElement.id} className="btn-group" role="group" aria-label="Basic Example">
+                                        <TeamSelectionControl selected={formElement.config.selected}
+                                                              selectTeam={(event)=>this.setWinningTeamHandler(formElement.config.label)}
+                                                              selectedteam={this.state.selectedteam}>
+                                            {formElement.config.label}
+                                        </TeamSelectionControl>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
-                    </div>
-
-                    <MarginSelectionControls
-                        selectedmargin={this.state.selectedmargin}
-                        selectMargin={(winningMargin) => this.setWinningMarginHandler(winningMargin)}
-                    />
-                    <Button disabled={!canSubmitPrediction} btnType="Success" clicked={this.submitResultOrPredictionHandler}>SUBMIT PREDICTION</Button>
-                    <Button btnType="Danger" clicked={this.cancelMatchResPredInputHandler}>CANCEL</Button>
-                </form>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <ButtonGroup className="btn-block btn-group-vertical">
+                                <MarginSelectionControls
+                                    selectedmargin={this.state.selectedmargin}
+                                    selectMargin={(winningMargin) => this.setWinningMarginHandler(winningMargin)}
+                                />
+                            </ButtonGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button disabled={!canSubmitPrediction} btnType="Success" clicked={this.submitResultOrPredictionHandler}>SUBMIT PREDICTION</Button>
+                            <Button btnType="Danger" clicked={this.cancelMatchResPredInputHandler}>CANCEL</Button>
+                        </Col>
+                    </Row>
+                </Form>
             );
         }
 
