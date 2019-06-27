@@ -5,13 +5,6 @@ import { matchPredictionsFBRef } from '../../Config/firebase';
 import { updateObject } from '../../shared/utility';
 
 
-// export const setWinningTeam = ( winningTeam ) => {
-//     return {
-//         type: actionTypes.SET_WINNING_TEAM,
-//         winningTeam: winningTeam
-//     };
-// };
-
 export const setWinningMargin = ( winningMargin ) => {
     return {
         type: actionTypes.SET_WINNING_MARGIN,
@@ -77,7 +70,6 @@ export const submitMatchResultOrPrediction = (resultPredictionData, admin, predi
                 }
                 else{
                     delete resultPredictionData["prediction"];
-                    //axios.post( 'https://react-my-burger-tam.firebaseio.com/matchPredictions.json?auth=' + token, matchResultData)
                     matchPredictionsFBRef.push({
                         matchID: resultPredictionData.matchID,
                         matchKickoff: resultPredictionData.matchKickoff,
