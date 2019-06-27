@@ -11,7 +11,7 @@ import axios from '../../axios-wcpredict';
 
 export class UpcomingRugbyMatches extends Component {
 
-    //Added a comment here to test branching
+    //Added a comment here to test branching - Branch 2 Cleanup2
 
     state = {
         inputtingResult: false,
@@ -52,13 +52,6 @@ export class UpcomingRugbyMatches extends Component {
             }
         }
     }
-
-    // initUpdateMatchPredictionHandler = (matchPred) => {
-    //     this.setState({
-    //         inputtingResult: true
-    //     })
-    //     this.props.onUpdateMatchPredictionInit( matchPred);
-    // }
 
     addMatchResultInput = () => {
         //console.log("addMatchResultInput : State of inputting result before is " + this.state.inputtingResult);
@@ -114,13 +107,6 @@ export class UpcomingRugbyMatches extends Component {
                                                  resultSubmitted={this.addMatchResultInput}
             />
         }
-
-        // if(this.props.selectedMatchForUpd){
-        //     matchResultInput = <MatchPredictionInput id={this.props.selectedMatchForUpd.matchID}
-        //                                                resultInputCancel={this.cancelResultInputHandler}
-        //                                                resultSubmitted={this.addMatchResultInput}
-        //     />
-        // }
 
         return (
             <Aux>
