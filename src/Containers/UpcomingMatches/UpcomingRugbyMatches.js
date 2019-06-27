@@ -51,12 +51,12 @@ export class UpcomingRugbyMatches extends Component {
         }
     }
 
-    initUpdateMatchPredictionHandler = (matchPred) => {
-        this.setState({
-            inputtingResult: true
-        })
-        this.props.onUpdateMatchPredictionInit( matchPred);
-    }
+    // initUpdateMatchPredictionHandler = (matchPred) => {
+    //     this.setState({
+    //         inputtingResult: true
+    //     })
+    //     this.props.onUpdateMatchPredictionInit( matchPred);
+    // }
 
     addMatchResultInput = () => {
         //console.log("addMatchResultInput : State of inputting result before is " + this.state.inputtingResult);
@@ -138,7 +138,7 @@ const mapDispatchToProps = dispatch => {
         onSubmitMatchResultOrPrediction: (matchResultData, admin) => dispatch(actions.submitMatchResultOrPrediction(matchResultData, admin)),
         onAddMatchResult: (matchPred ) => dispatch(actions.initAddMatchResult(matchPred)),
         onAddMatchPrediction: (matchPred) => dispatch(actions.initAddMatchPrediction(matchPred)),
-        onUpdateMatchPredictionInit: (matchPred ) => dispatch(actions.initUpdatePrediction(matchPred)),
+        //onUpdateMatchPredictionInit: (matchPred ) => dispatch(actions.initUpdatePrediction(matchPred)),
         onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
         onInputResultOrPredCancel: () => dispatch(actions.cancelMatchResultPredInput())
     }

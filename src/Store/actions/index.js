@@ -32,17 +32,17 @@ export {
     fetchCompletedMatchesSuccess,
     fetchCompletedMatches
 } from './completedMatches';
-export {
-    //initAddMatchResultOrPrediction,
-    //addMatchResultOrPrediction,
-    // addMatchResultOrPredictionStart,
-    // addMatchResultOrPredictionFail,
-    // addMatchResultOrPredictionSuccess,
-    initUpdatePrediction,
-    updatePredictionStart,
-    updatePredictionSuccess,
-    updatePredictionFail
-} from './matchResultPredictiontInput';
+// export {
+//     //initAddMatchResultOrPrediction,
+//     //addMatchResultOrPrediction,
+//     // addMatchResultOrPredictionStart,
+//     // addMatchResultOrPredictionFail,
+//     // addMatchResultOrPredictionSuccess,
+//     initUpdatePrediction,
+//     updatePredictionStart,
+//     updatePredictionSuccess,
+//     updatePredictionFail
+// } from './matchResultPredictiontInput';
 export {
     auth,
     logout,

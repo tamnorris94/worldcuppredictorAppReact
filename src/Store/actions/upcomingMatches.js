@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-wcpredict';
 import { upcomingMatchesFBRef } from '../../Config/firebase';
 import { matchPredictionsFBRef } from '../../Config/firebase';
 import { matchPredictionResultsFBRef } from '../../Config/firebase';
@@ -470,14 +469,6 @@ export const fetchPredictionsForCompletedMatch = (matchResultData) => {
         }
 }
 
-
-// export const fetchPredictionsForCompletedMatch = (match, token) => {
-//     return dispatch => {
-//         const queryParams = '?auth=' + token + '&orderBy="matchID"&equalTo="' + match + '"';
-//         console.log("Match in fetchPredictionsForCompletedMatch is " + JSON.stringify(match));
-//         axios.get('https://react-my-burger-tam.firebaseio.com/matchPredictions.json' + queryParams);
-//     }
-// }
 
 export const calculatePointsForCompletedMatch = (completedMatchResult, userPredictions) => {
     console.log("userPredictions are " +JSON.stringify(userPredictions));
