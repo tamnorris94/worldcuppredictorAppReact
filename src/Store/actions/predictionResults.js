@@ -39,6 +39,7 @@ export const fetchPredictionResultsSuccess = (predictionResults) => {
 };
 
 export const aggregatePredictionResults = (fetchedPredictionResults) => {
+    console.log("fetchedPredictionResults are " + JSON.stringify(fetchedPredictionResults))
     let predictionResults = [...fetchedPredictionResults.reduce((c, v) => {
         if (!c.has(v.userId)) c.set(v.userId, {"userId": v.userId,"points": 0, "userName": v.userName});
         c.get(v.userId).points += +v.points;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UpcomingRugbyMatch from "./UpcomingRugbyMatch/UpcomingRugbyMatch";
 import  RugbyMatchPredResInput from "../RugbyMatchPredResInput/RugbyMatchPredResInput";
+//import MatchPredictionInput from '../RugbyMatchPredResInput/MatchPredictionInput';
 import withErrorHandler from '../../Hoc/withErrorHandler/withErrorHandler';
 import Modal from "../../Components/UI/Modal/Modal";
 import Aux from "../../Hoc/Auxiliary/Auxiliary";
@@ -111,6 +112,13 @@ export class UpcomingRugbyMatches extends Component {
                                                  resultSubmitted={this.addMatchResultInput}
             />
         }
+
+        // if(this.props.selectedMatchForUpd){
+        //     matchResultInput = <MatchPredictionInput id={this.props.selectedMatchForUpd.matchID}
+        //                                                resultInputCancel={this.cancelResultInputHandler}
+        //                                                resultSubmitted={this.addMatchResultInput}
+        //     />
+        // }
 
         return (
             <Aux>

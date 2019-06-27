@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './RugbyMatchPredResInput.css';
-import Button from "../../Components/UI/Button/Button";
+//import Button from "../../Components/UI/Button/Button";
 import Input from "../../Components/UI/Input/Input";
 import Spinner from "../../Components/UI/Spinner/Spinner";
 import * as actions from '../../Store/actions/index';
@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import { updateObject, checkValidity } from '../../shared/utility';
 import MarginSelectionControls from '../../Components/MarginSelectionControls/MarginSelectionControls';
 import Aux from '../../Hoc/Auxiliary/Auxiliary';
-import { Form, FormGroup, ButtonGroup, Row, Col } from 'reactstrap';
+import { Button, Container, Form, FormGroup, ButtonGroup, Row, Col } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 import TeamSelectionControl from '../../Components/TeamSelectionControls/TeamSelectionControl/TeamSelectionControl';
 
 class RugbyMatchPredictionResultInput extends Component {
@@ -146,6 +147,14 @@ class RugbyMatchPredictionResultInput extends Component {
 
     render() {
 
+        const marginSelectionControls = [
+            { label: '21+', type: '21plus' },
+            { label: '16-20', type: '16to20' },
+            { label: '11-15', type: '11to15' },
+            { label: '6-10', type: '6to10' },
+            { label: '1-5', type: '1to5' }
+        ];
+
         let canSubmitPrediction = false;
         if(this.state.selectedteam != "" && this.state.selectedmargin != ""){
             canSubmitPrediction = true;
@@ -188,41 +197,92 @@ class RugbyMatchPredictionResultInput extends Component {
             //boxes for the result or prediction I need to replace these with the new component
             //MarginSelectionControl and cycle through all of these for each team.
             //Do I need the MarginSelectionControls component? As BurgerBuilder has.
+            // matchResultInputForm = (
+            //     <Form>
+            //         <Row>
+            //             <Col>
+            //                 <div className={classes.teamSelectionControl}>
+            //                     {formElementsArray.map(formElement => (
+            //                         <div key={formElement.id} className="btn-group" role="group" aria-label="Basic Example">
+            //                             <TeamSelectionControl selected={formElement.config.selected}
+            //                                                   selectTeam={(event)=>this.setWinningTeamHandler(formElement.config.label)}
+            //                                                   selectedteam={this.state.selectedteam}>
+            //                                 {formElement.config.label}
+            //                             </TeamSelectionControl>
+            //                         </div>
+            //                     ))}
+            //                 </div>
+            //             </Col>
+            //         </Row>
+            //         <Row>
+            //             <Col>
+            //                 <ButtonGroup className="btn-block btn-group-vertical">
+            //                     <MarginSelectionControls
+            //                         selectedmargin={this.state.selectedmargin}
+            //                         selectMargin={(winningMargin) => this.setWinningMarginHandler(winningMargin)}
+            //                     />
+            //                 </ButtonGroup>
+            //             </Col>
+            //         </Row>
+            //         <Row>
+            //             <Col>
+            //                 <Button disabled={!canSubmitPrediction} btnType="Success" clicked={this.submitResultOrPredictionHandler}>SUBMIT PREDICTION</Button>
+            //                 <Button btnType="Danger" clicked={this.cancelMatchResPredInputHandler}>CANCEL</Button>
+            //             </Col>
+            //         </Row>
+            //     </Form>
+            // );
+
             matchResultInputForm = (
-                <Form>
+                <Form >
+                <Container fluid>
                     <Row>
-                        <Col>
-                            <div className={classes.teamSelectionControl}>
-                                {formElementsArray.map(formElement => (
-                                    <div key={formElement.id} className="btn-group" role="group" aria-label="Basic Example">
-                                        <TeamSelectionControl selected={formElement.config.selected}
-                                                              selectTeam={(event)=>this.setWinningTeamHandler(formElement.config.label)}
-                                                              selectedteam={this.state.selectedteam}>
-                                            {formElement.config.label}
-                                        </TeamSelectionControl>
-                                    </div>
-                                ))}
-                            </div>
+                        <Col lg={true}>
+                            <h3 align="center">This is my bootstrap app</h3>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <ButtonGroup className="btn-block btn-group-vertical">
-                                <MarginSelectionControls
-                                    selectedmargin={this.state.selectedmargin}
-                                    selectMargin={(winningMargin) => this.setWinningMarginHandler(winningMargin)}
-                                />
+                            <ButtonGroup className="d-flex">
+                                {formElementsArray.map(formElement => (
+                                    <Button
+                                        key={formElement.id}
+                                        className="btn-block mr-1 mt-1 btn-lg"
+                                        color="primary"
+                                        onClick={(event) => this.setWinningTeamHandler(formElement.config.label)}
+                                        block
+                                        label={formElement.config.label}
+                                        selectedteam={this.state.selectedteam}>{formElement.config.label}</Button>
+
+                                ))}
                             </ButtonGroup>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <Button disabled={!canSubmitPrediction} btnType="Success" clicked={this.submitResultOrPredictionHandler}>SUBMIT PREDICTION</Button>
-                            <Button btnType="Danger" clicked={this.cancelMatchResPredInputHandler}>CANCEL</Button>
+                            <div className="btn-group d-flex mt-1 btn-group-vertical" role="group">
+                                {marginSelectionControls.map( ctrl => (
+                                    <Button
+                                        className="btn-block mr-1 mt-1 btn-lg"
+                                        key={ctrl.label}
+                                        onClick={(event) => this.setWinningMarginHandler(ctrl.label)}
+                                        label={ctrl.label}
+                                    >{ctrl.label}</Button>
+
+                                ))}
+                            </div>
                         </Col>
                     </Row>
-                </Form>
-            );
+                    <Row>
+                         <Col>
+                             <Button disabled={!canSubmitPrediction} className="btn-block mr-1 mt-1 btn-lg" onClick={this.submitResultOrPredictionHandler}>SUBMIT</Button>
+                         </Col>
+                         <Col>
+                             <Button className="btn-block mr-1 mt-1 btn-lg" onClick={this.cancelMatchResPredInputHandler}>CANCEL</Button>
+                         </Col>
+                     </Row>
+                </Container>
+            </Form>);
         }
 
         if ( this.props.loading ) {

@@ -455,7 +455,7 @@ export const fetchPredictionsForCompletedMatch = (matchResultData) => {
                 fetchedUserPredsForMatch.push(item);
             })
         });
-    //console.log("fetchedUserPredsForMatch are " + JSON.stringify(fetchedUserPredsForMatch));
+    console.log("fetchedUserPredsForMatch are " + JSON.stringify(fetchedUserPredsForMatch));
     if(fetchedUserPredsForMatch.length == 0){
         //console.log("fetchedUserPredsForMatch length is " + fetchedUserPredsForMatch.length)
     }
@@ -546,8 +546,8 @@ export const calculatePointsForCompletedMatch = (completedMatchResult, userPredi
 }
 
 export const calculatePointsForCompletedRugbyMatch = (completedMatchResult, userPredictions) => {
-    //console.log("calculatePointsForCompletedRugbyMatch : userPredictions are " +JSON.stringify(userPredictions));
-    //console.log("calculatePointsForCompletedRugbyMatch completedMatchResult " + JSON.stringify(completedMatchResult))
+    console.log("calculatePointsForCompletedRugbyMatch : userPredictions are " +JSON.stringify(userPredictions));
+    console.log("calculatePointsForCompletedRugbyMatch completedMatchResult " + JSON.stringify(completedMatchResult))
     //If there are predictions for the completed match, then calculate the points
     if(userPredictions.length > 0) {
         const predsResultsData = [];
