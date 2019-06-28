@@ -4,7 +4,6 @@ import classes from './UpcomingRugbyMatch.css';
 const UpcomingRugbyMatch = (props) => {
 
     const moment = require('moment');
-    const local = moment.locale();
     const timezone = require('moment-timezone');
     moment.parseZone('2016-05-03T22:15:01+02:00').local().format();
 
